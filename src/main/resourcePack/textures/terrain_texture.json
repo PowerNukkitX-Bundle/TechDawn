@@ -1,0 +1,35 @@
+{
+  "resource_pack_name": "pnx",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "pnx_a": {
+      "textures": [
+        "textures/blocks/wool_colored_black",
+        "textures/blocks/wool_colored_orange"
+      ]
+    },
+    "pnx_b": {
+      "textures": [
+        "textures/blocks/wool_colored_red",
+        "textures/blocks/wool_colored_pink"
+      ]
+    },
+    "pnx_wire_line": {
+      "textures": [
+        "textures/blocks/wire_line"
+      ]
+    },
+    "pnx_wire_cross": {
+      "textures": [
+        "textures/blocks/wire_cross"
+      ]
+    },
+    "pnx_pipe": {
+      "textures": {
+        "path": "textures/blocks/pipe"
+      }
+    }
+  }
+}
