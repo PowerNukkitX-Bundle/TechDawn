@@ -1,3 +1,4 @@
 /.idea/
 *.mcpack
 /target/
+/toolchain/
