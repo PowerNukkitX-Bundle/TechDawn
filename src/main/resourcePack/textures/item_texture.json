@@ -1,0 +1,20 @@
+{
+  "resource_pack_name": "techdawn",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "techdawn_icon_charged": {
+      "textures": [
+        "textures/items/icon/charged-1.png",
+        "textures/items/icon/charged-0.png",
+        "textures/items/icon/charged-2.png",
+        "textures/items/icon/charged-3.png",
+        "textures/items/icon/charged-4.png",
+        "textures/items/icon/charged-5.png",
+        "textures/items/icon/charged-6.png",
+        "textures/items/icon/charged-7.png",
+        "textures/items/icon/charged-8.png",
+        "textures/items/icon/charged-9.png"
+      ]
+    }
+  }
+}

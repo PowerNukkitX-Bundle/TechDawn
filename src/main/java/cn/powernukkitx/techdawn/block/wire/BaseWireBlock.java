@@ -8,12 +8,14 @@ import cn.nukkit.block.customblock.CustomBlockDefinition;
 import cn.nukkit.block.customblock.data.Materials;
 import cn.nukkit.blockproperty.BlockProperties;
 import cn.nukkit.blockproperty.IntBlockProperty;
+import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
+import cn.powernukkitx.techdawn.energy.RF;
 import org.jetbrains.annotations.NotNull;
 
 public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
@@ -122,6 +124,9 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
             if (side instanceof BaseWireBlock pipe) {
                 pipe.setFaceLinked(each.getOpposite(), true);
                 this.level.setBlock(pipe, pipe, true);
+                this.setFaceLinked(each, true);
+                this.level.setBlock(this, this, true);
+            } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance())) {
                 this.setFaceLinked(each, true);
                 this.level.setBlock(this, this, true);
             }

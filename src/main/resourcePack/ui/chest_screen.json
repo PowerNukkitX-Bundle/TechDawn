@@ -1,0 +1,20 @@
+{
+  "small_chest_panel_top_half": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "ui_mask_left1@common.techdawn_ui_mask_9x3": {
+              "offset": [
+                0,
+                -6
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

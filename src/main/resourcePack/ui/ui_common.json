@@ -1,0 +1,40 @@
+{
+  "techdawn_ui_mask_3x3": {
+    "type": "image",
+    "texture": "textures/ui/gray.png",
+    "uv": [
+      0,
+      0
+    ],
+    "uv_size": [
+      16,
+      16
+    ],
+    "visible": true,
+    "keep_ratio" : false,
+    "size": [
+      54,
+      55
+    ],
+    "layer": 7
+  },
+  "techdawn_ui_mask_9x3": {
+    "type": "image",
+    "texture": "textures/ui/gray.png",
+    "uv": [
+      0,
+      0
+    ],
+    "uv_size": [
+      16,
+      16
+    ],
+    "visible": true,
+    "keep_ratio" : false,
+    "size": [
+      162,
+      55
+    ],
+    "layer": 7
+  }
+}

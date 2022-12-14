@@ -87,4 +87,14 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock {
     public double getResistance() {
         return 6000;
     }
+
+    @Override
+    public boolean canBeActivated() {
+        return true;
+    }
+
+    @Override
+    public boolean onActivate(@NotNull Item item, @Nullable Player player) {
+        return true;
+    }
 }
