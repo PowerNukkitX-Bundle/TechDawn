@@ -2,6 +2,7 @@ package cn.powernukkitx.techdawn;
 
 import cn.nukkit.block.Block;
 import cn.nukkit.plugin.PluginBase;
+import cn.powernukkitx.techdawn.block.anvil.BaseAnvilBlock;
 import cn.powernukkitx.techdawn.block.wire.BaseWireBlock;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +13,8 @@ public final class Main extends PluginBase {
     public void onLoad() {
         try {
             Block.registerCustomBlock(List.of(
-                    BaseWireBlock.class
+                    BaseWireBlock.class,
+                    BaseAnvilBlock.class
             ));
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
