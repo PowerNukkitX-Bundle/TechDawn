@@ -23,43 +23,45 @@ public class ResourcePack {
         var textureDataObj = new JsonObject(); // inside terrain_texture.json
         var itemTextureObj = new JsonObject(); // inside item_texture.json
         var zipOutputStream = new ZipOutputStream(new FileOutputStream("target/TechDawn.mcpack"));
-        Files.walk(folderPath).forEach(each -> {
-            if (Files.isRegularFile(each)) {
-                var relativePath = folderPath.relativize(each).toString().replace('\\', '/');
+        try (var stream = Files.walk(folderPath)) {
+            stream.forEach(each -> {
+                if (Files.isRegularFile(each)) {
+                    var relativePath = folderPath.relativize(each).toString().replace('\\', '/');
 
-                if ("textures/terrain_texture.json".equals(relativePath) || "textures/item_texture.json".equals(relativePath)) {
-                    return;
-                }
-
-                try {
-                    zipOutputStream.putNextEntry(new ZipEntry(relativePath));
-                    zipOutputStream.write(Files.readAllBytes(each));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if (each.toString().endsWith(".png")) {
-                    var tmpPath = relativePath.replace(".png", "");
-                    textureList.add(tmpPath);
-                    // add entry of terrain_texture.json
-                    if (tmpPath.startsWith("textures/blocks")) {
-                        var textureData = new JsonObject();
-                        var textures = new JsonObject();
-                        textures.addProperty("path", tmpPath);
-                        textureData.add("textures", textures);
-                        textureDataObj.add(tmpPath.replace("/", "-").replaceFirst("textures", "techdawn"), textureData);
+                    if ("textures/terrain_texture.json".equals(relativePath) || "textures/item_texture.json".equals(relativePath)) {
+                        return;
                     }
-                    // add entry of item_texture.json
-                    if (tmpPath.startsWith("textures/items")) {
-                        var textureData = new JsonObject();
-                        var textures = new JsonObject();
-                        textures.addProperty("path", tmpPath);
-                        textureData.add("textures", textures);
-                        itemTextureObj.add(tmpPath.replace("/", "-").replaceFirst("textures", "techdawn"), textureData);
+
+                    try {
+                        zipOutputStream.putNextEntry(new ZipEntry(relativePath));
+                        zipOutputStream.write(Files.readAllBytes(each));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (each.toString().endsWith(".png")) {
+                        var tmpPath = relativePath.replace(".png", "");
+                        textureList.add(tmpPath);
+                        // add entry of terrain_texture.json
+                        if (tmpPath.startsWith("textures/blocks")) {
+                            var textureData = new JsonObject();
+                            var textures = new JsonObject();
+                            textures.addProperty("path", tmpPath);
+                            textureData.add("textures", textures);
+                            textureDataObj.add(tmpPath.replace("/", "-").replaceFirst("textures", "techdawn"), textureData);
+                        }
+                        // add entry of item_texture.json
+                        if (tmpPath.startsWith("textures/items")) {
+                            var textureData = new JsonObject();
+                            var textures = new JsonObject();
+                            textures.addProperty("path", tmpPath);
+                            textureData.add("textures", textures);
+                            itemTextureObj.add(tmpPath.replace("/", "-").replaceFirst("textures", "techdawn"), textureData);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
         // 读取、更新并写入terrain_texture.json
         var gson = new GsonBuilder().setPrettyPrinting().create();
         var terrainTexture = gson.fromJson(

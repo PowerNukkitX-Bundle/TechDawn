@@ -8,6 +8,8 @@ import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
+import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
 import com.google.common.util.concurrent.AtomicDouble;
@@ -19,6 +21,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+@AutoRegister(BlockEntity.class)
+@AutoRegisterData("TechDawn_BaseBatteryBoxBlock")
 public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHolder {
     private final AtomicDouble storedEnergy;
     private final Set<CustomInventory> displayInventories = new HashSet<>();

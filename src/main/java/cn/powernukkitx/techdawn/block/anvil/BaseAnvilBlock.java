@@ -11,11 +11,13 @@ import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Sound;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
+import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
+@AutoRegister(CustomBlock.class)
 public class BaseAnvilBlock extends BlockTransparent implements CustomBlock {
     @Override
     public String getName() {

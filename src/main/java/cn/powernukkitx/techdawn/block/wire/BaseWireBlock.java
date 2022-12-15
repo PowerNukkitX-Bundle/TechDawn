@@ -15,9 +15,11 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
+import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.energy.RF;
 import org.jetbrains.annotations.NotNull;
 
+@AutoRegister(CustomBlock.class)
 public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
     public static IntBlockProperty X_LINK = new IntBlockProperty("pnx:x_link", true, 3, 0);
     public static IntBlockProperty Y_LINK = new IntBlockProperty("pnx:y_link", true, 3, 0);

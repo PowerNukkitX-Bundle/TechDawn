@@ -10,10 +10,12 @@ import cn.nukkit.block.customblock.data.Materials;
 import cn.nukkit.item.Item;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
+import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.battery.BaseBatteryBoxBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@AutoRegister(CustomBlock.class)
 public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, BlockEntityHolder<BaseBatteryBoxBlockEntity> {
     @Override
     public String getName() {

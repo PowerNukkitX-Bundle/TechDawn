@@ -78,7 +78,36 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <encoding>${maven.compiler.encoding}</encoding>
+                    <useIncrementalCompilation>true</useIncrementalCompilation>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>builder-compile</id>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources/auto-register</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -86,16 +115,30 @@
                 <version>1.3.2</version>
                 <executions>
                     <execution>
+                        <id>generate-registry-manifest</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>cn.powernukkitx.techdawn.build.RegistryManifestGenerator</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <killAfter>-1</killAfter>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-resource-pack</id>
                         <phase>package</phase>
                         <goals>
                             <goal>java</goal>
                         </goals>
+                        <configuration>
+                            <mainClass>cn.powernukkitx.techdawn.build.ResourcePack</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <killAfter>-1</killAfter>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <mainClass>cn.powernukkitx.techdawn.build.ResourcePack</mainClass>
-                    <killAfter>-1</killAfter>
-                </configuration>
             </plugin>
         </plugins>
     </build>
