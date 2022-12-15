@@ -10,7 +10,9 @@
               "offset": [
                 0,
                 -6
-              ]
+              ],
+              "$tmp_title": "$container_title",
+              "visible": "(not (($tmp_title - 'ui.techdawn') = $tmp_title))"
             }
           }
         ]

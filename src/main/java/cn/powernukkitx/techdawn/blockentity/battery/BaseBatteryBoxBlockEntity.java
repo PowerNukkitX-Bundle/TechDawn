@@ -10,6 +10,7 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
+import com.google.common.util.concurrent.AtomicDouble;
 import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,11 +20,13 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHolder {
-    private double storedEnergy = 0;
+    private final AtomicDouble storedEnergy;
     private final Set<CustomInventory> displayInventories = new HashSet<>();
 
     public BaseBatteryBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
+        this.storedEnergy = new AtomicDouble(1234);
+        loadNBT();
     }
 
     @NotNull
@@ -84,13 +87,13 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
 
     @Override
     public double getStoredEnergy() {
-        return storedEnergy;
+        return storedEnergy.get();
 //         return this.namedTag.getDouble("StoredEnergy");
     }
 
     public void setStoredEnergy(double rf) {
-        if (Math.abs(rf - storedEnergy) > 0.0001) {
-            this.storedEnergy = Math.max(Math.min(rf, getMaxStorage()), 0);
+        if (Math.abs(rf - storedEnergy.get()) > 0.0001) {
+            this.storedEnergy.set(Math.max(Math.min(rf, getMaxStorage()), 0));
             this.setDirty();
             this.scheduleUpdate();
         }
@@ -100,7 +103,8 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
     @NotNull
     public CustomInventory getDisplayInventory() {
         var displayInventory = new CustomInventory(InventoryType.CHEST, "ui.techdawn.base_battery_box");
-        displayInventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()), (item, event) -> event.setCancelled());
+        displayInventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        displayInventory.setDefaultItemHandler(((item, event) -> event.setCancelled()));
         displayInventories.add(displayInventory);
         return displayInventory;
     }
@@ -115,21 +119,21 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
 
     @Override
     public void saveNBT() {
-        this.namedTag.putDouble("StoredEnergy", this.storedEnergy);
+        this.namedTag.putDouble("StoredEnergy", this.storedEnergy.get());
         super.saveNBT();
     }
 
     @Override
     public void loadNBT() {
         if (this.namedTag.contains("StoredEnergy")) {
-            this.storedEnergy = this.namedTag.getDouble("StoredEnergy");
+            var tmp = this.namedTag.getDouble("StoredEnergy");
+            setStoredEnergy(tmp);
         }
         super.loadNBT();
     }
 
     @Override
     public boolean onUpdate() {
-        System.out.println("方块更新");
         for (Iterator<CustomInventory> iterator = displayInventories.iterator(); iterator.hasNext(); ) {
             var each = iterator.next();
             if (each.getViewers().size() == 0) {

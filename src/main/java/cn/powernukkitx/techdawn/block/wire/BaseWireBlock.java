@@ -120,43 +120,47 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face,
                          double fx, double fy, double fz, Player player) {
         for (var each : BlockFace.values()) {
-            var side = getSide(each);
-            if (side instanceof BaseWireBlock pipe) {
-                pipe.setFaceLinked(each.getOpposite(), true);
-                this.level.setBlock(pipe, pipe, true);
-                this.setFaceLinked(each, true);
-                this.level.setBlock(this, this, true);
-            } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance())) {
-                this.setFaceLinked(each, true);
-                this.level.setBlock(this, this, true);
-            }
+            checkSideConnection(each);
         }
         return super.place(item, block, target, face, fx, fy, fz, player);
     }
 
     @Override
     public boolean onBreak(Item item) {
-        for (var each : BlockFace.values()) {
-            var side = getSide(each);
-            if (side instanceof BaseWireBlock pipe) {
-                pipe.setFaceLinked(each.getOpposite(), false);
-                this.level.setBlock(pipe, pipe, true);
-                this.setFaceLinked(each, false);
-                this.level.setBlock(this, this, true);
-            }
-        }
         return super.onBreak(item);
     }
 
     @Override
     public int onTouch(Player player, PlayerInteractEvent.Action action) {
-        if (action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-            System.out.println("X_Link: " + getMutableState().getIntValue(X_LINK));
-            System.out.println("Y_Link: " + getMutableState().getIntValue(Y_LINK));
-            System.out.println("Z_Link: " + getMutableState().getIntValue(Z_LINK));
-            System.out.println(getProperties().getAllProperties());
-        }
+        // debug
+//        if (action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+//            System.out.println("X_Link: " + getMutableState().getIntValue(X_LINK));
+//            System.out.println("Y_Link: " + getMutableState().getIntValue(Y_LINK));
+//            System.out.println("Z_Link: " + getMutableState().getIntValue(Z_LINK));
+//            System.out.println(getProperties().getAllProperties());
+//        }
         return super.onTouch(player, action);
+    }
+
+    @Override
+    public void onNeighborChange(@NotNull BlockFace side) {
+        checkSideConnection(side);
+    }
+
+    protected void checkSideConnection(@NotNull BlockFace face) {
+        var side = getSide(face);
+        if (side instanceof BaseWireBlock pipe) {
+            pipe.setFaceLinked(face.getOpposite(), true);
+            this.level.setBlock(pipe, pipe, true);
+            this.setFaceLinked(face, true);
+            this.level.setBlock(this, this, true);
+        } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance())) {
+            this.setFaceLinked(face, true);
+            this.level.setBlock(this, this, true);
+        } else {
+            this.setFaceLinked(face, false);
+            this.level.setBlock(this, this, true);
+        }
     }
 
     private void componentNBTProcessor(@NotNull CompoundTag componentNBT) {
