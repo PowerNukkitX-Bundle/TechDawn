@@ -59,7 +59,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
         if (player != null) {
             var be = getOrCreateBlockEntity();
-            be.setStoredEnergy(be.getStoredEnergy() + 100);
+            be.setStoredEnergy(be.getStoredEnergy() + 1000);
             player.addWindow(be.getDisplayInventory());
             return true;
         }

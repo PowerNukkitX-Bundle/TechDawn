@@ -1,5 +1,7 @@
 package cn.powernukkitx.techdawn.energy;
 
+import cn.nukkit.Server;
+import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.particle.RedstoneParticle;
 import cn.nukkit.math.BlockFace;
@@ -14,6 +16,10 @@ import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * 这个类仅作存储用途，不包含任何网络控制逻辑
  */
@@ -24,6 +30,10 @@ public class EnergyNetworkStore {
     private final Long2ObjectMap<Int2ByteMap> networkPoints;
     private final Long2ObjectMap<IntSet> networkMachines;
     private final Level level;
+
+    private List<EnergyHolder> sortedMachines;
+    private int lastSortTick = -1;
+
 
     public EnergyNetworkStore(Level level) {
         this.level = level;
@@ -235,6 +245,29 @@ public class EnergyNetworkStore {
                 var pos = Level.getBlockXYZ(chunkHash, point, level);
                 level.addParticle(new RedstoneParticle(new Vector3(pos.x + 0.5, pos.y + 1.1, pos.z + 0.5)));
             }
+        }
+    }
+
+    public List<? extends EnergyHolder> getSortedMachines() {
+        int currentTick = Server.getInstance().getTick();
+        if (currentTick > lastSortTick) {
+            lastSortTick = currentTick;
+            var tmp = new ArrayList<EnergyHolder>(networkMachines.size() * 8);
+            for (var entry : networkMachines.long2ObjectEntrySet()) {
+                var chunkHash = entry.getLongKey();
+                var points = entry.getValue();
+                for (var point : points) {
+                    var pos = Level.getBlockXYZ(chunkHash, point, level);
+                    var be = level.getBlockEntity(pos);
+                    if (be instanceof EnergyHolder holder) {
+                        tmp.add(holder);
+                    }
+                }
+            }
+            tmp.sort(Comparator.comparingDouble(h -> (h.getStoredEnergy() / h.getMaxStorage())));
+            return sortedMachines = tmp;
+        } else {
+            return sortedMachines;
         }
     }
 }
