@@ -99,7 +99,7 @@ public class RegistryManifestGenerator {
 
     public static void writeJavaFile(String source) {
         try {
-            if (Files.readString(javaFile.toPath()).equals(source)) return;
+            if (Files.exists(javaFile.toPath()) && Files.readString(javaFile.toPath()).equals(source)) return;
             clearOldFile();
             Files.writeString(javaFile.toPath(), source);
         } catch (IOException e) {
