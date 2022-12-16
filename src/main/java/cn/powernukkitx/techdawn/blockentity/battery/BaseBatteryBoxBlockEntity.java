@@ -10,6 +10,7 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
+import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
 import com.google.common.util.concurrent.AtomicDouble;
@@ -29,8 +30,9 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
 
     public BaseBatteryBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-        this.storedEnergy = new AtomicDouble(1234);
+        this.storedEnergy = new AtomicDouble(0);
         loadNBT();
+        EnergyNetworkManager.putMachineAt(getFloorX(), getFloorY(), getFloorZ(), getLevel());
     }
 
     @NotNull
@@ -148,5 +150,13 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
             each.sendSlot(13, each.getViewers());
         }
         return false;
+    }
+
+    @Override
+    public void close() {
+        if (!this.closed) {
+            EnergyNetworkManager.removeMachineAt(getFloorX(), getFloorY(), getFloorZ(), getLevel());
+        }
+        super.close();
     }
 }

@@ -2,6 +2,7 @@ package cn.powernukkitx.techdawn.block.wire;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockEntityHolder;
 import cn.nukkit.block.BlockTransparentMeta;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
@@ -16,11 +17,13 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.blockentity.wire.BaseWireBlockEntity;
+import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
-public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
+public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, BlockEntityHolder<BaseWireBlockEntity> {
     public static IntBlockProperty X_LINK = new IntBlockProperty("pnx:x_link", true, 3, 0);
     public static IntBlockProperty Y_LINK = new IntBlockProperty("pnx:y_link", true, 3, 0);
     public static IntBlockProperty Z_LINK = new IntBlockProperty("pnx:z_link", true, 3, 0);
@@ -124,6 +127,7 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
         for (var each : BlockFace.values()) {
             checkSideConnection(each);
         }
+        getOrCreateBlockEntity();
         return super.place(item, block, target, face, fx, fy, fz, player);
     }
 
@@ -131,7 +135,6 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
     public boolean onBreak(Item item) {
         return super.onBreak(item);
     }
-
     @Override
     public int onTouch(Player player, PlayerInteractEvent.Action action) {
         // debug
@@ -141,6 +144,10 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
 //            System.out.println("Z_Link: " + getMutableState().getIntValue(Z_LINK));
 //            System.out.println(getProperties().getAllProperties());
 //        }
+        var network = EnergyNetworkManager.findAt(getFloorX(), getFloorY(), getFloorZ(), getLevel());
+        if (network != null) {
+            network.debugParticle();
+        }
         return super.onTouch(player, action);
     }
 
@@ -238,5 +245,17 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock {
 
     public double getMaxZ() {
         return this.z + 0.703125;
+    }
+
+    @NotNull
+    @Override
+    public Class<? extends BaseWireBlockEntity> getBlockEntityClass() {
+        return BaseWireBlockEntity.class;
+    }
+
+    @NotNull
+    @Override
+    public String getBlockEntityType() {
+        return "TechDawn_BaseWireBlock";
     }
 }
