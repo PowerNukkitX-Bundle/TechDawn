@@ -21,7 +21,7 @@ public final class ChargeIconItem extends ItemCustomTool {
 
     @Override
     public int getMaxDurability() {
-        return 11;
+        return 101;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class ChargeIconItem extends ItemCustomTool {
     public static ChargeIconItem ofRF(double currentRF, double maxRF) {
         ChargeIconItem item = new ChargeIconItem();
         item.setCustomName(String.format("§a%.2f§7/§c%.2f§r RF", currentRF, maxRF));
-        item.setDamage(11 - (int) ((currentRF / maxRF) * 10));
+        item.setDamage(101 - (int) ((currentRF / maxRF) * 100));
         return item;
     }
 }

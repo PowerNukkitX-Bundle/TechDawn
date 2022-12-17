@@ -1,6 +1,5 @@
 package cn.powernukkitx.techdawn.blockentity.battery;
 
-import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.energy.EnergyHolder;
@@ -14,21 +13,19 @@ import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
+import cn.powernukkitx.techdawn.util.BlockFaceIterator;
+import cn.powernukkitx.techdawn.util.UIManger;
 import com.google.common.util.concurrent.AtomicDouble;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.*;
 
 @AutoRegister(BlockEntity.class)
 @AutoRegisterData("TechDawn_BaseBatteryBoxBlock")
 public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHolder {
     private final AtomicDouble storedEnergy;
-    private final Object2IntMap<CustomInventory> displayInventories = new Object2IntOpenHashMap<>();
-    private final Deque<BlockFace> outputFaces = new ArrayDeque<>(List.of(BlockFace.values()));
+    private final UIManger uiManger = new UIManger(this::generateUI, this::updateUI);
+    private final BlockFaceIterator blockFaceIterator = new BlockFaceIterator();
 
     public BaseBatteryBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -113,12 +110,16 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
     }
 
     @NotNull
-    public CustomInventory getDisplayInventory() {
+    public CustomInventory generateUI() {
         var displayInventory = new CustomInventory(InventoryType.CHEST, "ui.techdawn.base_battery_box");
         displayInventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         displayInventory.setDefaultItemHandler(((item, event) -> event.setCancelled()));
-        displayInventories.put(displayInventory, Server.getInstance().getTick());
         return displayInventory;
+    }
+
+    @NotNull
+    public CustomInventory getDisplayInventory() {
+        return uiManger.open();
     }
 
     @Override
@@ -144,6 +145,11 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
         super.loadNBT();
     }
 
+    public void updateUI(@NotNull CustomInventory inventory) {
+        inventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        inventory.sendSlot(13, inventory.getViewers());
+    }
+
     @Override
     public boolean onUpdate() {
         if (this.closed) {
@@ -152,39 +158,9 @@ public class BaseBatteryBoxBlockEntity extends BlockEntity implements EnergyHold
         // debug
         setStoredEnergy(getStoredEnergy() + 0.1);
         // 向外提供能量
-        var energyOutput = Math.min(getOutputPerTick(), getStoredEnergy());
-        faceLoop: for (var face : outputFaces) {
-            var network = EnergyNetworkManager.findAt(getFloorX() + face.getXOffset(), getFloorY() + face.getYOffset(), getFloorZ() + face.getZOffset(), getLevel());
-            if (network == null) continue;
-            var machines = network.getSortedMachines();
-            // 虽然自己给自己点看起来有点愚蠢，但是这是最高效的实现
-            for (var machine : machines) {
-                var vacancy = Math.max(machine.getMaxStorage() - machine.getStoredEnergy(), 0);
-                if (vacancy < 0.0001)
-                    continue;
-                var energyToOutput = Math.min(energyOutput, vacancy);
-                energyOutput -= energyToOutput;
-                machine.inputInto(RF.getInstance(), energyToOutput);
-                this.outputFrom(RF.getInstance(), energyToOutput);
-                if (energyOutput < 0.0001)
-                    break faceLoop;
-            }
-        }
-        // 这样可以让电在六个面可能的情况下均分
-        outputFaces.add(outputFaces.poll());
+        EnergyNetworkManager.outputEnergyAt(this, getOutputPerTick(), blockFaceIterator);
         // 更新UI
-        var currentTick = Server.getInstance().getTick();
-        for (var iterator = displayInventories.object2IntEntrySet().iterator(); iterator.hasNext(); ) {
-            var entry = iterator.next();
-            var each = entry.getKey();
-            var createTick = entry.getIntValue();
-            if (currentTick - createTick > 3 && each.getViewers().size() == 0) {
-                iterator.remove();
-                continue;
-            }
-            each.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
-            each.sendSlot(13, each.getViewers());
-        }
+        uiManger.update();
         return true;
     }
 
