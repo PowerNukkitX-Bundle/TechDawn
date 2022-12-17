@@ -18,5 +18,18 @@
         ]
       }
     ]
+  },
+  "small_chest_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "remove",
+        "where": {
+          "flying_item_renderer@common.flying_item_renderer": {
+            "layer": 14
+          }
+        }
+      }
+    ]
   }
 }
