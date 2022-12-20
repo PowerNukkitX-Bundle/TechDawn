@@ -44,7 +44,15 @@ public final class EnergyNetworkManager {
      */
     @Nullable
     public static EnergyNetworkStore tryRebuildAt(int x, int y, int z, @NotNull Level level) {
-        var result = rebuildNetworkAt(x, y, z, level);
+        return tryRebuildAt(x, y, z, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, level);
+    }
+
+    /**
+     * 尝试在指定位置重建电网并将其添加到电网列表中
+     */
+    @Nullable
+    public static EnergyNetworkStore tryRebuildAt(int x, int y, int z, int excludeX, int excludeY, int excludeZ, @NotNull Level level) {
+        var result = rebuildNetworkAt(x, y, z, excludeX, excludeY, excludeZ, level);
         if (result != null) {
             var sub = networks.computeIfAbsent(level.getName(), k -> new Long2ObjectOpenHashMap<>());
             for (long each : result.chunkHashes()) {
@@ -94,8 +102,9 @@ public final class EnergyNetworkManager {
             var targetX = x + face.getXOffset();
             var targetY = y + face.getYOffset();
             var targetZ = z + face.getZOffset();
-            var neighborType = canBeNeighbor(level, new BlockVector3(targetX, targetY, targetZ), face.getOpposite());
-            if (neighborType == Neighbor.MACHINE) {
+            var bVec3 = new BlockVector3(targetX, targetY, targetZ);
+            var neighborType = canBeNeighbor(level, bVec3, face.getOpposite());
+            if (neighborType == Neighbor.MACHINE && canConnectMachineAtItsFace(level, bVec3, face.getOpposite())) {
                 network.putMachinePoint(targetX, targetY, targetZ);
                 network.setConnectAt(x, y, z, face);
             }
@@ -157,21 +166,25 @@ public final class EnergyNetworkManager {
         }
     }
 
-    public static void putMachineAt(int x, int y, int z, @NotNull Level level) {
+    public static void putMachineAt(int x, int y, int z, @NotNull Level level, @NotNull EnergyHolder holder) {
         // 找到与此处新机器相邻的所有电网
         var networkNearBy = findNetworkNearBy(x, y, z, level);
         // 在每个电网中都添加这个机器
         for (var network : networkNearBy) {
-            network.putMachinePoint(x, y, z);
+            boolean canConnect = false;
             // 顺便查找周围的线缆，如果有的话，就将这个机器与线缆连接起来
             for (var face : BlockFace.values()) {
                 var targetX = x + face.getXOffset();
                 var targetY = y + face.getYOffset();
                 var targetZ = z + face.getZOffset();
-                if (network.hasPoint(targetX, targetY, targetZ) && canConnectMachineAtItsFace(level, new BlockVector3(targetX, targetY, targetZ), face)) {
+                if (network.hasPoint(targetX, targetY, targetZ) && (
+                        holder.canAcceptInput(RF.getInstance(), face) || holder.canProvideOutput(RF.getInstance(), face)
+                )) {
+                    canConnect = true;
                     network.setConnectAt(targetX, targetY, targetZ, face.getOpposite());
                 }
             }
+            if (canConnect) network.putMachinePoint(x, y, z);
         }
     }
 
@@ -200,18 +213,21 @@ public final class EnergyNetworkManager {
             // 顺便查找周围的线缆，如果有的话，就将这个线缆与周围的线缆断开
             // 如果有连接的机器的话，也将机器与周围的线缆断开
             // 如果一个机器的六个面都与此电网没有连接，那么就把这个机器从电网中清除
-            for (var face : neighborNetworkFaces) {
+            for (var face : BlockFace.values()) {
                 var targetX = x + face.getXOffset();
                 var targetY = y + face.getYOffset();
                 var targetZ = z + face.getZOffset();
                 if (network.hasPoint(targetX, targetY, targetZ)) {
                     network.disconnectAt(targetX, targetY, targetZ, face);
                 } else if (network.hasMachinePoint(targetX, targetY, targetZ)) { // 一个点要么是线缆要么是机器
-                    network.disconnectAt(targetX, targetY, targetZ, face);
                     // 查看机器是否六个面都没有保持连接
                     boolean connected = false;
                     for (var f2 : BlockFace.values()) {
-                        if (network.isConnectAt(targetX + f2.getXOffset(), targetY + f2.getYOffset(), targetZ + f2.getZOffset(), f2.getOpposite())) {
+                        var machineTargetX = targetX + f2.getXOffset();
+                        var machineTargetY = targetY + f2.getYOffset();
+                        var machineTargetZ = targetZ + f2.getZOffset();
+                        if (machineTargetX == x && machineTargetY == y && machineTargetZ == z) continue;
+                        if (network.isConnectAt(machineTargetX, machineTargetY, machineTargetX, f2.getOpposite())) {
                             connected = true;
                             break;
                         }
@@ -252,7 +268,7 @@ public final class EnergyNetworkManager {
                 }
                 // 如果没有包含，就重构这个电网
                 if (!contains) {
-                    var network = tryRebuildAt(targetX, targetY, targetZ, level);
+                    var network = tryRebuildAt(targetX, targetY, targetZ, x, y, z, level);
                     if (network != null) rebuiltNetworks.add(network);
                 }
             }
@@ -325,7 +341,7 @@ public final class EnergyNetworkManager {
     }
 
     @Nullable
-    public static EnergyNetworkStore rebuildNetworkAt(int x, int y, int z, @NotNull Level level) {
+    public static EnergyNetworkStore rebuildNetworkAt(int x, int y, int z, int excludeX, int excludeY, int excludeZ, @NotNull Level level) {
         var bVec = new BlockVector3(x, y, z);
         var thisType = canBeNeighbor(level, bVec);
         if (thisType == Neighbor.WIRE) {
@@ -345,7 +361,10 @@ public final class EnergyNetworkManager {
                 // 标记此点已经搜索过了
                 searchedPos.add(currentPos);
                 // 处理此点
-                var currentType = canBeNeighbor(level, currentPos, currentSearch.face);
+                var currentType = (currentPos.getX() == excludeX &&
+                        currentPos.getY() == excludeY &&
+                        currentPos.getZ() == excludeZ
+                ) ? Neighbor.NONE : canBeNeighbor(level, currentPos, currentSearch.face);
                 if (currentType == Neighbor.WIRE) {
                     // 如果是线，就加入网络
                     network.putPoint(currentPos.x, currentPos.y, currentPos.z);
@@ -393,9 +412,9 @@ public final class EnergyNetworkManager {
     /**
      * 让一个机器在某处输出能量
      *
-     * @param machine 要输出能量的机器，必须是已经存在于世界上的方块实体
+     * @param machine      要输出能量的机器，必须是已经存在于世界上的方块实体
      * @param energyOutput 这一次最多输出多少能量
-     * @param outputFaces 可能能输出能量的面
+     * @param outputFaces  可能能输出能量的面
      * @return 如果没有成功输出任何能量，返回false
      */
     public static <T extends BlockEntity & EnergyHolder> boolean outputEnergyAt(@NotNull T machine, double energyOutput, Iterable<BlockFace> outputFaces) {

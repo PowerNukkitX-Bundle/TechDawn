@@ -264,7 +264,8 @@ public class EnergyNetworkStore {
                     }
                 }
             }
-            tmp.sort(Comparator.comparingDouble(h -> (h.getStoredEnergy() / h.getMaxStorage())));
+            tmp.sort(Comparator.comparingDouble(h -> (h.getStoredEnergy() / h.getMaxStorage())
+                    - (h.canProvideOutput(RF.getInstance()) ? 0 : 1)));
             return sortedMachines = tmp;
         } else {
             return sortedMachines;

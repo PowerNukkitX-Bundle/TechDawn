@@ -163,7 +163,7 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
             this.level.setBlock(pipe, pipe, true);
             this.setFaceLinked(face, true);
             this.level.setBlock(this, this, true);
-        } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance())) {
+        } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance(), face.getOpposite())) {
             this.setFaceLinked(face, true);
             this.level.setBlock(this, this, true);
         } else {

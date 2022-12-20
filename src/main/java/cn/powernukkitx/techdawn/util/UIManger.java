@@ -6,15 +6,18 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public final class UIManger {
     private final Supplier<CustomInventory> uiInventoryGenerator;
-    private final Consumer<CustomInventory> uiInventoryUpdater;
+    private final UIUpdater uiInventoryUpdater;
     private final Object2IntMap<CustomInventory> displayInventories = new Object2IntOpenHashMap<>();
 
-    public UIManger(@NotNull Supplier<CustomInventory> uiInventoryGenerator, @NotNull Consumer<CustomInventory> uiInventoryUpdater) {
+    public interface UIUpdater {
+        void update(CustomInventory inventory, boolean immediately);
+    }
+
+    public UIManger(@NotNull Supplier<CustomInventory> uiInventoryGenerator, @NotNull UIUpdater uiInventoryUpdater) {
         this.uiInventoryGenerator = uiInventoryGenerator;
         this.uiInventoryUpdater = uiInventoryUpdater;
     }
@@ -26,6 +29,10 @@ public final class UIManger {
     }
 
     public void update() {
+        update(false);
+    }
+
+    public void update(boolean immediately) {
         var currentTick = Server.getInstance().getTick();
         for (var iterator = displayInventories.object2IntEntrySet().iterator(); iterator.hasNext(); ) {
             var entry = iterator.next();
@@ -35,7 +42,7 @@ public final class UIManger {
                 iterator.remove();
                 continue;
             }
-            uiInventoryUpdater.accept(each);
+            uiInventoryUpdater.update(each, immediately);
         }
     }
 

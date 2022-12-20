@@ -56,9 +56,9 @@
          
     <dependencies>
         <dependency>
-            <groupId>cn.powernukkitx</groupId>
-            <artifactId>powernukkitx</artifactId>
-            <version>1.19.50-r2</version>
+            <groupId>com.powernukkitx</groupId>
+            <artifactId>PowerNukkitX</artifactId>
+            <version>6302f7976d</version>
         </dependency>
         <dependency>
             <groupId>com.github.IWareQ</groupId>

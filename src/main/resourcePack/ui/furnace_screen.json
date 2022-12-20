@@ -1,0 +1,51 @@
+{
+  "furnace_input_panel/panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "where": {
+          "furnace_fuel_panel@furnace_fuel_panel": {}
+        },
+        "value": {
+          "furnace_fuel_panel@furnace_fuel_panel": {
+            "$tmp_title": "$container_title",
+            "visible": "(($tmp_title - 'ui.techdawn') = $tmp_title)",
+            "layer": 0
+          }
+        }
+      },
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "where": {
+          "flame_panel@flame_panel": {}
+        },
+        "value": {
+          "flame_panel@flame_panel": {
+            "controls": [
+              {
+                "flame_empty_image@furnace.flame_empty_image": {
+                  "texture": "textures/ui/battery_empty"
+                }
+              },
+              {
+                "flame_full_image@furnace.flame_full_image": {
+                  "texture": "textures/ui/battery_full"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "furnace_input_panel": {
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "offset": [
+      0,
+      14
+    ]
+  }
+}

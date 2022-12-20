@@ -15,16 +15,18 @@ import static cn.powernukkitx.techdawn.util.RegistryManifestUtil.registryManifes
 import static cn.powernukkitx.techdawn.util.RegistryManifestUtil.registryManifestOf;
 
 public final class Main extends PluginBase {
+    public static Main INSTANCE = null;
+
+    public Main() {
+        INSTANCE = this;
+    }
+
     @Override
     public void onLoad() {
         EnergyRegistry.registerEnergyType(RF.getInstance());
         registerBlockEntity();
-        try {
-            Item.registerCustomItem(registryManifestOf(ItemCustom.class));
-            Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        Item.registerCustomItem(registryManifestOf(ItemCustom.class));
+        Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
     }
 
     private void registerBlockEntity() {
