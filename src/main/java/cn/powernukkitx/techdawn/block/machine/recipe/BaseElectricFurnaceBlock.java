@@ -19,6 +19,7 @@ import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.recipe.BaseElectricFurnaceBlockEntity;
+import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,6 +43,7 @@ public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable
         return CustomBlock.super.getName();
     }
 
+    @NotNull
     @Override
     public String getNamespaceId() {
         return "techdawn:base_electric_furnace";
@@ -160,7 +162,7 @@ public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable
 
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
-        if (player != null) {
+        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
             player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
             return true;
         }

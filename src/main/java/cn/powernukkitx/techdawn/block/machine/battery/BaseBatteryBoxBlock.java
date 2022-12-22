@@ -12,6 +12,7 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.battery.BaseBatteryBoxBlockEntity;
+import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,6 +23,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
         return CustomBlock.super.getName();
     }
 
+    @NotNull
     @Override
     public String getNamespaceId() {
         return "techdawn:base_battery_box";
@@ -57,7 +59,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
 
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
-        if (player != null) {
+        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
             var be = getOrCreateBlockEntity();
             be.setStoredEnergy(be.getStoredEnergy() + 1000);
             player.addWindow(be.getDisplayInventory());
@@ -65,6 +67,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
         }
         return false;
     }
+
 
     @NotNull
     @Override
