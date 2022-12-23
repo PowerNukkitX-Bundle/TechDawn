@@ -26,12 +26,24 @@
             "controls": [
               {
                 "flame_empty_image@furnace.flame_empty_image": {
-                  "texture": "textures/ui/battery_empty"
+                  "ignored": "(not (($container_title - 'ui.techdawn') = $container_title))"
                 }
               },
               {
                 "flame_full_image@furnace.flame_full_image": {
-                  "texture": "textures/ui/battery_full"
+                  "ignored": "(not (($container_title - 'ui.techdawn') = $container_title))"
+                }
+              },
+              {
+                "flame_empty_image@furnace.flame_empty_image": {
+                  "texture": "textures/ui/battery_empty",
+                  "ignored": "(($container_title - 'ui.techdawn') = $container_title)"
+                }
+              },
+              {
+                "flame_full_image@furnace.flame_full_image": {
+                  "texture": "textures/ui/battery_full",
+                  "ignored": "(($container_title - 'ui.techdawn') = $container_title)"
                 }
               }
             ]
@@ -43,9 +55,16 @@
   "furnace_input_panel": {
     "anchor_from": "left_middle",
     "anchor_to": "left_middle",
-    "offset": [
-      0,
-      14
-    ]
+    "variables": [
+      {
+        "requires": "(not (($container_title - 'ui.techdawn') = $container_title))",
+        "$padding_furnace": [0, 14]
+      },
+      {
+        "requires": "(($container_title - 'ui.techdawn') = $container_title)",
+        "$padding_furnace": [0, 0]
+      }
+    ],
+    "offset": "$padding_furnace"
   }
 }
