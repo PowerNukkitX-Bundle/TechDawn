@@ -6,11 +6,7 @@ import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.blockentity.BlockEntityContainer;
 import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.energy.EnergyType;
-import cn.nukkit.inventory.Inventory;
-import cn.nukkit.inventory.InventoryHolder;
-import cn.nukkit.inventory.InventoryType;
-import cn.nukkit.inventory.SmeltingRecipe;
-import cn.nukkit.inventory.transaction.action.SlotChangeAction;
+import cn.nukkit.inventory.*;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemBlock;
 import cn.nukkit.level.Sound;
@@ -32,13 +28,12 @@ import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static cn.nukkit.inventory.BaseInventory.AIR_ITEM;
 
 @AutoRegister(BlockEntity.class)
 @AutoRegisterData("TechDawn_BaseElectricFurnaceBlock")
-public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implements EnergyHolder, InventoryHolder, BlockEntityContainer {
+public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implements EnergyHolder, RecipeInventoryHolder, BlockEntityContainer {
     protected BaseElectricFurnaceInventory inventory;
     protected int cookTime = 0;
     protected float storedXP = 0;
@@ -213,7 +208,7 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
                 var data = (CompoundTag) this.namedTag.getList("Items").get(0);
                 inventory.setSmelting(NBTIO.getItemHelper(data));
                 data = (CompoundTag) this.namedTag.getList("Items").get(1);
-                inventory.setResult(NBTIO.getItemHelper(data)   );
+                inventory.setResult(NBTIO.getItemHelper(data));
             }
         }
 
@@ -322,5 +317,15 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
             getBlock().setWorkingProperty(false);
         }
         return result;
+    }
+
+    @Override
+    public Inventory getIngredientView() {
+        return new InventorySlice(inventory, 0, 1);
+    }
+
+    @Override
+    public Inventory getProductView() {
+        return new InventorySlice(inventory, 1, 2);
     }
 }
