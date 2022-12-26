@@ -2,6 +2,7 @@ package cn.powernukkitx.techdawn.block.anvil;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockEntityHolder;
 import cn.nukkit.block.BlockTransparent;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
@@ -12,18 +13,20 @@ import cn.nukkit.level.Sound;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.blockentity.anvil.BaseAnvilBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
 @AutoRegister(CustomBlock.class)
-public class BaseAnvilBlock extends BlockTransparent implements CustomBlock {
+public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, BlockEntityHolder<BaseAnvilBlockEntity> {
     @Override
     public String getName() {
         return CustomBlock.super.getName();
     }
 
+    @NotNull
     @Override
     public String getNamespaceId() {
         return "techdawn:base_anvil";
@@ -57,7 +60,7 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock {
                 this.getLevel().addSound(this, Sound.RANDOM_ANVIL_LAND, 1.0F, 0.8F, players);
             }
         }
-        return super.place(item, block, target, face, fx, fy, fz, player);
+        return BlockEntityHolder.setBlockAndCreateEntity(this) != null;
     }
 
     @Override
@@ -97,6 +100,21 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock {
 
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
-        return true;
+        if (player == null) {
+            return false;
+        }
+        return getOrCreateBlockEntity().onActive(item, player);
+    }
+
+    @NotNull
+    @Override
+    public Class<? extends BaseAnvilBlockEntity> getBlockEntityClass() {
+        return BaseAnvilBlockEntity.class;
+    }
+
+    @NotNull
+    @Override
+    public String getBlockEntityType() {
+        return "TechDawn_BaseAnvilBlock";
     }
 }
