@@ -5,6 +5,7 @@ import cn.nukkit.Server;
 import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.level.particle.LavaParticle;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
@@ -14,6 +15,8 @@ import cn.powernukkitx.techdawn.entity.DisplayItemEntity;
 import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 import static cn.nukkit.inventory.BaseInventory.AIR_ITEM;
 
@@ -78,6 +81,13 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                 this.scheduleUpdate();
                 return true;
             } else {
+                var recipe = Server.getInstance().getCraftingManager().matchModProcessRecipe("forging", List.of(anvilItem));
+                if (recipe != null) {
+                    anvilItem = recipe.getResult();
+                    level.addParticle(new LavaParticle(this.add(0.5, 0.7, 0.5)));
+                    this.scheduleUpdate();
+                    return true;
+                }
                 return item instanceof TechDawnHardness;
             }
         }
@@ -102,10 +112,10 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
             }
         } else {
             if (itemEntity == null) {
-                itemEntity = DisplayItemEntity.createAndDisplay(this.add(0.5, 0.8, 0.5), anvilItem);
+                itemEntity = DisplayItemEntity.createAndDisplay(this.add(0.5, 0.7, 0.5), anvilItem);
             } else if (!itemEntity.getItem().equals(anvilItem, true, true)) {
                 itemEntity.close();
-                itemEntity = DisplayItemEntity.createAndDisplay(this.add(0.5, 0.8, 0.5), anvilItem);
+                itemEntity = DisplayItemEntity.createAndDisplay(this.add(0.5, 0.7, 0.5), anvilItem);
             }
         }
         return false;
@@ -114,7 +124,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
     @Override
     public void onBreak() {
         if (!anvilItem.isNull()) {
-            level.dropItem(this.add(0.5, 0.8, 0.5), anvilItem);
+            level.dropItem(this.add(0.5, 0.7, 0.5), anvilItem);
         }
         if (itemEntity != null) {
             itemEntity.close();

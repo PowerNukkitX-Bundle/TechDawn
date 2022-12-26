@@ -8,8 +8,9 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.customitem.ItemCustom;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
+import cn.powernukkitx.techdawn.util.RecipeUtil;
 
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
 
 import static cn.powernukkitx.techdawn.util.RegistryManifestUtil.registryManifestDataOf;
 import static cn.powernukkitx.techdawn.util.RegistryManifestUtil.registryManifestOf;
@@ -27,6 +28,11 @@ public final class Main extends PluginBase {
         registerBlockEntity();
         Item.registerCustomItem(registryManifestOf(ItemCustom.class));
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
+        try {
+            RecipeUtil.registerForgingRecipes();
+        } catch (IOException e) {
+            getLogger().error("Failed to register recipes.", e);
+        }
     }
 
     private void registerBlockEntity() {

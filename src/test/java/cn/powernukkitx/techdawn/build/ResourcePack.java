@@ -39,8 +39,8 @@ public class ResourcePack {
                         e.printStackTrace();
                     }
 
-                    if (each.toString().endsWith(".png")) {
-                        var tmpPath = relativePath.replace(".png", "");
+                    if (each.toString().endsWith(".png") || each.toString().endsWith(".jpg")) {
+                        var tmpPath = relativePath.replace(".png", "").replace(".jpg", "");
                         textureList.add(tmpPath);
                         // add entry of terrain_texture.json
                         if (tmpPath.startsWith("textures/blocks")) {
