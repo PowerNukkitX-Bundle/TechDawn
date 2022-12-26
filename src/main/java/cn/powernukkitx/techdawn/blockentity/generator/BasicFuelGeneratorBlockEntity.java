@@ -241,13 +241,14 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
         var result = super.onUpdate();
         // 燃烧发电
         if (burnTime > 0) {
-            burnTime--;
+            --burnTime;
             this.setStoredEnergy(this.getStoredEnergy() + getGeneratingSpeed());
+            result = true;
         } else {
             var fuel = inventory.getFuel();
             if (fuel != null && fuel.getId() != Item.AIR && Fuel.duration.containsKey(fuel.getId())) {
-                burnTime = Fuel.duration.get(fuel.getId());
-                maxBurnTime = burnTime;
+                maxBurnTime = Fuel.duration.get(fuel.getId());
+                burnTime = maxBurnTime;
                 var newFuel = fuel.clone();
                 newFuel.setCount(newFuel.getCount() - 1);
                 inventory.setFuel(newFuel);
