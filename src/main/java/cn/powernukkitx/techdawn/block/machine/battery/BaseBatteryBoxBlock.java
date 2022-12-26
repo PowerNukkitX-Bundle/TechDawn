@@ -60,9 +60,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
         if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
-            var be = getOrCreateBlockEntity();
-            be.setStoredEnergy(be.getStoredEnergy() + 1000);
-            player.addWindow(be.getDisplayInventory());
+            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
             return true;
         }
         return false;

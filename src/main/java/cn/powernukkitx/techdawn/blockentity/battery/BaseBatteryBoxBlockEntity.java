@@ -85,8 +85,6 @@ public class BaseBatteryBoxBlockEntity extends MachineBlockEntity implements Ene
         if (this.closed) {
             return false;
         }
-        // debug
-        setStoredEnergy(getStoredEnergy() + 0.1);
         // 向外提供能量
         EnergyNetworkManager.outputEnergyAt(this, getOutputPerTick(), blockFaceIterator);
         return super.onUpdate();

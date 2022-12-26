@@ -1,7 +1,5 @@
 package cn.powernukkitx.techdawn.inventory.recipe;
 
-import cn.nukkit.Player;
-import cn.nukkit.api.Since;
 import cn.nukkit.inventory.ContainerInventory;
 import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.item.Item;
@@ -36,18 +34,10 @@ public class BaseElectricFurnaceInventory extends ContainerInventory {
         return this.setItem(0, item);
     }
 
-//    @Override
-//    public boolean setItemByPlayer(Player player, int index, Item item, boolean send) {
-//        if (index == 2 && (item.getId() == 0 || item.getCount() == 0)) {
-//            var holder = getHolder();
-//            var xp = holder.calculateXpDrop();
-//            if (xp > 0) {
-//                holder.setStoredXP(0);
-//                holder.level.dropExpOrb(player, xp);
-//            }
-//        }
-//        return setItem(index, item, send);
-//    }
+    @Override
+    public int getSize() {
+        return 2;
+    }
 
     @Override
     public void onSlotChange(int index, Item before, boolean send) {

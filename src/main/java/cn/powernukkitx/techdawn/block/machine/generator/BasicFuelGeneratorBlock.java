@@ -1,4 +1,4 @@
-package cn.powernukkitx.techdawn.block.machine.recipe;
+package cn.powernukkitx.techdawn.block.machine.generator;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
@@ -11,44 +11,35 @@ import cn.nukkit.blockproperty.BooleanBlockProperty;
 import cn.nukkit.blockproperty.CommonBlockProperties;
 import cn.nukkit.item.Item;
 import cn.nukkit.math.BlockFace;
-import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.TechDawnWorkableBlock;
-import cn.powernukkitx.techdawn.blockentity.recipe.BaseElectricFurnaceBlockEntity;
-import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.blockentity.generator.BasicFuelGeneratorBlockEntity;
 import cn.powernukkitx.techdawn.util.CustomDefUtil;
+import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
-public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable, CustomBlock, BlockEntityHolder<BaseElectricFurnaceBlockEntity>, TechDawnWorkableBlock {
+public class BasicFuelGeneratorBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BasicFuelGeneratorBlockEntity>, TechDawnWorkableBlock {
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
-
-    public BaseElectricFurnaceBlock() {
-        this(0);
-    }
-
-    public BaseElectricFurnaceBlock(int meta) {
-        super(meta);
-    }
 
     @Override
     public String getName() {
         return CustomBlock.super.getName();
     }
 
-    @NotNull
     @Override
+    @NotNull
     public String getNamespaceId() {
-        return "techdawn:base_electric_furnace";
+        return "techdawn:basic_fuel_generator";
     }
 
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomDefUtil.get4DirectionWorkingBasicMachineDef(this,
-                "techdawn-blocks-machine-basic_electric_furnace_on", "techdawn-blocks-machine-basic_electric_furnace_off");
+                "techdawn-blocks-machine-basic_fuel_generator_on", "techdawn-blocks-machine-basic_fuel_generator_off");
     }
 
     @Override
@@ -60,37 +51,6 @@ public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable
     @Override
     public BlockProperties getProperties() {
         return PROPERTIES;
-    }
-
-    @Override
-    public BlockColor getColor() {
-        return BlockColor.IRON_BLOCK_COLOR;
-    }
-
-    @Override
-    public boolean canBeActivated() {
-        return true;
-    }
-
-    @Override
-    public boolean onActivate(@NotNull Item item, @Nullable Player player) {
-        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
-            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
-            return true;
-        }
-        return false;
-    }
-
-    @NotNull
-    @Override
-    public Class<? extends BaseElectricFurnaceBlockEntity> getBlockEntityClass() {
-        return BaseElectricFurnaceBlockEntity.class;
-    }
-
-    @NotNull
-    @Override
-    public String getBlockEntityType() {
-        return "TechDawn_BaseElectricFurnaceBlock";
     }
 
     @Override
@@ -119,5 +79,31 @@ public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable
         if (!same) {
             level.setBlock(this, this, true, true);
         }
+    }
+
+    @NotNull
+    @Override
+    public Class<? extends BasicFuelGeneratorBlockEntity> getBlockEntityClass() {
+        return BasicFuelGeneratorBlockEntity.class;
+    }
+
+    @NotNull
+    @Override
+    public String getBlockEntityType() {
+        return "TechDawn_BasicFuelGeneratorBlock";
+    }
+
+    @Override
+    public boolean canBeActivated() {
+        return true;
+    }
+
+    @Override
+    public boolean onActivate(@NotNull Item item, @Nullable Player player) {
+        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
+            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
+            return true;
+        }
+        return false;
     }
 }

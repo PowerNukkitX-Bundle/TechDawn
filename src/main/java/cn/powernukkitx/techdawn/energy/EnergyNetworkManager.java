@@ -427,6 +427,7 @@ public final class EnergyNetworkManager {
             var machines = network.getSortedMachines();
             // 虽然自己给自己点看起来有点愚蠢，但是这是最高效的实现
             for (var each : machines) {
+                if (!each.canAcceptInput(RF.getInstance())) continue; // 有些机器比如发电机即使连接到了网络也是不能被输入电能的
                 var vacancy = Math.max(each.getMaxStorage() - each.getStoredEnergy(), 0);
                 if (vacancy < 0.0001)
                     continue;

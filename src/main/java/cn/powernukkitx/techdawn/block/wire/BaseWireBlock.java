@@ -46,6 +46,7 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
         return CustomBlock.super.getName();
     }
 
+    @NotNull
     @Override
     public String getNamespaceId() {
         return "techdawn:base_wire";
@@ -163,7 +164,7 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
             this.level.setBlock(pipe, pipe, true);
             this.setFaceLinked(face, true);
             this.level.setBlock(this, this, true);
-        } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && holder.canAcceptInput(RF.getInstance(), face.getOpposite())) {
+        } else if (side.getLevelBlockEntity() instanceof EnergyHolder holder && (holder.canAcceptInput(RF.getInstance(), face.getOpposite()) || holder.canProvideOutput(RF.getInstance(), face.getOpposite()))) {
             this.setFaceLinked(face, true);
             this.level.setBlock(this, this, true);
         } else {

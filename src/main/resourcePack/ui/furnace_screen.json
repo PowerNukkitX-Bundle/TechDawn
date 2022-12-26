@@ -9,9 +9,14 @@
         },
         "value": {
           "furnace_fuel_panel@furnace_fuel_panel": {
-            "$tmp_title": "$container_title",
-            "visible": "(($tmp_title - 'ui.techdawn') = $tmp_title)",
-            "layer": 0
+            "$fuel_visible": true,
+            "variables": [
+              {
+                "requires": "(not (($container_title - 'ui.techdawn.base_electric_furnace') = $container_title))",
+                "$fuel_visible": false
+              }
+            ],
+            "visible": "$fuel_visible"
           }
         }
       },
@@ -37,13 +42,23 @@
               {
                 "flame_empty_image@furnace.flame_empty_image": {
                   "texture": "textures/ui/battery_empty",
-                  "ignored": "(($container_title - 'ui.techdawn') = $container_title)"
+                  "ignored": "(($container_title - 'ui.techdawn.base_electric_furnace') = $container_title)"
                 }
               },
               {
                 "flame_full_image@furnace.flame_full_image": {
                   "texture": "textures/ui/battery_full",
-                  "ignored": "(($container_title - 'ui.techdawn') = $container_title)"
+                  "ignored": "(($container_title - 'ui.techdawn.base_electric_furnace') = $container_title)"
+                }
+              },
+              {
+                "flame_empty_image@furnace.flame_empty_image": {
+                  "ignored": "(($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title)"
+                }
+              },
+              {
+                "flame_full_image@furnace.flame_full_image": {
+                  "ignored": "(($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title)"
                 }
               }
             ]
@@ -57,14 +72,88 @@
     "anchor_to": "left_middle",
     "variables": [
       {
-        "requires": "(not (($container_title - 'ui.techdawn') = $container_title))",
-        "$padding_furnace": [0, 14]
+        "requires": "(($container_title - 'ui.techdawn') = $container_title)",
+        "$padding_furnace": [
+          0,
+          0
+        ]
       },
       {
-        "requires": "(($container_title - 'ui.techdawn') = $container_title)",
-        "$padding_furnace": [0, 0]
+        "requires": "(not (($container_title - 'ui.techdawn.base_electric_furnace') = $container_title))",
+        "$padding_furnace": [
+          0,
+          14
+        ]
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+        "$padding_furnace": [
+          28,
+          2
+        ]
       }
     ],
     "offset": "$padding_furnace"
+  },
+  "furnace_arrow_empty_image": {
+    "$arrow_visible": true,
+    "variables": [
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+        "$arrow_visible": false
+      }
+    ],
+    "visible": "$arrow_visible"
+  },
+  "furnace_arrow_full_image": {
+    "$arrow_visible": true,
+    "variables": [
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+        "$arrow_visible": false
+      }
+    ],
+    "visible": "$arrow_visible"
+  },
+  "furnace_output_panel": {
+    "$output_visible": true,
+    "variables": [
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+        "$output_visible": false
+      }
+    ],
+    "visible": "$output_visible"
+  },
+  "furnace_panel_top_half": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "input_mask@common.techdawn_ui_mask_1x1": {
+              "$mask_visible": false,
+              "$mask_offset": [
+                0,
+                0
+              ],
+              "variables": [
+                {
+                  "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+                  "$mask_visible": true,
+                  "$mask_offset": [
+                    -1,
+                    -17
+                  ]
+                }
+              ],
+              "visible": "$mask_visible",
+              "offset": "$mask_offset"
+            }
+          }
+        ]
+      }
+    ]
   }
 }
