@@ -1,3 +1,12 @@
 ui.techdawn.base_battery_box=测试用电池盒
 ui.techdawn.base_electric_furnace=测试用电炉
 ui.techdawn.basic_fuel_generator=基础火力发电机
+
+item.techdawn:tough_copper_ingot=韧铜锭
+item.techdawn:hot_tough_copper_ingot=热韧铜锭
+item.techdawn:crude_tough_copper_ingot=粗制韧铜锭
+item.techdawn:hot_crude_tough_copper_ingot=热粗制韧铜锭
+item.techdawn:annealed_copper_ingot=退火铜锭
+item.techdawn:hot_annealed_copper_ingot=热退火铜锭
+item.techdawn:crude_annealed_copper_ingot=粗制退火铜锭
+item.techdawn:hot_crude_annealed_copper_ingot=热粗制退火铜锭
