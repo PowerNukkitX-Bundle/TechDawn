@@ -12,6 +12,7 @@ import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.block.anvil.BaseAnvilBlock;
 import cn.powernukkitx.techdawn.data.TechDawnHardness;
 import cn.powernukkitx.techdawn.entity.DisplayItemEntity;
+import cn.powernukkitx.techdawn.util.InventoryUtil;
 import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -56,6 +57,8 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
     public boolean onActive(@NotNull Item item, @NotNull Player player) {
         // 强制刷新客户端防止错误渲染的虚方块
         if (!item.isNull()) LevelUtil.resendAroundBlocks(this);
+        // 防止点击过快
+        if (!InventoryUtil.ensurePlayerSafeForCustomInv(player)) return true;
         if (item.isNull()) { // 空手交互
             if (!anvilItem.isNull()) {
                 if (itemEntity == null) {
@@ -84,7 +87,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                 var recipe = Server.getInstance().getCraftingManager().matchModProcessRecipe("forging", List.of(anvilItem));
                 if (recipe != null) {
                     anvilItem = recipe.getResult();
-                    level.addParticle(new LavaParticle(this.add(0.5, 0.7, 0.5)));
+                    level.addParticle(new LavaParticle(this.add(0.5, 1, 0.5)));
                     this.scheduleUpdate();
                     return true;
                 }

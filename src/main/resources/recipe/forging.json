@@ -8,5 +8,45 @@
       "type": "item",
       "id": "minecraft:gold_ingot"
     }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "hot_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_ingot"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "hot_crude_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:crude_tough_copper_ingot"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "hot_annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_ingot"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "hot_crude_annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:crude_annealed_copper_ingot"
+    }
   }
 ]

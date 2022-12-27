@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:hot_crude_tough_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.05
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crude_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:hot_tough_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.1
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:hot_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:hot_crude_annealed_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.15
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crude_annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:hot_annealed_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.2
+  }
+]
