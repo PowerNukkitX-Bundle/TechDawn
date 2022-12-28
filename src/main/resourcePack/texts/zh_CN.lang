@@ -10,3 +10,11 @@ item.techdawn:annealed_copper_ingot=退火铜锭
 item.techdawn:hot_annealed_copper_ingot=热退火铜锭
 item.techdawn:crude_annealed_copper_ingot=粗制退火铜锭
 item.techdawn:hot_crude_annealed_copper_ingot=热粗制退火铜锭
+
+item.techdawn:copper_hammer=铜锤子
+item.techdawn:diamond_hammer=钻石锤子
+item.techdawn:iron_hammer=铁锤子
+item.techdawn:stainless_steel_hammer=不锈钢锤子
+item.techdawn:stone_hammer=石锤子
+item.techdawn:tough_copper_hammer=韧铜锤子
+item.techdawn:wooden_hammer=木锤子

@@ -9,6 +9,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.customitem.ItemCustom;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
+import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
 import cn.powernukkitx.techdawn.util.RecipeUtil;
 
 import java.io.IOException;
@@ -44,7 +45,12 @@ public final class Main extends PluginBase {
         var tagList = registryManifestDataOf(ItemCustom.class);
         for (int i = 0, len = classList.size(); i < len; i++) {
             var clazz = classList.get(i);
-            var tags = tagList.get(i).trim().split(" ");
+            var rawTag = tagList.get(i).trim();
+            // 额外附带上锤子的通用标签
+            if (rawTag.contains("hammer")) {
+                rawTag = rawTag + " " + BaseHammer.TAG;
+            }
+            var tags = rawTag.split(" +");
             if (tags.length == 0) continue;
             try {
                 var method = clazz.getDeclaredConstructor();

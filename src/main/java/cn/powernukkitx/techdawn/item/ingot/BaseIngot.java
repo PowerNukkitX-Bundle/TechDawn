@@ -14,9 +14,15 @@ public abstract class BaseIngot extends ItemCustom {
     @Override
     public CustomItemDefinition getDefinition() {
         return CustomItemDefinition.simpleBuilder(this, ItemCreativeCategory.ITEMS)
+                .tag(getTags().split(" +"))
                 .customBuild(nbt -> {
                     var component = nbt.getCompound("components");
                     component.putCompound("minecraft:fuel", new CompoundTag().putFloat("duration", 1));
                 });
+    }
+
+    @NotNull
+    public String getTags() {
+        return "";
     }
 }
