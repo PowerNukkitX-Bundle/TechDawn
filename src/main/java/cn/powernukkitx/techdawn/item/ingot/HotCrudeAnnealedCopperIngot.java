@@ -17,4 +17,9 @@ public class HotCrudeAnnealedCopperIngot extends BaseIngot {
     public String getTags() {
         return "hot_crude_annealed_copper_ingot";
     }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_ANNEALED_COPPER / 2;
+    }
 }

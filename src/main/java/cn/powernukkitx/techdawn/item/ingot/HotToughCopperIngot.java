@@ -17,4 +17,9 @@ public class HotToughCopperIngot extends BaseIngot {
     public String getTags() {
         return "hot_tough_copper_ingot";
     }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_TOUGH_COPPER;
+    }
 }

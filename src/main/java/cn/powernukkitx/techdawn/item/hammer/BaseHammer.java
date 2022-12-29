@@ -30,6 +30,11 @@ public abstract class BaseHammer extends ItemCustomTool implements TechDawnHardn
     }
 
     @Override
+    public boolean isProcessorItem() {
+        return true;
+    }
+
+    @Override
     public boolean isPickaxe() {
         return true;
     }
