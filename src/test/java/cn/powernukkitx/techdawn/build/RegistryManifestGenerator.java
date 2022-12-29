@@ -3,6 +3,7 @@ package cn.powernukkitx.techdawn.build;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class RegistryManifestGenerator {
         Map<String, List<String>> registryMap = new HashMap<>();
         Map<String, List<String>> registerDataMap = new HashMap<>();
         try (var stream = Files.walk(folderPath)) {
-            stream.forEach(path -> {
+            stream.sorted(Comparator.comparing(Path::toString)).forEach(path -> {
                 if (!Files.isRegularFile(path)) return;
                 try {
                     var code = Files.readString(path);
