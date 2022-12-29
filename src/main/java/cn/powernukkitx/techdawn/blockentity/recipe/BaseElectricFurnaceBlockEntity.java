@@ -80,7 +80,7 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
 
     @Override
     public double getMaxStorage() {
-        return 800;
+        return 3000;
     }
 
     @NotNull
@@ -269,7 +269,7 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
     }
 
     public int getEnergyCostPerTick() {
-        return 4;
+        return 15;
     }
 
     @Override
