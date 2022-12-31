@@ -33,12 +33,12 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition.builder(this,
                 Materials.builder()
-                        .up(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_electric_machine_top_new")
-                        .east(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side_new")
-                        .west(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side_new")
-                        .north(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side_new")
-                        .south(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side_new")
-                        .down(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_machine_new")
+                        .up(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_electric_machine_top")
+                        .east(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side")
+                        .west(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side")
+                        .north(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side")
+                        .south(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-redstone_battery_box_side")
+                        .down(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_machine")
                 ).build();
     }
 
