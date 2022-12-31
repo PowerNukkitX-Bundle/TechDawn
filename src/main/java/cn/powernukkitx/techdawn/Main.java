@@ -1,5 +1,6 @@
 package cn.powernukkitx.techdawn;
 
+import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.blockentity.BlockEntity;
@@ -10,6 +11,7 @@ import cn.nukkit.item.customitem.ItemCustom;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
+import cn.powernukkitx.techdawn.listener.HammerListener;
 import cn.powernukkitx.techdawn.util.RecipeUtil;
 
 import java.io.IOException;
@@ -38,6 +40,11 @@ public final class Main extends PluginBase {
         } catch (IOException e) {
             getLogger().error("Failed to register recipes.", e);
         }
+    }
+
+    @Override
+    public void onEnable() {
+        registerListeners();
     }
 
     private void registerItemTag() {
@@ -70,5 +77,9 @@ public final class Main extends PluginBase {
             var name = nameList.get(i);
             BlockEntity.registerBlockEntity(name, clazz);
         }
+    }
+
+    private void registerListeners() {
+        Server.getInstance().getPluginManager().registerEvents(new HammerListener(), this);
     }
 }

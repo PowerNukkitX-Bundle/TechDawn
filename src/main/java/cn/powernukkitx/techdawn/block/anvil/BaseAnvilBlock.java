@@ -117,4 +117,11 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, Blo
     public String getBlockEntityType() {
         return "TechDawn_BaseAnvilBlock";
     }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        var be = getBlockEntity();
+        if (be != null && be.isBroken()) return Item.EMPTY_ARRAY;
+        return super.getDrops(item);
+    }
 }

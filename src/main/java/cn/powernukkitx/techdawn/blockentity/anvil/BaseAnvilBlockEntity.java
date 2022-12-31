@@ -33,6 +33,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
     @Nullable
     protected DisplayItemEntity itemEntity = null;
     protected int coolDownTick = 0;
+    protected boolean isBroken = false;
 
     public BaseAnvilBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -57,6 +58,10 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
     @Override
     public boolean isProcessorBlock() {
         return true;
+    }
+
+    public boolean isBroken() {
+        return isBroken;
     }
 
     public boolean onActive(@NotNull Item item, @NotNull Player player) {
@@ -86,6 +91,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                     if (handItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()) {
                         if (hardnessHammer.getHardnessTier() - this.getHardnessTier() > 10) {
                             this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_ANVIL_BREAK);
+                            this.isBroken = true;
                             this.level.useBreakOn(this, handItem, player, true);
                             return true;
                         }
@@ -106,6 +112,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                     if (!canProcess && offhandItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()) {
                         if (hardnessHammer.getHardnessTier() - this.getHardnessTier() > 10) {
                             this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_ANVIL_BREAK);
+                            this.isBroken = true;
                             this.level.useBreakOn(this, offhandItem, player, true);
                             return true;
                         }
