@@ -15,15 +15,19 @@ public final class CustomDefUtil {
     }
 
     public static CustomBlockDefinition get4DirectionWorkingBasicMachineDef(CustomBlock block, String workingTexture, String waitingTexture) {
+        return get4DirectionWorkingMachineDef(block, workingTexture, waitingTexture, "techdawn-blocks-machine-basic_electric_machine_top", "techdawn-blocks-machine-basic_machine");
+    }
+
+    public static CustomBlockDefinition get4DirectionWorkingMachineDef(CustomBlock block, String workingTexture, String waitingTexture, String topTexture, String sideTexture) {
         var workingMaterial = new CompoundTag("minecraft:material_instances").putCompound("materials", Materials.builder()
-                .up(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_electric_machine_top")
+                .up(Materials.RenderMethod.OPAQUE, topTexture)
                 .south(Materials.RenderMethod.OPAQUE, workingTexture)
-                .any(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_machine")
+                .any(Materials.RenderMethod.OPAQUE, sideTexture)
                 .build()).putCompound("mappings", new CompoundTag());
         var waitingMaterial = new CompoundTag("minecraft:material_instances").putCompound("materials", Materials.builder()
-                .up(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_electric_machine_top")
+                .up(Materials.RenderMethod.OPAQUE, topTexture)
                 .south(Materials.RenderMethod.OPAQUE, waitingTexture)
-                .any(Materials.RenderMethod.OPAQUE, "techdawn-blocks-machine-basic_machine")
+                .any(Materials.RenderMethod.OPAQUE, sideTexture)
                 .build()).putCompound("mappings", new CompoundTag());
         return CustomBlockDefinition.builder(block, Materials.builder())
                 .permutations(new Permutations(
