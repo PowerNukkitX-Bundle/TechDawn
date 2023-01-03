@@ -15,14 +15,14 @@ import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.TechDawnWorkableBlock;
-import cn.powernukkitx.techdawn.blockentity.recipe.BaseElectricFurnaceBlockEntity;
+import cn.powernukkitx.techdawn.blockentity.recipe.CopperBlastFurnaceBlockEntity;
 import cn.powernukkitx.techdawn.util.CustomDefUtil;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
-public class CopperBlastFurnaceBlock extends BlockSolidMeta implements Faceable, CustomBlock, TechDawnWorkableBlock {
+public class CopperBlastFurnaceBlock extends BlockSolidMeta implements Faceable, CustomBlock, TechDawnWorkableBlock, BlockEntityHolder<CopperBlastFurnaceBlockEntity> {
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
 
@@ -77,30 +77,29 @@ public class CopperBlastFurnaceBlock extends BlockSolidMeta implements Faceable,
 
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
-//        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
-//            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
-//            return true;
-//        }
+        if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
+            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
+            return true;
+        }
         return false;
     }
 
-//    @NotNull
-//    @Override
-//    public Class<? extends BaseElectricFurnaceBlockEntity> getBlockEntityClass() {
-//        return BaseElectricFurnaceBlockEntity.class;
-//    }
+    @NotNull
+    @Override
+    public Class<? extends CopperBlastFurnaceBlockEntity> getBlockEntityClass() {
+        return CopperBlastFurnaceBlockEntity.class;
+    }
 
-//    @NotNull
-//    @Override
-//    public String getBlockEntityType() {
-//        return "TechDawn_BaseElectricFurnaceBlock";
-//    }
+    @NotNull
+    @Override
+    public String getBlockEntityType() {
+        return "TechDawn_CopperBlastFurnaceBlock";
+    }
 
     @Override
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
         this.setPropertyValue(CommonBlockProperties.DIRECTION, player != null ? player.getDirection().getOpposite() : BlockFace.NORTH);
-//        return BlockEntityHolder.setBlockAndCreateEntity(this) != null;
-        return super.place(item, block, target, face, fx, fy, fz, player);
+        return BlockEntityHolder.setBlockAndCreateEntity(this) != null;
     }
 
     @Override
