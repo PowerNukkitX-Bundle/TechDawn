@@ -121,6 +121,7 @@ public class CopperBlastFurnaceBlock extends BlockSolidMeta implements Faceable,
         setPropertyValue(WORKING_PROPERTY, working);
         if (!same) {
             level.setBlock(this, this, true, true);
+            level.updateAllLight(this);
         }
     }
 }

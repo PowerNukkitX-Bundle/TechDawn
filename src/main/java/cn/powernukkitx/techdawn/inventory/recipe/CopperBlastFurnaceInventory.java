@@ -33,14 +33,14 @@ public class CopperBlastFurnaceInventory extends ContainerInventory {
 
     public boolean setSmelting(Item item) {
         if (!this.getSmelting().equals(item, true, false)) {
-            getHolder().resetProgress();
+            getHolder().cooldownProgress();
         }
         return this.setItem(0, item);
     }
 
     public boolean setFuel(Item item) {
         if (!this.getFuel().equals(item, true, false)) {
-            getHolder().resetProgress();
+            getHolder().cooldownProgress();
         }
         return this.setItem(1, item);
     }

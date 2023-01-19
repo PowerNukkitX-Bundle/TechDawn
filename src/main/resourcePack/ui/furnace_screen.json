@@ -31,12 +31,12 @@
             "controls": [
               {
                 "flame_empty_image@furnace.flame_empty_image": {
-                  "ignored": "(not (($container_title - 'ui.techdawn') = $container_title))"
+                  "ignored": "(not (($container_title - 'ui.techdawn.') = $container_title))"
                 }
               },
               {
                 "flame_full_image@furnace.flame_full_image": {
-                  "ignored": "(not (($container_title - 'ui.techdawn') = $container_title))"
+                  "ignored": "(not (($container_title - 'ui.techdawn.') = $container_title))"
                 }
               },
               {

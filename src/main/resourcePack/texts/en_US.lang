@@ -1,6 +1,8 @@
 ui.techdawn.base_battery_box=Battery Box for Debug
 ui.techdawn.base_electric_furnace=Electric Furnace for Debug
 ui.techdawn.basic_fuel_generator=Basic Fuel Generator
+ui.techdawn_vanilla-like.copper_blast_furnace=Copper Blast Furnace
+ui.techdawn_vanilla-like.invalid_structure=§cInvalid Multi-block Structure
 
 item.techdawn:tough_copper_ingot=Tough Copper Ingot
 item.techdawn:hot_tough_copper_ingot=Hot Tough Copper Ingot
@@ -10,6 +12,7 @@ item.techdawn:annealed_copper_ingot=Annealed Copper Ingot
 item.techdawn:hot_annealed_copper_ingot=Hot Annealed Copper Ingot
 item.techdawn:crude_annealed_copper_ingot=Crude Annealed Copper Ingot
 item.techdawn:hot_crude_annealed_copper_ingot=Hot Crude Annealed Copper Ingot
+item.techdawn:steel_ingot=Steel Ingot
 
 item.techdawn:copper_hammer=Copper Hammer
 item.techdawn:diamond_hammer=Diamond Hammer

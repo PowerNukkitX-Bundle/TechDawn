@@ -8,6 +8,7 @@ import cn.nukkit.inventory.SmokerRecipe;
 import cn.nukkit.item.Item;
 import cn.powernukkitx.techdawn.Main;
 import cn.powernukkitx.techdawn.recipe.ForgingRecipe;
+import cn.powernukkitx.techdawn.recipe.HighTemperatureFurnaceRecipe;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -71,6 +72,30 @@ public final class RecipeUtil {
                     if (canInSmoker) {
                         registerRecipe(manager::registerSmokerRecipe, new SmokerRecipe(getItemFromJson(output), getItemFromJson(input)), xp);
                     }
+                } else {
+                    throw new IllegalArgumentException("Tag input for furnace is not supported yet");
+                }
+            }
+        }
+    }
+
+    public static void registerHighTemperatureFurnaceRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/high_temperature_furnace.json");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load furnace recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = new InputStreamReader(s)) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var input = recipeObj.get("input").getAsJsonObject();
+                var output = recipeObj.get("output").getAsJsonObject();
+                var processingTick = recipeObj.get("processingTick").getAsInt();
+                var xp = recipeObj.has("xp") ? recipeObj.get("xp").getAsDouble() : 0;
+                if (jsonObjectContains(input, "type", "item")) {
+                    registerRecipe(manager::registerModProcessRecipe, new HighTemperatureFurnaceRecipe(getItemFromJson(input), processingTick, getItemFromJson(output)), xp);
                 } else {
                     throw new IllegalArgumentException("Tag input for furnace is not supported yet");
                 }

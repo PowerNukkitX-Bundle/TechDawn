@@ -37,6 +37,7 @@ public final class Main extends PluginBase {
         try {
             RecipeUtil.registerForgingRecipes();
             RecipeUtil.registerFurnaceRecipes();
+            RecipeUtil.registerHighTemperatureFurnaceRecipes();
         } catch (IOException e) {
             getLogger().error("Failed to register recipes.", e);
         }

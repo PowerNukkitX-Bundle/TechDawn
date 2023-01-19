@@ -14,6 +14,7 @@ public interface TechDawnHardness {
     int HARDNESS_TOUGH_COPPER = 28;
     int HARDNESS_ANNEALED_COPPER = 25;
     int HARDNESS_IRON = 35;
+    int HARDNESS_STEEL = 38;
     int HARDNESS_DIAMOND = 100;
     int HARDNESS_STAINLESS_STEEL = 60;
 

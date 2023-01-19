@@ -1,0 +1,14 @@
+[
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:iron_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_ingot"
+    },
+    "processingTick": 4800,
+    "xp": 2
+  }
+]
