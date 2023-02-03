@@ -7,7 +7,7 @@ import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.energy.EnergyRegistry;
 import cn.nukkit.inventory.ItemTag;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.customitem.ItemCustom;
+import cn.nukkit.item.customitem.CustomItem;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
@@ -31,7 +31,7 @@ public final class Main extends PluginBase {
     public void onLoad() {
         EnergyRegistry.registerEnergyType(RF.getInstance());
         registerBlockEntity();
-        Item.registerCustomItem(registryManifestOf(ItemCustom.class));
+        Item.registerCustomItem(registryManifestOf(CustomItem.class));
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
         registerItemTag();
         try {
@@ -49,8 +49,8 @@ public final class Main extends PluginBase {
     }
 
     private void registerItemTag() {
-        var classList = registryManifestOf(ItemCustom.class);
-        var tagList = registryManifestDataOf(ItemCustom.class);
+        var classList = registryManifestOf(CustomItem.class);
+        var tagList = registryManifestDataOf(CustomItem.class);
         for (int i = 0, len = classList.size(); i < len; i++) {
             var clazz = classList.get(i);
             var rawTag = tagList.get(i).trim();

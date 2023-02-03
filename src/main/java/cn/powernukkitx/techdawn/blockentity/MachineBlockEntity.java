@@ -4,7 +4,6 @@ import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.energy.EnergyType;
 import cn.nukkit.level.format.FullChunk;
-import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
@@ -83,7 +82,6 @@ public abstract class MachineBlockEntity extends BlockEntity implements EnergyHo
         if (!this.namedTag.contains("StoredEnergy")) {
             this.namedTag.putDouble("StoredEnergy", 0);
         }
-        super.initBlockEntity();
     }
 
     @Override

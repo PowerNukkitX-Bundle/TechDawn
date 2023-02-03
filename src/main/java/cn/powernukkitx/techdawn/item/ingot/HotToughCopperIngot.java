@@ -1,11 +1,11 @@
 package cn.powernukkitx.techdawn.item.ingot;
 
-import cn.nukkit.item.customitem.ItemCustom;
+import cn.nukkit.item.customitem.CustomItem;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import org.jetbrains.annotations.NotNull;
 
-@AutoRegister(ItemCustom.class)
+@AutoRegister(CustomItem.class)
 @AutoRegisterData("hot_tough_copper_ingot")
 public class HotToughCopperIngot extends BaseIngot {
     public HotToughCopperIngot() {

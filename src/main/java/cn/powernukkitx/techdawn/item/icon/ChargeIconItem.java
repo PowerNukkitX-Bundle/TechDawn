@@ -1,13 +1,13 @@
 package cn.powernukkitx.techdawn.item.icon;
 
+import cn.nukkit.item.customitem.CustomItem;
 import cn.nukkit.item.customitem.CustomItemDefinition;
-import cn.nukkit.item.customitem.ItemCustom;
 import cn.nukkit.item.customitem.ItemCustomTool;
 import cn.nukkit.item.customitem.data.ItemCreativeCategory;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 
-@AutoRegister(ItemCustom.class)
+@AutoRegister(CustomItem.class)
 public final class ChargeIconItem extends ItemCustomTool {
     public ChargeIconItem() {
         super("techdawn:icon_charge", "ChargeIconItem", "techdawn-items-icon-charged");

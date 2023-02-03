@@ -1,12 +1,12 @@
 package cn.powernukkitx.techdawn.item.hammer;
 
-import cn.nukkit.item.customitem.ItemCustom;
+import cn.nukkit.item.customitem.CustomItem;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.item.ItemConstants;
 import org.jetbrains.annotations.NotNull;
 
-@AutoRegister(ItemCustom.class)
+@AutoRegister(CustomItem.class)
 @AutoRegisterData("iron_hammer minecraft:iron_tier")
 public class IronHammer extends BaseHammer {
 
