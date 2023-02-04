@@ -11,4 +11,9 @@ public class SteelBlock extends BaseMaterialBlock {
     public String getNamespaceId() {
         return "techdawn:steel_block";
     }
+
+    @Override
+    public double getHardness() {
+        return 6;
+    }
 }
