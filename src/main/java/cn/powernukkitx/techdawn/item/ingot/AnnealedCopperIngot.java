@@ -6,7 +6,7 @@ import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("annealed_copper_ingot")
+@AutoRegisterData("#getTags")
 public class AnnealedCopperIngot extends BaseIngot {
     public AnnealedCopperIngot() {
         super("techdawn:annealed_copper_ingot", "techdawn-items-ingot-annealed_copper_ingot");

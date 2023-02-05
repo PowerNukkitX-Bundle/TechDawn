@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RegistryManifestGenerator {
@@ -21,6 +22,7 @@ public class RegistryManifestGenerator {
             %s
             %s}
             """;
+    public static final Map<String, Pattern> findMethodPatternCache = new HashMap<>();
 
     public static void main(String[] args) {
         ensureDirExists();
@@ -50,6 +52,15 @@ public class RegistryManifestGenerator {
                         var registerDataEndIndex = code.indexOf(")", registerDataIndex);
                         if (registerDataEndIndex != -1) {
                             var registerDataValue = code.substring(registerDataIndex + 18, registerDataEndIndex);
+                            // parse method static ref
+                            if (registerDataValue.startsWith("\"#")) {
+                                var methodName = registerDataValue.substring(2, registerDataValue.length() - 1);
+                                var pattern = findMethodPatternCache.computeIfAbsent(methodName, k -> Pattern.compile("public\\s+String\\s+" + methodName + "\\(\\)\\s*\\{\\s*return\\s*(\".*?\")\\s*;\\s*}"));
+                                var mather = pattern.matcher(code);
+                                if (mather.find()) {
+                                    registerDataValue = mather.group(1);
+                                }
+                            }
                             registerDataMap.computeIfAbsent(annotationValue, k -> new ArrayList<>()).add(registerDataValue);
                             return;
                         }
