@@ -6,21 +6,21 @@ import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("steel_ingot iron_ingot")
-public class SteelIngot extends BaseIngot {
-    public SteelIngot() {
-        super("techdawn:steel_ingot", "techdawn-items-ingot-steel_ingot");
+@AutoRegisterData("stainless_steel_ingot iron_ingot")
+public class StainlessSteelIngot extends BaseIngot {
+    public StainlessSteelIngot() {
+        super("techdawn:stainless_steel_ingot", "techdawn-items-ingot-stainless_steel_ingot");
     }
 
     @NotNull
     @Override
     public String getTags() {
-        return "steel_ingot";
+        return "stainless_steel_ingot";
     }
 
 
     @Override
     public int getHardnessTier() {
-        return HARDNESS_STEEL;
+        return HARDNESS_STAINLESS_STEEL;
     }
 }
