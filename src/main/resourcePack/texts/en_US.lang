@@ -15,6 +15,8 @@ item.techdawn:hot_crude_annealed_copper_ingot=Hot Crude Annealed Copper Ingot
 item.techdawn:steel_ingot=Steel Ingot
 item.techdawn:stainless_steel_ingot=Stainless Steel Ingot
 
+item.techdawn:annealed_copper_dust=Annealed Copper Dust
+
 item.techdawn:copper_hammer=Copper Hammer
 item.techdawn:diamond_hammer=Diamond Hammer
 item.techdawn:iron_hammer=Iron Hammer
