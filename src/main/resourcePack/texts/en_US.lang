@@ -4,6 +4,7 @@ ui.techdawn.basic_fuel_generator=Basic Fuel Generator
 ui.techdawn_vanilla-like.copper_blast_furnace=Copper Blast Furnace
 ui.techdawn_vanilla-like.invalid_structure=§cInvalid Multi-block Structure
 
+item.techdawn:bronze_ingot=Bronze Ingot
 item.techdawn:tough_copper_ingot=Tough Copper Ingot
 item.techdawn:hot_tough_copper_ingot=Hot Tough Copper Ingot
 item.techdawn:crude_tough_copper_ingot=Crude Tough Copper Ingot
