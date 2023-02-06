@@ -32,7 +32,7 @@ public class StainlessSteelHammer extends BaseHammer {
     @NotNull
     @Override
     public String getTags() {
-        return "stainless_steel_hammer minecraft:netherite_tier";
+        return "stainless_steel_hammer hammer minecraft:netherite_tier";
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public abstract class BaseHammer extends ItemCustomTool implements TechDawnHardness {
-    public static final String TAG = "minecraft:digger minecraft:is_tool minecraft:is_pickaxe is_hammer";
+    public static final String TAG = "minecraft:digger minecraft:is_tool minecraft:is_pickaxe is_hammer ";
 
     public BaseHammer(@NotNull String id, @NotNull String textureName) {
         super(id, null, textureName);

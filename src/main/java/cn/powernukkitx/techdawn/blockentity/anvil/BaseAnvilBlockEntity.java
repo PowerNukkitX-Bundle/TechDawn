@@ -3,6 +3,7 @@ package cn.powernukkitx.techdawn.blockentity.anvil;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.blockentity.BlockEntity;
+import cn.nukkit.inventory.ItemTag;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
@@ -88,7 +89,8 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                     var offhandItem = player.getOffhandInventory().getItem(0);
                     boolean canProcess = false;
                     int dh = 1;
-                    if (handItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()) {
+                    if (handItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()
+                            && ItemTag.getTagSet(handItem.getNamespaceId()).contains("is_hammer")) {
                         if (hardnessHammer.getHardnessTier() - this.getHardnessTier() > 10) {
                             this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_ANVIL_BREAK);
                             this.isBroken = true;
@@ -109,7 +111,8 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                         }
                         player.getInventory().setItemInHand(handItem);
                     }
-                    if (!canProcess && offhandItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()) {
+                    if (!canProcess && offhandItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()
+                            && ItemTag.getTagSet(handItem.getNamespaceId()).contains("is_hammer")) {
                         if (hardnessHammer.getHardnessTier() - this.getHardnessTier() > 10) {
                             this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_ANVIL_BREAK);
                             this.isBroken = true;

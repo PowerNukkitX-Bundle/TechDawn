@@ -32,7 +32,7 @@ public class ToughCopperHammer extends BaseHammer {
     @NotNull
     @Override
     public String getTags() {
-        return "tough_copper_hammer minecraft:stone_tier";
+        return "tough_copper_hammer hammer minecraft:stone_tier";
     }
 
     @Override

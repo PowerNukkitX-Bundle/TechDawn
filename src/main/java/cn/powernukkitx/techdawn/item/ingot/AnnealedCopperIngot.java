@@ -15,7 +15,7 @@ public class AnnealedCopperIngot extends BaseIngot {
     @NotNull
     @Override
     public String getTags() {
-        return "annealed_copper_ingot";
+        return "annealed_copper_ingot copper_ingot copper";
     }
 
 

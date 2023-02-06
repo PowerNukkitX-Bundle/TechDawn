@@ -32,7 +32,7 @@ public class StoneHammer extends BaseHammer {
     @NotNull
     @Override
     public String getTags() {
-        return "stone_hammer minecraft:stone_tier";
+        return "stone_hammer hammer minecraft:stone_tier";
     }
 
     @Override

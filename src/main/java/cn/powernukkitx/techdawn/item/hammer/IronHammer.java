@@ -32,7 +32,7 @@ public class IronHammer extends BaseHammer {
     @NotNull
     @Override
     public String getTags() {
-        return "iron_hammer minecraft:iron_tier";
+        return "iron_hammer hammer minecraft:iron_tier";
     }
 
     @Override
