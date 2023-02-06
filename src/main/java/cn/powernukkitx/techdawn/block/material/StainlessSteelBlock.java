@@ -16,4 +16,9 @@ public class StainlessSteelBlock extends BaseMaterialBlock {
     public double getHardness() {
         return 9;
     }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_STAINLESS_STEEL;
+    }
 }

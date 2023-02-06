@@ -16,4 +16,9 @@ public class ToughCopperBlock extends BaseMaterialBlock {
     public double getHardness() {
         return 5;
     }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_TOUGH_COPPER;
+    }
 }

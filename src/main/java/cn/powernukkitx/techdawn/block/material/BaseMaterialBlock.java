@@ -5,9 +5,10 @@ import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.nbt.tag.StringTag;
+import cn.powernukkitx.techdawn.data.TechDawnHardness;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseMaterialBlock extends BlockIron implements CustomBlock {
+public abstract class BaseMaterialBlock extends BlockIron implements CustomBlock, TechDawnHardness {
     @Override
     public int getId() {
         return CustomBlock.super.getId();

@@ -16,4 +16,9 @@ public class CrudeAnnealedCopperBlock extends BaseMaterialBlock {
     public double getHardness() {
         return 3;
     }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_ANNEALED_COPPER;
+    }
 }
