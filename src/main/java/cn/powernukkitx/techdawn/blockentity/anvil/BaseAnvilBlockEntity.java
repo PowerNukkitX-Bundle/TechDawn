@@ -80,6 +80,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                 } else {
                     player.getInventory().remove(anvilItem);
                 }
+                this.level.addSound(this.add(0.5, 1.5, 0.5), Sound.RANDOM_POP);
                 this.scheduleUpdate();
                 return true;
             } else if (coolDownTick <= 0) {
