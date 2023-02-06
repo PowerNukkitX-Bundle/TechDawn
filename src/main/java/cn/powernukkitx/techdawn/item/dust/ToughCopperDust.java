@@ -14,7 +14,7 @@ public class ToughCopperDust extends BaseDust {
 
     @Override
     public int getHardnessTier() {
-        return HARDNESS_ANNEALED_COPPER;
+        return HARDNESS_TOUGH_COPPER;
     }
 
     @NotNull
