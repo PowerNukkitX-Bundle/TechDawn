@@ -98,8 +98,9 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                             this.level.useBreakOn(this, handItem, player, true);
                             return true;
                         }
-                        if (anvilItem instanceof TechDawnHardness hardnessInput) {
-                            dh = TechDawnHardness.calcRecipeHardnessDamage(hardnessInput.getHardnessTier(), hardnessHammer.getHardnessTier());
+                        var inputItemHardnessTier = TechDawnHardness.tryGetHardnessTier(anvilItem);
+                        if (inputItemHardnessTier != -1) {
+                            dh = TechDawnHardness.calcRecipeHardnessDamage(inputItemHardnessTier, hardnessHammer.getHardnessTier());
                         }
                         if (handItem.getMaxDurability() - handItem.getDamage() >= dh) {
                             handItem.setDamage(handItem.getDamage() + dh);
@@ -113,15 +114,16 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                         player.getInventory().setItemInHand(handItem);
                     }
                     if (!canProcess && offhandItem instanceof TechDawnHardness hardnessHammer && hardnessHammer.isProcessorItem()
-                            && ItemTag.getTagSet(handItem.getNamespaceId()).contains("is_hammer")) {
+                            && ItemTag.getTagSet(offhandItem.getNamespaceId()).contains("is_hammer")) {
                         if (hardnessHammer.getHardnessTier() - this.getHardnessTier() > 10) {
                             this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_ANVIL_BREAK);
                             this.isBroken = true;
                             this.level.useBreakOn(this, offhandItem, player, true);
                             return true;
                         }
-                        if (anvilItem instanceof TechDawnHardness hardnessInput) {
-                            dh = TechDawnHardness.calcRecipeHardnessDamage(hardnessInput.getHardnessTier(), hardnessHammer.getHardnessTier());
+                        var inputItemHardnessTier = TechDawnHardness.tryGetHardnessTier(anvilItem);
+                        if (inputItemHardnessTier != -1) {
+                            dh = TechDawnHardness.calcRecipeHardnessDamage(inputItemHardnessTier, hardnessHammer.getHardnessTier());
                         }
                         if (offhandItem.getMaxDurability() - offhandItem.getDamage() >= dh) {
                             offhandItem.setDamage(offhandItem.getDamage() + dh);
