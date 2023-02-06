@@ -16,6 +16,7 @@ public interface TechDawnHardness {
     int HARDNESS_COPPER = 30;
     int HARDNESS_TOUGH_COPPER = 28;
     int HARDNESS_ANNEALED_COPPER = 25;
+    int HARDNESS_BRONZE = 30; // but in real-world, bronze is much harder than copper
     int HARDNESS_GOLD = 25;
     int HARDNESS_IRON = 35;
     int HARDNESS_STEEL = 38;

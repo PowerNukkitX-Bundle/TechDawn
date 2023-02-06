@@ -5,20 +5,20 @@ import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
-public class CrudeAnnealedCopperBlock extends BaseMaterialBlock {
+public class BronzeBlock extends BaseMaterialBlock {
     @NotNull
     @Override
     public String getNamespaceId() {
-        return "techdawn:crude_annealed_copper_block";
+        return "techdawn:bronze_block";
     }
 
     @Override
     public double getHardness() {
-        return 4;
+        return 6;
     }
 
     @Override
     public int getHardnessTier() {
-        return HARDNESS_ANNEALED_COPPER;
+        return HARDNESS_BRONZE;
     }
 }
