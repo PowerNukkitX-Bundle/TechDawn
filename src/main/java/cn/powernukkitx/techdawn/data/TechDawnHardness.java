@@ -22,6 +22,7 @@ public interface TechDawnHardness {
     int HARDNESS_STEEL = 38;
     int HARDNESS_DIAMOND = 100;
     int HARDNESS_STAINLESS_STEEL = 60;
+    int HARDNESS_TIN = 15;
 
     int getHardnessTier();
 
