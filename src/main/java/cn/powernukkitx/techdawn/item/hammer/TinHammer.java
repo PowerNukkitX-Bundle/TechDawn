@@ -1,0 +1,42 @@
+package cn.powernukkitx.techdawn.item.hammer;
+
+import cn.nukkit.item.customitem.CustomItem;
+import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
+import cn.powernukkitx.techdawn.item.ItemConstants;
+import org.jetbrains.annotations.NotNull;
+
+@AutoRegister(CustomItem.class)
+@AutoRegisterData("#getTags")
+public class TinHammer extends BaseHammer {
+
+    public TinHammer() {
+        super("techdawn:tin_hammer", "techdawn-items-hammer-tin_hammer");
+    }
+
+    @Override
+    public int getHardnessTier() {
+        return HARDNESS_TIN;
+    }
+
+    @Override
+    public int getTier() {
+        return TIER_STONE;
+    }
+
+    @Override
+    public int getMaxDurability() {
+        return ItemConstants.DURABILITY_TIN;
+    }
+
+    @NotNull
+    @Override
+    public String getTags() {
+        return "tin_hammer hammer minecraft:stone_tier";
+    }
+
+    @Override
+    public int getAttackDamage() {
+        return 3;
+    }
+}
