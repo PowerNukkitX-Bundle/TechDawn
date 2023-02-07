@@ -5,6 +5,9 @@ import cn.nukkit.block.Block;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.energy.EnergyRegistry;
+import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.custom.CustomEntity;
+import cn.nukkit.entity.provider.CustomClassEntityProvider;
 import cn.nukkit.inventory.ItemTag;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.customitem.CustomItem;
@@ -32,6 +35,7 @@ public final class Main extends PluginBase {
         EnergyRegistry.registerEnergyType(RF.getInstance());
         registerBlockEntity();
         Item.registerCustomItem(registryManifestOf(CustomItem.class));
+        registerEntity();
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
         registerItemTag();
         try {
@@ -77,6 +81,14 @@ public final class Main extends PluginBase {
             var clazz = classList.get(i);
             var name = nameList.get(i);
             BlockEntity.registerBlockEntity(name, clazz);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void registerEntity() {
+        var classList = registryManifestOf(CustomEntity.class);
+        for (var each : classList) {
+            Entity.registerCustomEntity(new CustomClassEntityProvider((Class<? extends Entity>) each));
         }
     }
 
