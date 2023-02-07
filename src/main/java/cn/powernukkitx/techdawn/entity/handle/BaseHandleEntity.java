@@ -1,6 +1,7 @@
 package cn.powernukkitx.techdawn.entity.handle;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.custom.CustomEntity;
 import cn.nukkit.entity.custom.CustomEntityDefinition;
@@ -63,13 +64,13 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
     @Override
     public boolean onUpdate(int currentTick) {
         if (rotatingTick != 0) {
-            this.yaw += 5;
             --this.rotatingTick;
+            this.yaw += 3;
+            updateMovement();
         }
-        if (yaw > 360) {
+        if (yaw > 180) {
             yaw -= 360;
         }
-        updateMovement();
         if (!(getTickCachedLevelBlock() instanceof BaseHandleBlock)) {
             close();
         }
@@ -90,7 +91,7 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
             pk.eid = player.getId();
             pk.event = EntityEventPacket.ARM_SWING;
             player.dataPacket(pk);
-            player.getViewers().values().forEach(p -> p.dataPacket(pk));
+            Server.broadcastPacket(player.getViewers().values(), pk);
         }
         {
             var pk = new PlaySoundPacket();
