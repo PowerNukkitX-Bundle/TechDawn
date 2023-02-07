@@ -111,6 +111,11 @@ public class BaseHandleBlock extends BlockTransparent implements CustomBlock {
     }
 
     @Override
+    public int getLightFilter() {
+        return 0;
+    }
+
+    @Override
     public double getMaxX() {
         return this.x + 0.875;
     }
