@@ -1,0 +1,22 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "techdawn:wood_handle",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "textures/entity/handle/wood"
+      },
+      "geometry": {
+        "default": "geometry.techdawn.handle"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "enable_attachables": false,
+      "hide_armor": true
+    }
+  }
+}
