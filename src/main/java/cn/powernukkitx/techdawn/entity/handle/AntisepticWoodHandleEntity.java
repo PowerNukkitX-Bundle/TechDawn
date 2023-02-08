@@ -22,4 +22,9 @@ public class AntisepticWoodHandleEntity extends BaseHandleEntity implements Cust
     public CustomEntityDefinition getDefinition() {
         return def;
     }
+
+    @Override
+    protected float getBrokenRate() {
+        return 0.005f;
+    }
 }

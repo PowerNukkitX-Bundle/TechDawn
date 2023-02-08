@@ -5,12 +5,15 @@ import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.custom.CustomEntity;
 import cn.nukkit.entity.custom.CustomEntityDefinition;
+import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.EntityEventPacket;
 import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.handle.BaseHandleBlock;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 @AutoRegister(CustomEntity.class)
 public class BaseHandleEntity extends Entity implements CustomEntity {
@@ -86,9 +89,21 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
         return 20;
     }
 
+    protected float getBrokenRate() {
+        return 0.0f;
+    }
+
     public void onPlayerInteract(Player player) {
         if (rotatingTick != 0) {
             return;
+        }
+        if (ThreadLocalRandom.current().nextFloat() < getBrokenRate()) {
+            this.level.addSound(this, Sound.RANDOM_BREAK);
+            if (player != null) {
+                this.getTickCachedLevelBlock().onBreak(player.getInventory().getItemInHand());
+            } else {
+                this.getTickCachedLevelBlock().onBreak(null);
+            }
         }
         rotatingTick = getInteractTick();
         this.yaw += 30;

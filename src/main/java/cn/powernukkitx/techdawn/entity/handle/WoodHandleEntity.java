@@ -22,4 +22,9 @@ public class WoodHandleEntity extends BaseHandleEntity implements CustomEntity {
     public CustomEntityDefinition getDefinition() {
         return def;
     }
+
+    @Override
+    protected float getBrokenRate() {
+        return 0.05f;
+    }
 }
