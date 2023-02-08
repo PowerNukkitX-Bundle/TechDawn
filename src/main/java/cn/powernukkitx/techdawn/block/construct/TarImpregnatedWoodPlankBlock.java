@@ -4,12 +4,13 @@ import cn.nukkit.block.BlockSolid;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
 import cn.nukkit.item.ItemTool;
+import cn.nukkit.level.Level;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
-public class AntisepticWoodPlankBlock extends BlockSolid implements CustomBlock {
+public class TarImpregnatedWoodPlankBlock extends BlockSolid implements CustomBlock {
     @Override
     public String getName() {
         return CustomBlock.class.getName();
@@ -18,12 +19,12 @@ public class AntisepticWoodPlankBlock extends BlockSolid implements CustomBlock 
     @Override
     @NotNull
     public String getNamespaceId() {
-        return "techdawn:antiseptic_wood_plank";
+        return "techdawn:tar_impregnated_wood_plank";
     }
 
     @Override
     public CustomBlockDefinition getDefinition() {
-        return CustomBlockDefinition.builder(this, "techdawn-blocks-construct-antiseptic_wood_plank").build();
+        return CustomBlockDefinition.builder(this, "techdawn-blocks-construct-tar_impregnated_wood_plank").build();
     }
 
     @Override
@@ -58,6 +59,14 @@ public class AntisepticWoodPlankBlock extends BlockSolid implements CustomBlock 
 
     @Override
     public BlockColor getColor() {
-        return BlockColor.GRAY_BLOCK_COLOR;
+        return BlockColor.BROWN_BLOCK_COLOR;
+    }
+
+    @Override
+    public int onUpdate(int type) {
+        if (type == Level.BLOCK_UPDATE_RANDOM) {
+            this.level.setBlock(this, new AntisepticWoodPlankBlock());
+        }
+        return super.onUpdate(type);
     }
 }

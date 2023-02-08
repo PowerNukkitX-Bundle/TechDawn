@@ -4,6 +4,7 @@ import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.blockentity.BlockEntity;
+import cn.nukkit.blockstate.BlockState;
 import cn.nukkit.energy.EnergyRegistry;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.custom.CustomEntity;
@@ -11,6 +12,7 @@ import cn.nukkit.entity.provider.CustomClassEntityProvider;
 import cn.nukkit.inventory.ItemTag;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.customitem.CustomItem;
+import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
@@ -37,6 +39,7 @@ public final class Main extends PluginBase {
         Item.registerCustomItem(registryManifestOf(CustomItem.class));
         registerEntity();
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
+        registerRandomTickableBlock();
         registerItemTag();
         try {
             RecipeUtil.registerForgingRecipes();
@@ -95,5 +98,9 @@ public final class Main extends PluginBase {
 
     private void registerListeners() {
         Server.getInstance().getPluginManager().registerEvents(new HammerListener(), this);
+    }
+
+    private void registerRandomTickableBlock() {
+        Level.setCanRandomTick(BlockState.of("techdawn:tar_impregnated_wood_plank").getBlockId(), true);
     }
 }
