@@ -1,7 +1,6 @@
 package cn.powernukkitx.techdawn.entity.handle;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.custom.CustomEntity;
@@ -10,11 +9,11 @@ import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
-import cn.nukkit.network.protocol.EntityEventPacket;
 import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.handle.BaseHandleBlock;
 import cn.powernukkitx.techdawn.energy.Rotation;
+import cn.powernukkitx.techdawn.util.LevelUtil;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -114,13 +113,7 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
         }
         rotatingTick = getInteractTick();
         this.yaw += 30;
-        if (player != null) {
-            var pk = new EntityEventPacket();
-            pk.eid = player.getId();
-            pk.event = EntityEventPacket.ARM_SWING;
-            player.dataPacket(pk);
-            Server.broadcastPacket(player.getViewers().values(), pk);
-        }
+        LevelUtil.sendSwingArm(player);
         {
             var pk = new PlaySoundPacket();
             pk.name = getSound();

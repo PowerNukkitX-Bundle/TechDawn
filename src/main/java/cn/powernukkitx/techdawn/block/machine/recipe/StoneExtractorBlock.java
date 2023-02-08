@@ -11,6 +11,7 @@ import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.recipe.StoneExtractorBlockEntity;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -69,6 +70,7 @@ public class StoneExtractorBlock extends BlockSolid implements CustomBlock, Bloc
             var be = getOrCreateBlockEntity();
             player.addWindow(be.getDisplayInventory());
             be.requestUIUpdateImmediately();
+            LevelUtil.resendAroundBlocks(this);
             return true;
         }
         return false;
