@@ -66,7 +66,9 @@ public class StoneExtractorBlock extends BlockSolid implements CustomBlock, Bloc
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
         if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
-            player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
+            var be = getOrCreateBlockEntity();
+            player.addWindow(be.getDisplayInventory());
+            be.requestUIUpdateImmediately();
             return true;
         }
         return false;

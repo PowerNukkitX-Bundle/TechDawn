@@ -20,4 +20,10 @@ public final class Rotation implements EnergyType {
     public boolean canConvertTo(@NotNull EnergyType type) {
         return type == this;
     }
+
+    @Override
+    public double convertTo(@NotNull EnergyType type, double amount) {
+        if (type == this) return amount;
+        return EnergyType.super.convertTo(type, amount);
+    }
 }

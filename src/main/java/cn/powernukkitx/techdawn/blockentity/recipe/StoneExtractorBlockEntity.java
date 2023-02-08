@@ -8,6 +8,7 @@ import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.inventory.RecipeInventoryHolder;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.ListTag;
@@ -52,6 +53,11 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
         return energyType.canConvertTo(Rotation.getInstance());
     }
 
+    @Override
+    public boolean canAcceptInput(EnergyType energyType, BlockFace face) {
+        return canAcceptInput(energyType) && face == BlockFace.UP;
+    }
+
     @NotNull
     @Override
     public EnergyType getStoredEnergyType() {
@@ -74,13 +80,13 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
     }
 
     @Override
-    public double getMaxStorage() {
-        return 200;
+    public boolean canProvideOutput(EnergyType energyType, BlockFace face) {
+        return false;
     }
 
     @Override
-    public double getStoredEnergy() {
-        return 0;
+    public double getMaxStorage() {
+        return 360;
     }
 
     @NotNull
@@ -111,16 +117,14 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
         inventory.sendSlot(1, inventory.getViewers());
         inventory.setItem(2, this.inventory.getItem(2));
         inventory.sendSlot(2, inventory.getViewers());
-        if (!immediately) {
-            for (var each : inventory.getViewers()) {
-                int windowId = each.getWindowId(inventory);
-                if (windowId > 0) {
-                    var pk = new ContainerSetDataPacket();
-                    pk.windowId = windowId;
-                    pk.property = ContainerSetDataPacket.PROPERTY_FURNACE_TICK_COUNT;
-                    pk.value = (int) getStoredEnergy();
-                    each.dataPacket(pk);
-                }
+        for (var each : inventory.getViewers()) {
+            int windowId = each.getWindowId(inventory);
+            if (windowId > 0) {
+                var pk = new ContainerSetDataPacket();
+                pk.windowId = windowId;
+                pk.property = ContainerSetDataPacket.PROPERTY_FURNACE_TICK_COUNT;
+                pk.value = (int) ((getStoredEnergy() / 360) * 200);
+                each.dataPacket(pk);
             }
         }
     }

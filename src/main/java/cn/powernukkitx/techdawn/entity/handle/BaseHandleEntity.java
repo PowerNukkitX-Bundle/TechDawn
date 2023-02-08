@@ -2,16 +2,19 @@ package cn.powernukkitx.techdawn.entity.handle;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.custom.CustomEntity;
 import cn.nukkit.entity.custom.CustomEntityDefinition;
 import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.EntityEventPacket;
 import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.handle.BaseHandleBlock;
+import cn.powernukkitx.techdawn.energy.Rotation;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -74,6 +77,10 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
                 updateMovement();
             }
             --this.rotatingTick;
+            var be = this.level.getBlockEntity(this.asBlockVector3().add(0, -1));
+            if (be instanceof EnergyHolder nbe && nbe.canAcceptInput(Rotation.getInstance(), BlockFace.UP)) {
+                nbe.inputInto(Rotation.getInstance(), 1.5);
+            }
         }
         if (!(getTickCachedLevelBlock() instanceof BaseHandleBlock)) {
             close();
