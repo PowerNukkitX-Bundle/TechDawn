@@ -64,12 +64,13 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
     @Override
     public boolean onUpdate(int currentTick) {
         if (rotatingTick != 0) {
+            if (rotatingTick >= getInteractTick() - 1) {
+                if (yaw > 180) {
+                    yaw -= 360;
+                }
+                updateMovement();
+            }
             --this.rotatingTick;
-            this.yaw += 3;
-            updateMovement();
-        }
-        if (yaw > 180) {
-            yaw -= 360;
         }
         if (!(getTickCachedLevelBlock() instanceof BaseHandleBlock)) {
             close();
@@ -81,11 +82,16 @@ public class BaseHandleEntity extends Entity implements CustomEntity {
         return "techdawn.wood_handle";
     }
 
+    protected int getInteractTick() {
+        return 20;
+    }
+
     public void onPlayerInteract(Player player) {
         if (rotatingTick != 0) {
             return;
         }
-        rotatingTick += 10;
+        rotatingTick = getInteractTick();
+        this.yaw += 30;
         if (player != null) {
             var pk = new EntityEventPacket();
             pk.eid = player.getId();
