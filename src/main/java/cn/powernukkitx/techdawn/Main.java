@@ -17,6 +17,7 @@ import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
 import cn.powernukkitx.techdawn.listener.HammerListener;
+import cn.powernukkitx.techdawn.listener.TarBottleListener;
 import cn.powernukkitx.techdawn.util.RecipeUtil;
 
 import java.io.IOException;
@@ -98,6 +99,7 @@ public final class Main extends PluginBase {
 
     private void registerListeners() {
         Server.getInstance().getPluginManager().registerEvents(new HammerListener(), this);
+        Server.getInstance().getPluginManager().registerEvents(new TarBottleListener(), this);
     }
 
     private void registerRandomTickableBlock() {
