@@ -204,7 +204,7 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
             }
         }
         if (canSmelt) {
-            if (getStoredEnergy() == 200) {
+            if (getStoredEnergy() == getMaxStorage()) {
                 var result = smelt.getResult().clone();
                 result.setCount(result.getCount() + product.getCount());
                 this.inventory.setResult(result);

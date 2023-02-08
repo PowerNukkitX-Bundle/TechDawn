@@ -5,8 +5,12 @@ import cn.nukkit.inventory.BlastFurnaceRecipe;
 import cn.nukkit.inventory.FurnaceRecipe;
 import cn.nukkit.inventory.Recipe;
 import cn.nukkit.inventory.SmokerRecipe;
+import cn.nukkit.inventory.recipe.DefaultDescriptor;
+import cn.nukkit.inventory.recipe.ItemDescriptor;
+import cn.nukkit.inventory.recipe.ItemTagDescriptor;
 import cn.nukkit.item.Item;
 import cn.powernukkitx.techdawn.Main;
+import cn.powernukkitx.techdawn.recipe.ExtractingRecipe;
 import cn.powernukkitx.techdawn.recipe.ForgingRecipe;
 import cn.powernukkitx.techdawn.recipe.HighTemperatureFurnaceRecipe;
 import com.google.gson.Gson;
@@ -99,6 +103,38 @@ public final class RecipeUtil {
                 } else {
                     throw new IllegalArgumentException("Tag input for furnace is not supported yet");
                 }
+            }
+        }
+    }
+
+    public static void registerExtractingRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/extracting.json");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load extracting recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = new InputStreamReader(s)) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var inputs = recipeObj.get("input").getAsJsonArray();
+                var input = inputs.get(1).getAsJsonObject();
+                var extracted = inputs.get(0).getAsJsonObject();
+                var output = recipeObj.get("output").getAsJsonObject();
+                ItemDescriptor inputDes;
+                ItemDescriptor extractedDes;
+                if (jsonObjectContains(input, "type", "item")) {
+                    inputDes = new DefaultDescriptor(getItemFromJson(input));
+                } else {
+                    inputDes = new ItemTagDescriptor(input.get("tag").getAsString(), 1);
+                }
+                if (jsonObjectContains(extracted, "type", "item")) {
+                    extractedDes = new DefaultDescriptor(getItemFromJson(extracted));
+                } else {
+                    extractedDes = new ItemTagDescriptor(extracted.get("tag").getAsString(), 1);
+                }
+                manager.registerModProcessRecipe(new ExtractingRecipe(inputDes, extractedDes, getItemFromJson(output)));
             }
         }
     }

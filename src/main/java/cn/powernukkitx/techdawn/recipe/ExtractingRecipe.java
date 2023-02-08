@@ -1,9 +1,7 @@
 package cn.powernukkitx.techdawn.recipe;
 
 import cn.nukkit.inventory.ModProcessRecipe;
-import cn.nukkit.inventory.recipe.DefaultDescriptor;
 import cn.nukkit.inventory.recipe.ItemDescriptor;
-import cn.nukkit.inventory.recipe.ItemTagDescriptor;
 import cn.nukkit.item.Item;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,15 +12,9 @@ public final class ExtractingRecipe implements ModProcessRecipe {
     private final ItemDescriptor extracted;
     private final Item output;
 
-    public ExtractingRecipe(Item input, Item extracted, Item output) {
-        this.input = new DefaultDescriptor(input);
-        this.extracted = new DefaultDescriptor(extracted);
-        this.output = output;
-    }
-
-    public ExtractingRecipe(String inputTag, String extractedTag, Item output) {
-        this.input = new ItemTagDescriptor(inputTag, 1);
-        this.extracted = new ItemTagDescriptor(extractedTag, 1);
+    public ExtractingRecipe(ItemDescriptor input, ItemDescriptor extracted, Item output) {
+        this.input = input;
+        this.extracted = extracted;
         this.output = output;
     }
 

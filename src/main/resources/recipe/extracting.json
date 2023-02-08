@@ -1,0 +1,18 @@
+[
+  {
+    "input": [
+      {
+        "type": "tag",
+        "tag": "minecraft:coals"
+      },
+      {
+        "type": "item",
+        "id": "minecraft:glass_bottle"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:tar_glass_bottle"
+    }
+  }
+]
