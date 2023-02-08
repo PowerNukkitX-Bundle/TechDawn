@@ -12,11 +12,26 @@
             "$fuel_visible": true,
             "variables": [
               {
+                "requires": "(($container_title - 'ui.techdawn') = $container_title)",
+                "$padding_fuel": [
+                  0,
+                  0
+                ]
+              },
+              {
                 "requires": "(not (($container_title - 'ui.techdawn.base_electric_furnace') = $container_title))",
                 "$fuel_visible": false
+              },
+              {
+                "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",
+                "$padding_fuel": [
+                  0,
+                  -19
+                ]
               }
             ],
-            "visible": "$fuel_visible"
+            "visible": "$fuel_visible",
+            "offset": "$padding_fuel"
           }
         }
       },
@@ -90,6 +105,13 @@
         "$padding_furnace": [
           28,
           2
+        ]
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",
+        "$padding_furnace": [
+          -16,
+          18
         ]
       }
     ],

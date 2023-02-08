@@ -92,7 +92,7 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
     @NotNull
     @Override
     public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn_vanilla-like.stone_extractor");
+        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.stone_extractor");
         customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setInput(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
