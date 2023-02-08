@@ -11,7 +11,6 @@ import cn.powernukkitx.techdawn.util.UIManger;
 import com.google.common.util.concurrent.AtomicDouble;
 import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class MachineBlockEntity extends BlockEntity implements EnergyHolder {
     private final AtomicDouble storedEnergy;
@@ -34,7 +33,7 @@ public abstract class MachineBlockEntity extends BlockEntity implements EnergyHo
         return true;
     }
 
-    @Nullable
+    @NotNull
     @Override
     public EnergyType getStoredEnergyType() {
         return RF.getInstance();
@@ -42,15 +41,15 @@ public abstract class MachineBlockEntity extends BlockEntity implements EnergyHo
 
     @Override
     public void inputInto(EnergyType energyType, double v) {
-        if (energyType.canConvertTo(RF.getInstance())) {
-            setStoredEnergy(getStoredEnergy() + energyType.convertTo(RF.getInstance(), v));
+        if (energyType.canConvertTo(getStoredEnergyType())) {
+            setStoredEnergy(getStoredEnergy() + energyType.convertTo(getStoredEnergyType(), v));
         }
     }
 
     @Override
     public void outputFrom(EnergyType energyType, double v) {
-        if (energyType.canConvertTo(RF.getInstance())) {
-            setStoredEnergy(getStoredEnergy() - energyType.convertTo(RF.getInstance(), v));
+        if (energyType.canConvertTo(getStoredEnergyType())) {
+            setStoredEnergy(getStoredEnergy() - energyType.convertTo(getStoredEnergyType(), v));
         }
     }
 
@@ -59,9 +58,9 @@ public abstract class MachineBlockEntity extends BlockEntity implements EnergyHo
         return storedEnergy.get();
     }
 
-    public void setStoredEnergy(double rf) {
-        if (Math.abs(rf - storedEnergy.get()) > 0.0001) {
-            this.storedEnergy.set(Math.max(Math.min(rf, getMaxStorage()), 0));
+    public void setStoredEnergy(double energy) {
+        if (Math.abs(energy - storedEnergy.get()) > 0.0001) {
+            this.storedEnergy.set(Math.max(Math.min(energy, getMaxStorage()), 0));
             this.setDirty();
             this.scheduleUpdate();
         }

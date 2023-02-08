@@ -26,4 +26,9 @@ public class RF implements EnergyType {
     public boolean canConvertToBase() {
         return true;
     }
+
+    @Override
+    public boolean canConvertTo(@NotNull EnergyType type) {
+        return type == this || EnergyType.super.canConvertTo(type);
+    }
 }

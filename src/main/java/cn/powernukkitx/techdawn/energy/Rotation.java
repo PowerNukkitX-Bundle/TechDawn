@@ -13,6 +13,11 @@ public final class Rotation implements EnergyType {
     @NotNull
     @Override
     public String getName() {
-        return "rotation";
+        return "techdawn:rotation";
+    }
+
+    @Override
+    public boolean canConvertTo(@NotNull EnergyType type) {
+        return type == this;
     }
 }
