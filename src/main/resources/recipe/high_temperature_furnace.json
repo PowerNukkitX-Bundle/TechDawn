@@ -8,7 +8,31 @@
       "type": "item",
       "id": "techdawn:steel_ingot"
     },
-    "processingTick": 4800,
+    "processingTick": 2400,
     "xp": 2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:steel_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_ingot"
+    },
+    "processingTick": 600,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_ingot"
+    },
+    "processingTick": 4800,
+    "xp": 0
   }
 ]
