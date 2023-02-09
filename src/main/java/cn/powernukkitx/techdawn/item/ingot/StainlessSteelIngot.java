@@ -15,7 +15,7 @@ public class StainlessSteelIngot extends BaseIngot {
     @NotNull
     @Override
     public String getTags() {
-        return "stainless_steel_ingot stainless_steel steel_ingot steel iron_ingot iron";
+        return "stainless_steel_ingot stainless_steel steel iron";
     }
 
 

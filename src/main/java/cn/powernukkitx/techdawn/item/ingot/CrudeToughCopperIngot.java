@@ -15,7 +15,7 @@ public class CrudeToughCopperIngot extends BaseIngot {
     @Override
     @NotNull
     public String getTags() {
-        return "crude_tough_copper_ingot copper_ingot copper";
+        return "crude_tough_copper_ingot copper";
     }
 
     @Override
