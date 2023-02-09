@@ -3,7 +3,6 @@ package cn.powernukkitx.techdawn.inventory.recipe;
 import cn.nukkit.inventory.ContainerInventory;
 import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.item.Item;
-import cn.powernukkitx.techdawn.blockentity.recipe.StoneExtractorBlockEntity;
 import cn.powernukkitx.techdawn.blockentity.recipe.StoneGrinderBlockEntity;
 
 public class StoneGrinderInventory extends ContainerInventory {
@@ -12,8 +11,8 @@ public class StoneGrinderInventory extends ContainerInventory {
     }
 
     @Override
-    public StoneExtractorBlockEntity getHolder() {
-        return (StoneExtractorBlockEntity) this.holder;
+    public StoneGrinderBlockEntity getHolder() {
+        return (StoneGrinderBlockEntity) this.holder;
     }
 
     public Item getResult() {

@@ -1,0 +1,222 @@
+[
+  {
+    "input": {
+      "type": "tag",
+      "tag": "iron_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:iron_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:iron_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:iron_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "gold_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:gold_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:gold_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:gold_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "tin_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tin_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "bronze_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:bronze_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "steel_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:steel_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "stainless_steel_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "crude_annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crude_annealed_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "tag",
+      "tag": "crude_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_dust"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crude_tough_copper_ingot"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:crude_tough_copper_dust"
+    }
+  }
+]

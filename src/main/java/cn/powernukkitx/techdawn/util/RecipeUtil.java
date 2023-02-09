@@ -12,6 +12,7 @@ import cn.nukkit.item.Item;
 import cn.powernukkitx.techdawn.Main;
 import cn.powernukkitx.techdawn.recipe.ExtractingRecipe;
 import cn.powernukkitx.techdawn.recipe.ForgingRecipe;
+import cn.powernukkitx.techdawn.recipe.GrindingRecipe;
 import cn.powernukkitx.techdawn.recipe.HighTemperatureFurnaceRecipe;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -135,6 +136,28 @@ public final class RecipeUtil {
                     extractedDes = new ItemTagDescriptor(extracted.get("tag").getAsString(), 1);
                 }
                 manager.registerModProcessRecipe(new ExtractingRecipe(inputDes, extractedDes, getItemFromJson(output)));
+            }
+        }
+    }
+
+    public static void registerGrindingRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/grinding.json");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load grinding recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = new InputStreamReader(s)) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var input = recipeObj.get("input").getAsJsonObject();
+                var output = recipeObj.get("output").getAsJsonObject();
+                if (jsonObjectContains(input, "type", "item")) {
+                    manager.registerModProcessRecipe(new GrindingRecipe(getItemFromJson(input), getItemFromJson(output)));
+                } else {
+                    manager.registerModProcessRecipe(new GrindingRecipe(input.get("tag").getAsString(), getItemFromJson(output)));
+                }
             }
         }
     }

@@ -98,7 +98,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setInput(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
         });
-        customInv.setItem(1, inventory.getItem(1), (item, inventoryTransactionEvent) -> {
+        customInv.setItem(2, inventory.getItem(1), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setResult(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
         });
@@ -110,9 +110,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
     public void updateUI(@NotNull CustomInventory inventory, boolean immediately) {
         inventory.setItem(0, this.inventory.getItem(0));
         inventory.sendSlot(0, inventory.getViewers());
-        inventory.setItem(1, this.inventory.getItem(1));
-        inventory.sendSlot(1, inventory.getViewers());
-        inventory.setItem(2, this.inventory.getItem(2));
+        inventory.setItem(2, this.inventory.getItem(1));
         inventory.sendSlot(2, inventory.getViewers());
         for (var each : inventory.getViewers()) {
             int windowId = each.getWindowId(inventory);
@@ -155,7 +153,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
             this.namedTag.putList(new ListTag<CompoundTag>("Items"));
         } else {
             ListTag<CompoundTag> items = this.namedTag.getList("Items", CompoundTag.class);
-            for (int i = 0, len = Math.min(items.size(), 3); i < len; i++) {
+            for (int i = 0, len = Math.min(items.size(), 2); i < len; i++) {
                 this.inventory.setItem(i, NBTIO.getItemHelper(items.get(i)));
             }
         }
@@ -192,7 +190,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
         if (smelt != null) {
             canSmelt = (input.getCount() > 0 && ((smelt.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
             //检查输入
-            if (!(smelt.getIngredients().get(0).match(input) || smelt.getIngredients().get(1).match(input))) {
+            if (!(smelt.getIngredients().get(0).match(input))) {
                 canSmelt = false;
             }
         }
@@ -219,11 +217,11 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
 
     @Override
     public Inventory getIngredientView() {
-        return new InventorySlice(inventory, 0, 2);
+        return new InventorySlice(inventory, 0, 1);
     }
 
     @Override
     public Inventory getProductView() {
-        return new InventorySlice(inventory, 2, 3);
+        return new InventorySlice(inventory, 1, 2);
     }
 }

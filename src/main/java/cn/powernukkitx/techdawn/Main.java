@@ -47,6 +47,7 @@ public final class Main extends PluginBase {
             RecipeUtil.registerFurnaceRecipes();
             RecipeUtil.registerHighTemperatureFurnaceRecipes();
             RecipeUtil.registerExtractingRecipes();
+            RecipeUtil.registerGrindingRecipes();
         } catch (IOException e) {
             getLogger().error("Failed to register recipes.", e);
         }
