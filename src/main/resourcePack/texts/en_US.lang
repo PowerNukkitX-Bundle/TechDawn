@@ -4,6 +4,7 @@ ui.techdawn.basic_fuel_generator=Basic Fuel Generator
 ui.techdawn_vanilla-like.copper_blast_furnace=Copper Blast Furnace
 ui.techdawn_vanilla-like.invalid_structure=§cInvalid Multi-block Structure
 ui.techdawn.stone_extractor=Stone Extractor
+ui.techdawn.stone_grinder=Stone Grinder
 
 item.techdawn:bronze_ingot=Bronze Ingot
 item.techdawn:tough_copper_ingot=Tough Copper Ingot
@@ -42,3 +43,4 @@ item.techdawn:tar_glass_bottle=Bottled Tar
 tile.techdawn:antiseptic_wood_plank.name=Antiseptic Wood Plank
 tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank
+tile.techdawn:stone_grinder.name=Stone Grinder
