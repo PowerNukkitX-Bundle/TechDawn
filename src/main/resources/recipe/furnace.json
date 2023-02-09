@@ -46,5 +46,89 @@
     },
     "blastFurnace": true,
     "xp": 0.2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:iron_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:iron_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:gold_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:gold_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:copper_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:bronze_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tough_copper_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tin_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0
   }
 ]
