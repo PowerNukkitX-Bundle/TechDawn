@@ -20,6 +20,6 @@ public class AnnealedCopperDust extends BaseDust {
     @NotNull
     @Override
     public String getTags() {
-        return "annealed_copper_dust copper_dust copper";
+        return "annealed_copper_dust annealed_copper copper";
     }
 }

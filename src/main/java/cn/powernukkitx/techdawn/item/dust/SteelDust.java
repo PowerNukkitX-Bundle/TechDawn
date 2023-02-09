@@ -20,6 +20,6 @@ public class SteelDust extends BaseDust {
     @NotNull
     @Override
     public String getTags() {
-        return "steel_dust steel iron_dust iron";
+        return "steel_dust steel iron";
     }
 }
