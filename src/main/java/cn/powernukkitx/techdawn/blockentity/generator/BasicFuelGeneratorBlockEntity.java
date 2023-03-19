@@ -3,7 +3,6 @@ package cn.powernukkitx.techdawn.blockentity.generator;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.blockentity.BlockEntity;
-import cn.nukkit.blockentity.BlockEntityContainer;
 import cn.nukkit.energy.EnergyType;
 import cn.nukkit.inventory.*;
 import cn.nukkit.item.Item;
@@ -28,9 +27,11 @@ import cn.powernukkitx.techdawn.util.InventoryUtil;
 import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("removal")
 @AutoRegister(BlockEntity.class)
 @AutoRegisterData("TechDawn_BasicFuelGeneratorBlock")
-public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements RecipeInventoryHolder, BlockEntityContainer, TechDawnGenerator {
+public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements RecipeInventoryHolder,
+        cn.nukkit.blockentity.BlockEntityContainer, TechDawnGenerator {
     private final BlockFaceIterator blockFaceIterator;
     protected BasicFuelGeneratorInventory inventory;
     protected int burnTime = 0;

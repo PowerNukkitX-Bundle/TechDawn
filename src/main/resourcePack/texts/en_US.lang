@@ -40,6 +40,9 @@ item.techdawn:wooden_hammer=Wooden Hammer
 
 item.techdawn:tar_glass_bottle=Bottled Tar
 
+item.techdawn:antiseptic_wood_stick=Antiseptic Wooden Stick
+item.techdawn:tar_impregnated_wood_stick=Tar Impregnated Wooden Stick
+
 tile.techdawn:antiseptic_wood_plank.name=Antiseptic Wood Plank
 tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank

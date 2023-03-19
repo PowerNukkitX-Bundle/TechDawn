@@ -40,7 +40,6 @@ public final class Main extends PluginBase {
         Item.registerCustomItem(registryManifestOf(CustomItem.class));
         registerEntity();
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
-        registerRandomTickableBlock();
         registerItemTag();
         try {
             RecipeUtil.registerForgingRecipes();
@@ -55,6 +54,7 @@ public final class Main extends PluginBase {
 
     @Override
     public void onEnable() {
+        registerRandomTickableBlock();
         registerListeners();
     }
 
