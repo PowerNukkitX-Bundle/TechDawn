@@ -41,19 +41,21 @@ public final class Main extends PluginBase {
         registerEntity();
         Block.registerCustomBlock(registryManifestOf(CustomBlock.class));
         registerItemTag();
+    }
+
+    @Override
+    public void onEnable() {
         try {
             RecipeUtil.registerForgingRecipes();
             RecipeUtil.registerFurnaceRecipes();
             RecipeUtil.registerHighTemperatureFurnaceRecipes();
             RecipeUtil.registerExtractingRecipes();
             RecipeUtil.registerGrindingRecipes();
+            RecipeUtil.registerShapedRecipes();
+            Server.getInstance().getCraftingManager().rebuildPacket();
         } catch (IOException e) {
             getLogger().error("Failed to register recipes.", e);
         }
-    }
-
-    @Override
-    public void onEnable() {
         registerRandomTickableBlock();
         registerListeners();
     }

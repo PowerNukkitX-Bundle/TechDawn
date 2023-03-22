@@ -1,0 +1,36 @@
+[
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:tar_impregnated_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tar_impregnated_wood_stick",
+      "count": 4
+    },
+    "shape": [
+      "A",
+      "A"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_stick",
+      "count": 4
+    },
+    "shape": [
+      "A",
+      "A"
+    ]
+  }
+]

@@ -1,10 +1,7 @@
 package cn.powernukkitx.techdawn.util;
 
 import cn.nukkit.Server;
-import cn.nukkit.inventory.BlastFurnaceRecipe;
-import cn.nukkit.inventory.FurnaceRecipe;
-import cn.nukkit.inventory.Recipe;
-import cn.nukkit.inventory.SmokerRecipe;
+import cn.nukkit.inventory.*;
 import cn.nukkit.inventory.recipe.DefaultDescriptor;
 import cn.nukkit.inventory.recipe.ItemDescriptor;
 import cn.nukkit.inventory.recipe.ItemTagDescriptor;
@@ -14,18 +11,17 @@ import cn.powernukkitx.techdawn.recipe.ExtractingRecipe;
 import cn.powernukkitx.techdawn.recipe.ForgingRecipe;
 import cn.powernukkitx.techdawn.recipe.GrindingRecipe;
 import cn.powernukkitx.techdawn.recipe.HighTemperatureFurnaceRecipe;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.*;
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.function.Consumer;
 
 public final class RecipeUtil {
-    private static final Gson GSON = new Gson();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setLenient().create();
 
     private RecipeUtil() {
         throw new UnsupportedOperationException();
@@ -162,6 +158,65 @@ public final class RecipeUtil {
         }
     }
 
+    /*
+    // json like this
+     [
+       {
+         "input": {
+           "A": {
+             "type": "item",
+             "id": "techdawn:annealed_copper_ingot"
+           },
+           "B": {
+             "type": "item",
+             "id": "minecraft:iron_ingot"
+           }
+         },
+         "output": {
+           "type": "item",
+           "id": "minecraft:gold_ingot"
+         },
+         "shape": {
+           "ABA",
+           " A ",
+           "BA "
+         }
+       }
+     ]
+    */
+    public static void registerShapedRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/shaped.json5");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load shaped recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = GSON.newJsonReader(new InputStreamReader(s))) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var input = recipeObj.get("input").getAsJsonObject();
+                var output = recipeObj.get("output").getAsJsonObject();
+                var shape = recipeObj.get("shape").getAsJsonArray();
+                var shapeArr = new String[shape.size()];
+                for (int i = 0; i < shape.size(); i++) {
+                    shapeArr[i] = shape.get(i).getAsString();
+                }
+                var map = new Char2ObjectOpenHashMap<ItemDescriptor>(4);
+                for (var entry : input.entrySet()) {
+                    var key = entry.getKey().charAt(0);
+                    var value = entry.getValue().getAsJsonObject();
+                    if (jsonObjectContains(value, "type", "item")) {
+                        map.put(key, new DefaultDescriptor(getItemFromJson(value)));
+                    } else {
+                        map.put(key, new ItemTagDescriptor(value.get("tag").getAsString(), 1));
+                    }
+                }
+                manager.registerShapedRecipe(new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, List.of()));
+            }
+        }
+    }
+
     private static boolean jsonObjectContains(@NotNull JsonObject obj, String key, String value) {
         return obj.has(key) &&
                 obj.get(key) instanceof JsonPrimitive primitive &&
@@ -184,11 +239,16 @@ public final class RecipeUtil {
     }
 
     private static Item getItemFromJson(@NotNull JsonObject obj) {
+        Item item;
         if (!obj.has("id")) {
-            return Item.get(0);
+            item = Item.get(0);
         } else {
-            return Item.fromString(obj.get("id").getAsString());
+            item = Item.fromString(obj.get("id").getAsString());
         }
+        if (obj.has("count")) {
+            item.setCount(obj.get("count").getAsInt());
+        }
+        return item;
     }
 
     private static <T extends Recipe> void registerRecipe(@NotNull Consumer<T> registry, T recipe, double xp) {
