@@ -11,6 +11,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Sound;
 import cn.nukkit.math.BlockFace;
+import cn.nukkit.math.Vector3f;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.anvil.BaseAnvilBlockEntity;
@@ -42,6 +43,8 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, Tec
         return CustomBlockDefinition
                 .builder(this, Materials.builder().any(Materials.RenderMethod.BLEND, getTextureName()))
                 .geometry("geometry.techdawn.anvil")
+                .selectionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 14f, 14f))
+                .collisionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 14f, 14f))
                 .build();
     }
 
