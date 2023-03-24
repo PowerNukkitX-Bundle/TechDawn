@@ -14,13 +14,14 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.anvil.BaseAnvilBlockEntity;
+import cn.powernukkitx.techdawn.data.TechDawnHardness;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
 @AutoRegister(CustomBlock.class)
-public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, BlockEntityHolder<BaseAnvilBlockEntity> {
+public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, TechDawnHardness, BlockEntityHolder<BaseAnvilBlockEntity> {
     @Override
     public String getName() {
         return CustomBlock.super.getName();
@@ -39,7 +40,7 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, Blo
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition
-                .builder(this, Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
+                .builder(this, Materials.builder().any(Materials.RenderMethod.BLEND, getTextureName()))
                 .geometry("geometry.techdawn.anvil")
                 .build();
     }
@@ -123,5 +124,15 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, Blo
         var be = getBlockEntity();
         if (be != null && be.isBroken()) return Item.EMPTY_ARRAY;
         return super.getDrops(item);
+    }
+
+    @Override
+    public int getHardnessTier() {
+        return 30;
+    }
+
+    @Override
+    public boolean isProcessorBlock() {
+        return true;
     }
 }

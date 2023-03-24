@@ -51,9 +51,13 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
         return getBlock().getClass() == BaseAnvilBlock.class;
     }
 
+    public BaseAnvilBlock getBlock() {
+        return (BaseAnvilBlock) super.getBlock();
+    }
+
     @Override
     public int getHardnessTier() {
-        return 30;
+        return getBlock().getHardnessTier();
     }
 
     @Override
