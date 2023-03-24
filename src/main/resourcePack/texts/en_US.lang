@@ -49,3 +49,14 @@ tile.techdawn:antiseptic_wood_plank.name=Antiseptic Wood Plank
 tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank
 tile.techdawn:stone_grinder.name=Stone Grinder
+
+tile.techdawn:annealed_copper_anvil.name=Annealed Copper Anvil
+tile.techdawn:bronze_anvil.name=Bronze Anvil
+tile.techdawn:copper_anvil.name=Copper Anvil
+tile.techdawn:diamond_anvil.name=Diamond Anvil
+tile.techdawn:iron_anvil.name=Iron Anvil
+tile.techdawn:gold_anvil.name=Gold Anvil
+tile.techdawn:stainless_steel_anvil.name=Stainless Steel Anvil
+tile.techdawn:steel_anvil.name=Steel Anvil
+tile.techdawn:tin_anvil.name=Tin Anvil
+tile.techdawn:tough_copper_anvil.name=Tough Copper Anvil

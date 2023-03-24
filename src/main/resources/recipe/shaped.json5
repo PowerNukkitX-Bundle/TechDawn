@@ -70,5 +70,217 @@
       "  A",
       "  A"
     ]
+  },
+  // anvil
+  // annealed_copper bronze copper minecraft:diamond minecraft:gold minecraft:iron stainless_steel steel tin tough_copper
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:bronze_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:bronze_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:copper_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:copper_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:diamond_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:diamond"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:diamond_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:gold_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:gold_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:gold_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:iron_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:iron_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:iron_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:stainless_steel_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:stainless_steel_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:steel_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:tin_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:tin_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:tough_copper_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:tough_copper_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_anvil"
+    },
+    "shape": [
+      "AAA",
+      " B ",
+      "AAA"
+    ]
   }
 ]

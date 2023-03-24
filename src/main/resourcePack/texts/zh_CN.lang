@@ -49,3 +49,14 @@ tile.techdawn:antiseptic_wood_plank.name=防腐木板
 tile.techdawn:stone_extractor.name=石制萃取机
 tile.techdawn:tar_impregnated_wood_plank.name=焦油浸渍的木板
 tile.techdawn:stone_grinder.name=石制研磨机
+
+tile.techdawn:annealed_copper_anvil.name=退火铜锻造砧
+tile.techdawn:bronze_anvil.name=青铜锻造砧
+tile.techdawn:copper_anvil.name=铜锻造砧
+tile.techdawn:diamond_anvil.name=钻石锻造砧
+tile.techdawn:iron_anvil.name=铁锻造砧
+tile.techdawn:gold_anvil.name=金锻造砧
+tile.techdawn:stainless_steel_anvil.name=不锈钢锻造砧
+tile.techdawn:steel_anvil.name=钢锻造砧
+tile.techdawn:tin_anvil.name=锡锻造砧
+tile.techdawn:tough_copper_anvil.name=韧铜锻造砧
