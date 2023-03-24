@@ -17,7 +17,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public final class RecipeUtil {
@@ -213,6 +215,53 @@ public final class RecipeUtil {
                     }
                 }
                 manager.registerShapedRecipe(new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, List.of()));
+            }
+        }
+    }
+
+    public static void registerShapelessRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/shapeless.json5");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load shapeless recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = GSON.newJsonReader(new InputStreamReader(s))) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var input = recipeObj.get("input").getAsJsonArray();
+                var output = recipeObj.get("output").getAsJsonObject();
+                var list = new ArrayList<ItemDescriptor>(input.size());
+                for (var eachInput : input) {
+                    var value = eachInput.getAsJsonObject();
+                    if (jsonObjectContains(value, "type", "item")) {
+                        var item = getItemFromJson(value);
+                        if (item.getCount() > 1) {
+                            var singleItem = item.clone();
+                            singleItem.setCount(1);
+                            for (int i = 0; i < item.getCount(); i++) {
+                                list.add(new DefaultDescriptor(singleItem));
+                            }
+                        } else {
+                            list.add(new DefaultDescriptor(item));
+                        }
+                    } else {
+                        if (value.get("count") instanceof JsonPrimitive primitive && primitive.isNumber()) {
+                            var count = primitive.getAsInt();
+                            if (count > 1) {
+                                for (int i = 0; i < count; i++) {
+                                    list.add(new ItemTagDescriptor(value.get("tag").getAsString(), 1));
+                                }
+                            } else {
+                                list.add(new ItemTagDescriptor(value.get("tag").getAsString(), 1));
+                            }
+                        } else {
+                            list.add(new ItemTagDescriptor(value.get("tag").getAsString(), 1));
+                        }
+                    }
+                }
+                manager.registerShapelessRecipe(new ShapelessRecipe(UUID.randomUUID().toString(), 1, getItemFromJson(output), list));
             }
         }
     }

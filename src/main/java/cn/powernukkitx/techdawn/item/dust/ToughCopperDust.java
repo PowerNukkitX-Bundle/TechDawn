@@ -20,6 +20,6 @@ public class ToughCopperDust extends BaseDust {
     @NotNull
     @Override
     public String getTags() {
-        return "tough_copper_dust tough_copper copper";
+        return "tough_copper_dust copper_dust tough_copper copper";
     }
 }

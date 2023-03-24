@@ -52,6 +52,7 @@ public final class Main extends PluginBase {
             RecipeUtil.registerExtractingRecipes();
             RecipeUtil.registerGrindingRecipes();
             RecipeUtil.registerShapedRecipes();
+            RecipeUtil.registerShapelessRecipes();
             Server.getInstance().getCraftingManager().rebuildPacket();
         } catch (IOException e) {
             getLogger().error("Failed to register recipes.", e);
