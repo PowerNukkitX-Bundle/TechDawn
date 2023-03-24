@@ -13,22 +13,18 @@ import cn.nukkit.item.Item;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
-import cn.powernukkitx.techdawn.blockentity.recipe.CopperBlastFurnaceBlockEntity;
+import cn.powernukkitx.techdawn.blockentity.recipe.BronzeBlastFurnaceBlockEntity;
 import cn.powernukkitx.techdawn.util.CustomDefUtil;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
-public class CopperBlastFurnaceBlock extends BlockSolidMeta implements IBlastFurnaceBlock, CustomBlock, BlockEntityHolder<CopperBlastFurnaceBlockEntity> {
+public class BronzeBlastFurnaceBlock extends BlockSolidMeta implements IBlastFurnaceBlock, CustomBlock, BlockEntityHolder<BronzeBlastFurnaceBlockEntity> {
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
 
-    public CopperBlastFurnaceBlock() {
-        this(0);
-    }
-
-    public CopperBlastFurnaceBlock(int meta) {
+    public BronzeBlastFurnaceBlock(int meta) {
         super(meta);
     }
 
@@ -40,16 +36,16 @@ public class CopperBlastFurnaceBlock extends BlockSolidMeta implements IBlastFur
     @NotNull
     @Override
     public String getNamespaceId() {
-        return "techdawn:copper_blast_furnace";
+        return "techdawn:bronze_blast_furnace";
     }
 
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomDefUtil.get4DirectionWorkingMachineDef(this,
-                "techdawn-blocks-machine-copper_blast_furnace_on",
-                "techdawn-blocks-machine-copper_blast_furnace_off",
-                "techdawn-blocks-construct-copper_brick",
-                "techdawn-blocks-construct-copper_brick");
+                "techdawn-blocks-machine-bronze_blast_furnace_on",
+                "techdawn-blocks-machine-bronze_blast_furnace_off",
+                "techdawn-blocks-construct-bronze_brick",
+                "techdawn-blocks-construct-bronze_brick");
     }
 
     @Override
@@ -84,14 +80,14 @@ public class CopperBlastFurnaceBlock extends BlockSolidMeta implements IBlastFur
 
     @NotNull
     @Override
-    public Class<? extends CopperBlastFurnaceBlockEntity> getBlockEntityClass() {
-        return CopperBlastFurnaceBlockEntity.class;
+    public Class<? extends BronzeBlastFurnaceBlockEntity> getBlockEntityClass() {
+        return BronzeBlastFurnaceBlockEntity.class;
     }
 
     @NotNull
     @Override
     public String getBlockEntityType() {
-        return "TechDawn_CopperBlastFurnaceBlock";
+        return "TechDawn_BronzeBlastFurnaceBlock";
     }
 
     @Override

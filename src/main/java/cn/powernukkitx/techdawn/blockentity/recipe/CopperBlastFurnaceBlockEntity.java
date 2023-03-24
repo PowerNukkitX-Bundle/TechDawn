@@ -22,6 +22,7 @@ import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.block.construct.CopperBrickBlock;
 import cn.powernukkitx.techdawn.block.construct.CopperOutletFlueBlock;
 import cn.powernukkitx.techdawn.block.machine.recipe.CopperBlastFurnaceBlock;
+import cn.powernukkitx.techdawn.block.machine.recipe.IBlastFurnaceBlock;
 import cn.powernukkitx.techdawn.blockentity.MachineBlockEntity;
 import cn.powernukkitx.techdawn.inventory.recipe.CopperBlastFurnaceInventory;
 import cn.powernukkitx.techdawn.multi.MultiBlockStruct;
@@ -143,9 +144,8 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
         return false;
     }
 
-    @Override
-    public CopperBlastFurnaceBlock getBlock() {
-        return (CopperBlastFurnaceBlock) super.getBlock();
+    public IBlastFurnaceBlock getBlastFurnaceBlock() {
+        return (IBlastFurnaceBlock) super.getBlock();
     }
 
     @Override
@@ -163,11 +163,14 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
         return 0;
     }
 
+    protected @NotNull String getUITitle(boolean valid) {
+        return valid ? "ui.techdawn_vanilla-like.copper_blast_furnace" : "ui.techdawn_vanilla-like.invalid_structure";
+    }
+
     @NotNull
     @Override
     public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, !isStructureValid.isPresent() || isStructureValid.getAsBoolean() ?
-                "ui.techdawn_vanilla-like.copper_blast_furnace" : "ui.techdawn_vanilla-like.invalid_structure");
+        var customInv = new CustomInventory(InventoryType.FURNACE, getUITitle(!isStructureValid.isPresent() || isStructureValid.getAsBoolean()));
         customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setSmelting(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
@@ -360,7 +363,11 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
     }
 
     public int getSpeedMultiplier() {
-        return 1;
+        return 2;
+    }
+
+    protected @NotNull MultiBlockStruct getMultiBlockStruct() {
+        return getCopperBlastStruct();
     }
 
     @Override
@@ -369,7 +376,7 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
         // 检查能否开始冶炼
         Item raw = this.inventory.getSmelting();
         Item product = this.inventory.getResult();
-        var smelt = this.server.getCraftingManager().matchModProcessRecipe("high_temperature_furnace", List.of());
+        var smelt = this.server.getCraftingManager().matchModProcessRecipe("high_temperature_furnace", List.of(raw));
         // 配方是否合适
         boolean canSmelt = false;
         if (smelt != null) {
@@ -386,8 +393,8 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
         var serverTick = Server.getInstance().getTick();
         // 多方块结构是否正确
         if ((serverTick & 15) == 0) { // % 16 == 0
-            var face = getBlock().getBlockFace();
-            isStructureValid = OptionalBoolean.of(getCopperBlastStruct().transpose(face).match(this.add(-face.getXOffset(), -1, -face.getZOffset())));
+            var face = getBlastFurnaceBlock().getBlockFace();
+            isStructureValid = OptionalBoolean.of(getMultiBlockStruct().transpose(face).match(this.add(-face.getXOffset(), -1, -face.getZOffset())));
             canSmelt = isStructureValid.getAsBoolean() && canSmelt;
         } else {
             canSmelt = canSmelt && isStructureValid.isPresent() && isStructureValid.getAsBoolean();
@@ -411,7 +418,7 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
             canSmelt = false;
         }
         // 设置方块燃烧状态
-        getBlock().setWorkingProperty(burnTime > 0);
+        getBlastFurnaceBlock().setWorkingProperty(burnTime > 0);
         // 开始冶炼
         if (burnTime > 0) burnTime--;
         if (canSmelt) {
@@ -433,7 +440,7 @@ public class CopperBlastFurnaceBlockEntity extends MachineBlockEntity implements
             }
             // 释放燃烧效果粒子
             if ((serverTick & 31) == 0) { // % 8 == 0
-                var blockFace = this.getBlock().getBlockFace();
+                var blockFace = this.getBlastFurnaceBlock().getBlockFace();
                 level.addParticle(new GenericParticle(this.add(0.5 - blockFace.getXOffset(), 3.2, 0.5 - blockFace.getZOffset()),
                         Particle.TYPE_CAMPFIRE_SMOKE));
             }

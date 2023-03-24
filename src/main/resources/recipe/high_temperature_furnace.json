@@ -8,7 +8,7 @@
       "type": "item",
       "id": "techdawn:steel_ingot"
     },
-    "processingTick": 2400,
+    "processingTick": 4800,
     "xp": 2
   },
   {
@@ -32,7 +32,7 @@
       "type": "item",
       "id": "techdawn:stainless_steel_ingot"
     },
-    "processingTick": 4800,
+    "processingTick": 9600,
     "xp": 0
   }
 ]
