@@ -192,7 +192,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
         if (--coolDownTick > 0) {
             var random = ThreadLocalRandom.current();
             if (random.nextBoolean()) {
-                level.addParticle(new SmokeParticle(this.add(random.nextDouble(0.1, 0.9), 1.1, random.nextDouble(0.1, 0.9))));
+                level.addParticle(new SmokeParticle(this.add(random.nextDouble(0.1, 0.9), 1, random.nextDouble(0.1, 0.9))));
             }
             return true;
         }

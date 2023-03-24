@@ -1,16 +1,6 @@
 [
   {
     "input": {
-      "type": "item",
-      "id": "minecraft:iron_ingot"
-    },
-    "output": {
-      "type": "item",
-      "id": "minecraft:gold_ingot"
-    }
-  },
-  {
-    "input": {
       "type": "tag",
       "tag": "hot_tough_copper_ingot"
     },

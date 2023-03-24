@@ -24,6 +24,11 @@ public class BronzeBlastFurnaceBlock extends BlockSolidMeta implements IBlastFur
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
 
+    @SuppressWarnings("unused")
+    public BronzeBlastFurnaceBlock() {
+        this(0);
+    }
+
     public BronzeBlastFurnaceBlock(int meta) {
         super(meta);
     }

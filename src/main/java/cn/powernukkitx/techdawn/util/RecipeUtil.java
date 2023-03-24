@@ -41,11 +41,22 @@ public final class RecipeUtil {
             for (var each : arr) {
                 var recipeObj = each.getAsJsonObject();
                 var input = recipeObj.get("input").getAsJsonObject();
+                var template = recipeObj.get("template") instanceof JsonObject jsonObject ? jsonObject : null;
                 var output = recipeObj.get("output").getAsJsonObject();
                 if (jsonObjectContains(input, "type", "item")) {
-                    manager.registerModProcessRecipe(new ForgingRecipe(getItemFromJson(input), getItemFromJson(output)));
+                    if (template == null)
+                        manager.registerModProcessRecipe(new ForgingRecipe(getItemFromJson(input), null, getItemFromJson(output)));
+                    else {
+                        var templateItem = getItemFromJson(template);
+                        manager.registerModProcessRecipe(new ForgingRecipe(getItemFromJson(input), templateItem, getItemFromJson(output)));
+                    }
                 } else {
-                    manager.registerModProcessRecipe(new ForgingRecipe(input.get("tag").getAsString(), getItemFromJson(output)));
+                    if (template == null)
+                        manager.registerModProcessRecipe(new ForgingRecipe(input.get("tag").getAsString(), null, getItemFromJson(output)));
+                    else {
+                        var templateItem = getItemFromJson(template);
+                        manager.registerModProcessRecipe(new ForgingRecipe(input.get("tag").getAsString(), templateItem, getItemFromJson(output)));
+                    }
                 }
             }
         }

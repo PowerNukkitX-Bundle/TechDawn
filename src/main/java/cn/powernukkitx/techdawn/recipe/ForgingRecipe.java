@@ -6,20 +6,24 @@ import cn.nukkit.inventory.recipe.ItemDescriptor;
 import cn.nukkit.inventory.recipe.ItemTagDescriptor;
 import cn.nukkit.item.Item;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public final class ForgingRecipe implements ModProcessRecipe {
     private final ItemDescriptor input;
+    private final @Nullable ItemDescriptor template;
     private final Item output;
 
-    public ForgingRecipe(Item input, Item output) {
+    public ForgingRecipe(Item input, Item template, Item output) {
         this.input = new DefaultDescriptor(input);
+        this.template = template == null ? null : new DefaultDescriptor(template);
         this.output = output;
     }
 
-    public ForgingRecipe(String inputTag, Item output) {
+    public ForgingRecipe(String inputTag, Item template, Item output) {
         this.input = new ItemTagDescriptor(inputTag, 1);
+        this.template = template == null ? null : new DefaultDescriptor(template);
         this.output = output;
     }
 
@@ -31,7 +35,11 @@ public final class ForgingRecipe implements ModProcessRecipe {
     @NotNull
     @Override
     public List<ItemDescriptor> getIngredients() {
-        return List.of(input);
+        if (template == null)
+            return List.of(input);
+        else {
+            return List.of(input, template);
+        }
     }
 
     @NotNull

@@ -26,6 +26,7 @@ public class BaseElectricFurnaceBlock extends BlockSolidMeta implements Faceable
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
 
+    @SuppressWarnings("unused")
     public BaseElectricFurnaceBlock() {
         this(0);
     }

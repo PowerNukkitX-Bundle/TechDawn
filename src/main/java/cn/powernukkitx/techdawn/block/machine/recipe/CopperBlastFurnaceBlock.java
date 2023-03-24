@@ -24,6 +24,7 @@ public class CopperBlastFurnaceBlock extends BlockSolidMeta implements IBlastFur
     public static final BooleanBlockProperty WORKING_PROPERTY = new BooleanBlockProperty("working", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(CommonBlockProperties.DIRECTION, WORKING_PROPERTY);
 
+    @SuppressWarnings("unused")
     public CopperBlastFurnaceBlock() {
         this(0);
     }
