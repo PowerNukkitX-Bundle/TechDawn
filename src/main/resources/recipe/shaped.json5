@@ -1,4 +1,5 @@
 [
+  // plank to stick
   {
     "input": {
       "A": {
@@ -31,6 +32,43 @@
     "shape": [
       "A",
       "A"
+    ]
+  },
+  // stick to handle
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_handle_item",
+      "count": 1
+    },
+    "shape": [
+      "AAA",
+      "  A",
+      "  A"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_handle_item",
+      "count": 1
+    },
+    "shape": [
+      "AAA",
+      "  A",
+      "  A"
     ]
   }
 ]
