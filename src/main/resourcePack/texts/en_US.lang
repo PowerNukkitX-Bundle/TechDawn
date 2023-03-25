@@ -78,3 +78,5 @@ tile.techdawn:stainless_steel_anvil.name=Stainless Steel Anvil
 tile.techdawn:steel_anvil.name=Steel Anvil
 tile.techdawn:tin_anvil.name=Tin Anvil
 tile.techdawn:tough_copper_anvil.name=Tough Copper Anvil
+
+tile.techdawn:stone_plate_template.name=Stone Plate Template

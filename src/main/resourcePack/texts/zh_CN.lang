@@ -78,3 +78,5 @@ tile.techdawn:stainless_steel_anvil.name=不锈钢锻造砧
 tile.techdawn:steel_anvil.name=钢锻造砧
 tile.techdawn:tin_anvil.name=锡锻造砧
 tile.techdawn:tough_copper_anvil.name=韧铜锻造砧
+
+tile.techdawn:stone_plate_template.name=石制板模
