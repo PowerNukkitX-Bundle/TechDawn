@@ -282,5 +282,23 @@
       " B ",
       "AAA"
     ]
+  },
+  // template
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:stone_block_slab"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "shape": [
+      "AAA",
+      "A A",
+      "AAA"
+    ]
   }
 ]
