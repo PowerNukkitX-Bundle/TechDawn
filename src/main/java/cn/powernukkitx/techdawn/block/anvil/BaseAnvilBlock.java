@@ -41,10 +41,10 @@ public class BaseAnvilBlock extends BlockTransparent implements CustomBlock, Tec
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition
-                .builder(this, Materials.builder().any(Materials.RenderMethod.BLEND, getTextureName()))
+                .builder(this, Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
                 .geometry("geometry.techdawn.anvil")
-                .selectionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 14f, 14f))
-                .collisionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 14f, 14f))
+                .selectionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 16f, 14f))
+                .collisionBox(new Vector3f(-7f, 0, -7f), new Vector3f(14f, 16f, 14f))
                 .build();
     }
 
