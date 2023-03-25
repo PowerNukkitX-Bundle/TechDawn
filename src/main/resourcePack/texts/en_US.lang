@@ -46,6 +46,17 @@ item.techdawn:tar_impregnated_wood_stick=Tar Impregnated Wood Stick
 item.techdawn:antiseptic_wood_handle_item=Antiseptic Wood Handle
 item.techdawn:wood_handle_item=Wood Handle
 
+item.techdawn:annealed_copper_plate=Annealed Copper Plate
+item.techdawn:bronze_plate=Bronze Plate
+item.techdawn:copper_plate=Copper Plate
+item.techdawn:gold_plate=Gold Plate
+item.techdawn:diamond_plate=Diamond Plate
+item.techdawn:iron_plate=Iron Plate
+item.techdawn:stainless_steel_plate=Stainless Steel Plate
+item.techdawn:steel_plate=Steel Plate
+item.techdawn:tough_copper_plate=Tough Copper Plate
+item.techdawn:tin_plate=Tin Plate
+
 tile.techdawn:bronze_brick.name=Bronze Brick
 tile.techdawn:copper_brick.name=Copper Brick
 tile.techdawn:bronze_outlet_flue.name=Bronze Outlet Flue
