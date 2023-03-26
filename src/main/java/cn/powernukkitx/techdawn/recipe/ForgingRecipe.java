@@ -52,4 +52,10 @@ public final class ForgingRecipe implements ModProcessRecipe {
     public Item getResult() {
         return this.output;
     }
+
+    @Override
+    public boolean matchItems(@NotNull List<Item> inputItems) {
+        if (inputItems.size() != getIngredients().size()) return false;
+        return ModProcessRecipe.super.matchItems(inputItems);
+    }
 }
