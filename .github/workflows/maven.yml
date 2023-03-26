@@ -13,6 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -20,14 +26,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    - name: Archive Libraries
+      run: mvn -B package -DskipTests=false -Darguments="-Dmaven.javadoc.skip=true" --file pom.xml
+    - name: Archive Modpack
       uses: actions/upload-artifact@v3
       if: success()
       with:
         name: ModPack
         path: target/libs/TechDawn-*.jar
-    - name: Archive Libraries
+    - name: Archive ResourcePack
       uses: actions/upload-artifact@v3
       if: success()
       with:

@@ -5,6 +5,7 @@ import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.BlockVector3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import cn.powernukkitx.techdawn.multi.*;
 
 public class MultiBlockStructTest {
     @Test
