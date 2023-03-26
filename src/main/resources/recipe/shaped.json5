@@ -343,5 +343,22 @@
       "ABA",
       "AAA"
     ]
+  },
+  // gold pans
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:stone"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_gold_pan"
+    },
+    "shape": [
+      "A A",
+      " A "
+    ]
   }
 ]
