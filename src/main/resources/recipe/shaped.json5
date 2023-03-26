@@ -300,5 +300,48 @@
       "A A",
       "AAA"
     ]
+  },
+  // blast furnace related
+  {
+    "input": {
+      "B": {
+        "type": "item",
+        "id": "minecraft:brick_block"
+      },
+      "A": {
+        "type": "item",
+        "id": "techdawn:copper_plate"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_brick"
+    },
+    "shape": [
+      "AAA",
+      "ABA",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "B": {
+        "type": "item",
+        "id": "minecraft:brick_block"
+      },
+      "A": {
+        "type": "item",
+        "id": "techdawn:bronze_plate"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_brick"
+    },
+    "shape": [
+      "AAA",
+      "ABA",
+      "AAA"
+    ]
   }
 ]
