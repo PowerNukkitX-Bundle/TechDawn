@@ -55,5 +55,18 @@
       "id": "techdawn:bronze_dust",
       "count": 4
     }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "minecraft:flint",
+        "count": 4
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:flint_gravel"
+    }
   }
 ]

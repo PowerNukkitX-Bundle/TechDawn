@@ -69,6 +69,8 @@ item.techdawn:crushed_lapis_ore=Crushed Lapis Ore
 item.techdawn:crushed_redstone_ore=Crushed Redstone Ore
 item.techdawn:crushed_tin_ore=Crushed Tin Ore
 
+tile.techdawn:flint_gravel.name=Flint Gravel
+
 tile.techdawn:bronze_brick.name=Bronze Brick
 tile.techdawn:copper_brick.name=Copper Brick
 tile.techdawn:bronze_outlet_flue.name=Bronze Outlet Flue
