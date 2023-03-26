@@ -148,7 +148,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                         anvilItem = recipe.getResult();
                         level.addParticle(new LavaParticle(this.add(0.5, 1.2, 0.5)));
                         level.addSound(this.add(0.5, 1.5, 0.5), Sound.RANDOM_ANVIL_USE);
-                        coolDownTick = dh * 2 + 2;
+                        coolDownTick = dh * 2 + 14;
                         this.scheduleUpdate();
                         return true;
                     }
