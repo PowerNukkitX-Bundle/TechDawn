@@ -17,7 +17,9 @@ import cn.nukkit.math.Vector3f;
 import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.block.anvil.BaseAnvilBlock;
 import cn.powernukkitx.techdawn.data.TechDawnHardness;
+import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,6 +74,23 @@ public class BaseTemplateBlock extends BlockTransparentMeta implements CustomBlo
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
         this.setPropertyValue(CommonBlockProperties.DIRECTION, player != null ? player.getDirection().getOpposite() : BlockFace.NORTH);
         return super.place(item, block, target, face, fx, fy, fz, player);
+    }
+
+    @Override
+    public boolean canBeActivated() {
+        return this.down() instanceof BaseAnvilBlock;
+    }
+
+    @Override
+    public boolean onActivate(@NotNull Item item, @Nullable Player player) {
+        var down = this.down();
+        if (down.canBeActivated()) {
+            var result = down.onActivate(item, player);
+            LevelUtil.resendAroundBlocks(this);
+            return result;
+        } else {
+            return super.onActivate(item, player);
+        }
     }
 
     @Override
