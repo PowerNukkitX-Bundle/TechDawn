@@ -14,6 +14,7 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.block.anvil.BaseAnvilBlock;
+import cn.powernukkitx.techdawn.block.template.BaseTemplateBlock;
 import cn.powernukkitx.techdawn.data.TechDawnHardness;
 import cn.powernukkitx.techdawn.entity.DisplayItemEntity;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
@@ -88,7 +89,11 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                 this.scheduleUpdate();
                 return true;
             } else if (coolDownTick <= 0) {
-                var recipe = Server.getInstance().getCraftingManager().matchModProcessRecipe("forging", List.of(anvilItem));
+                var ingredients = List.of(anvilItem);
+                if (this.add(0, 1).getLevelBlock() instanceof BaseTemplateBlock templateBlock) {
+                    ingredients = List.of(anvilItem, templateBlock.asItemBlock());
+                }
+                var recipe = Server.getInstance().getCraftingManager().matchModProcessRecipe("forging", ingredients);
                 if (recipe != null) {
                     var handItem = player.getInventory().getItemInHand();
                     var offhandItem = player.getOffhandInventory().getItem(0);
@@ -141,7 +146,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
                     }
                     if (canProcess) {
                         anvilItem = recipe.getResult();
-                        level.addParticle(new LavaParticle(this.add(0.5, 1.1, 0.5)));
+                        level.addParticle(new LavaParticle(this.add(0.5, 1.2, 0.5)));
                         level.addSound(this.add(0.5, 1.5, 0.5), Sound.RANDOM_ANVIL_USE);
                         coolDownTick = dh * 2 + 2;
                         this.scheduleUpdate();

@@ -38,5 +38,145 @@
       "type": "item",
       "id": "techdawn:crude_annealed_copper_ingot"
     }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:bronze_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:copper_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:diamond"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:diamond_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:gold_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:gold_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:iron_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:iron_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stainless_steel_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:steel_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:steel_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tin_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:tough_copper_ingot"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tough_copper_plate"
+    }
   }
 ]
