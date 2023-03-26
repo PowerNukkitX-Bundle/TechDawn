@@ -57,6 +57,16 @@ item.techdawn:steel_plate=Steel Plate
 item.techdawn:tough_copper_plate=Tough Copper Plate
 item.techdawn:tin_plate=Tin Plate
 
+item.techdawn:crushed_coal_ore=Crushed Coal Ore
+item.techdawn:crushed_copper_ore=Crushed Copper Ore
+item.techdawn:crushed_diamond_ore=Crushed Diamond Ore
+item.techdawn:crushed_emerald_ore=Crushed Emerald Ore
+item.techdawn:crushed_gold_ore=Crushed Gold Ore
+item.techdawn:crushed_iron_ore=Crushed Iron Ore
+item.techdawn:crushed_lapis_ore=Crushed Lapis Ore
+item.techdawn:crushed_redstone_ore=Crushed Redstone Ore
+item.techdawn:crushed_tin_ore=Crushed Tin Ore
+
 tile.techdawn:bronze_brick.name=Bronze Brick
 tile.techdawn:copper_brick.name=Copper Brick
 tile.techdawn:bronze_outlet_flue.name=Bronze Outlet Flue

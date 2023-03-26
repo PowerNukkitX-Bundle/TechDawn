@@ -57,6 +57,16 @@ item.techdawn:steel_plate=钢板
 item.techdawn:tough_copper_plate=韧铜板
 item.techdawn:tin_plate=锡板
 
+item.techdawn:crushed_coal_ore=粉碎的煤矿石
+item.techdawn:crushed_copper_ore=粉碎的铜矿石
+item.techdawn:crushed_diamond_ore=粉碎的钻石矿石
+item.techdawn:crushed_emerald_ore=粉碎的绿宝石矿石
+item.techdawn:crushed_gold_ore=粉碎的金矿石
+item.techdawn:crushed_iron_ore=粉碎的铁矿石
+item.techdawn:crushed_lapis_ore=粉碎的青金石矿石
+item.techdawn:crushed_redstone_ore=粉碎的红石矿石
+item.techdawn:crushed_tin_ore=粉碎的锡矿石
+
 tile.techdawn:bronze_brick.name=青铜砖块
 tile.techdawn:copper_brick.name=铜砖块
 tile.techdawn:bronze_outlet_flue.name=青铜排烟口
