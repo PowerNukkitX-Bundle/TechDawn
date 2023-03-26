@@ -32,10 +32,10 @@ jobs:
       if: success()
       with:
         name: ModPack
-        path: target/libs/TechDawn-*.jar
+        path: target/TechDawn-*.jar
     - name: Archive ResourcePack
       uses: actions/upload-artifact@v3
       if: success()
       with:
         name: ResourcePack
-        path: target/libs/TechDawn.mcpack
+        path: target/TechDawn.mcpack
