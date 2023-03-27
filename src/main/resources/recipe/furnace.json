@@ -130,5 +130,101 @@
     },
     "blastFurnace": true,
     "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_copper_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:copper_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.7
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_diamond_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:diamond"
+    },
+    "blastFurnace": true,
+    "xp": 1
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_emerald_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:emerald"
+    },
+    "blastFurnace": true,
+    "xp": 1
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_gold_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:gold_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 1
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_iron_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:iron_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.7
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_lapis_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:lapis_lazuli"
+    },
+    "blastFurnace": true,
+    "xp": 0.2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_redstone_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:redstone"
+    },
+    "blastFurnace": true,
+    "xp": 0.7
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_tin_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:tin_ingot"
+    },
+    "blastFurnace": true,
+    "xp": 0.7
   }
 ]
