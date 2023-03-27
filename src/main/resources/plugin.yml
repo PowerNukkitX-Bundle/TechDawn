@@ -4,7 +4,6 @@ version: "0.0.1"
 api: ["1.0.14"]
 load: POSTWORLD
 author: PowerNukkitX dev team
-# Authors and author will be added together in one list.
 authors: ["Superice666"]
 description: TechDawn reborn on PNX
 website: https://github.com/PowerNukkitX/TechDawn
