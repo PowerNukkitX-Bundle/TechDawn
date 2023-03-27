@@ -69,6 +69,8 @@ item.techdawn:crushed_lapis_ore=粉碎的青金石矿石
 item.techdawn:crushed_redstone_ore=粉碎的红石矿石
 item.techdawn:crushed_tin_ore=粉碎的锡矿石
 
+item.techdawn:stone_nugget=石子
+
 tile.techdawn:flint_gravel.name=燧石沙砾
 
 tile.techdawn:bronze_brick.name=青铜砖块

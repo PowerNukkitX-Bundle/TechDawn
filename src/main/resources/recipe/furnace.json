@@ -134,6 +134,18 @@
   {
     "input": {
       "type": "item",
+      "id": "techdawn:crushed_coal_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_nugget"
+    },
+    "blastFurnace": true,
+    "xp": 1.2
+  },
+  {
+    "input": {
+      "type": "item",
       "id": "techdawn:crushed_copper_ore"
     },
     "output": {
