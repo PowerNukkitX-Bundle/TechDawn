@@ -68,5 +68,57 @@
       "type": "item",
       "id": "techdawn:flint_gravel"
     }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:coal_nugget",
+        "count": 9
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "minecraft:coal"
+    }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:clean_coal_nugget",
+        "count": 9
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:clean_coal"
+    }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:clean_coal"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:clean_coal_nugget",
+      "count": 9
+    }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "minecraft:coal"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:coal_nugget",
+      "count": 9
+    }
   }
 ]

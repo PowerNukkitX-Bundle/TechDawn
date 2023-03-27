@@ -228,5 +228,15 @@
       "type": "item",
       "id": "techdawn:coal_dust"
     }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:clean_coal"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:clean_coal_dust"
+    }
   }
 ]

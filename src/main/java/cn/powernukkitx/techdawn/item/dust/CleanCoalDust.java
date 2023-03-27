@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
 @AutoRegisterData("#getTags")
-public class CoalDust extends BaseDust {
-    public CoalDust() {
-        super("techdawn:coal_dust");
+public class CleanCoalDust extends BaseDust {
+    public CleanCoalDust() {
+        super("techdawn:clean_coal_dust");
     }
 
     @Override
@@ -24,17 +24,17 @@ public class CoalDust extends BaseDust {
     @NotNull
     @Override
     public String getTags() {
-        return "coal_dust dust";
+        return "clean_coal_dust dust";
     }
 
     @Override
     public CustomItemDefinition getDefinition() {
-        ItemUtil.registerFuel("techdawn:coal_dust", 2000);
+        ItemUtil.registerFuel("techdawn:coal_dust", 3000);
         return CustomItemDefinition.simpleBuilder(this, ItemCreativeCategory.ITEMS)
                 .tag(getTags().split(" +"))
                 .customBuild(nbt -> {
                     var component = nbt.getCompound("components");
-                    component.putCompound("minecraft:fuel", new CompoundTag().putFloat("duration", 2000));
+                    component.putCompound("minecraft:fuel", new CompoundTag().putFloat("duration", 3000));
                 });
     }
 }

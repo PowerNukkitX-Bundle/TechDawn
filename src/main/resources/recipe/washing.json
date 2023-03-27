@@ -10,5 +10,15 @@
       "count": 2
     },
     "outputBounce": 2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:coal_nugget"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:clean_coal_nugget"
+    }
   }
 ]
