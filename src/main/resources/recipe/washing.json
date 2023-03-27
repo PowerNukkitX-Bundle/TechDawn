@@ -1,0 +1,14 @@
+[
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:crushed_coal_ore"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:coal_nugget",
+      "count": 2
+    },
+    "outputBounce": 2
+  }
+]

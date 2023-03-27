@@ -7,10 +7,7 @@ import cn.nukkit.inventory.recipe.ItemDescriptor;
 import cn.nukkit.inventory.recipe.ItemTagDescriptor;
 import cn.nukkit.item.Item;
 import cn.powernukkitx.techdawn.Main;
-import cn.powernukkitx.techdawn.recipe.ExtractingRecipe;
-import cn.powernukkitx.techdawn.recipe.ForgingRecipe;
-import cn.powernukkitx.techdawn.recipe.GrindingRecipe;
-import cn.powernukkitx.techdawn.recipe.HighTemperatureFurnaceRecipe;
+import cn.powernukkitx.techdawn.recipe.*;
 import com.google.gson.*;
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 import org.jetbrains.annotations.NotNull;
@@ -273,6 +270,30 @@ public final class RecipeUtil {
                     }
                 }
                 manager.registerShapelessRecipe(new ShapelessRecipe(UUID.randomUUID().toString(), 1, getItemFromJson(output), list));
+            }
+        }
+    }
+
+    public static void registerWashRecipes() throws IOException {
+        var s = Main.class.getResourceAsStream("/recipe/washing.json");
+        if (s == null) {
+            Main.INSTANCE.getLogger().warning("Failed to load grinding recipes");
+            return;
+        }
+        var manager = Server.getInstance().getCraftingManager();
+        try (var recipeReader = new InputStreamReader(s)) {
+            var arr = JsonParser.parseReader(recipeReader).getAsJsonArray();
+            for (var each : arr) {
+                var recipeObj = each.getAsJsonObject();
+                var input = recipeObj.get("input").getAsJsonObject();
+                var output = recipeObj.get("output").getAsJsonObject();
+                var outputBounce = recipeObj.get("outputBounce") instanceof JsonPrimitive primitive &&
+                        primitive.isNumber() ? primitive.getAsInt() : 0;
+                if (jsonObjectContains(input, "type", "item")) {
+                    manager.registerModProcessRecipe(new WashingRecipe(getItemFromJson(input), getItemFromJson(output), outputBounce));
+                } else {
+                    manager.registerModProcessRecipe(new WashingRecipe(new ItemTagDescriptor(input.get("tag").getAsString(), 1), getItemFromJson(output), outputBounce));
+                }
             }
         }
     }

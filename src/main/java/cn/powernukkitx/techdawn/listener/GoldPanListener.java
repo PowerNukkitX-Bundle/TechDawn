@@ -18,8 +18,8 @@ import java.util.Map;
 public final class GoldPanListener implements Listener {
     public static final Object2DoubleOpenHashMap<Item> STONE_GOLD_PAN_ITEMS_GRAVEL = new Object2DoubleOpenHashMap<>(Map.of(
             Item.AIR_ITEM, 100.0,
-            Item.fromString("minecraft:flint"), 44.5,
-            Item.fromString("techdawn:crushed_coal_ore"), 7d,
+            Item.fromString("minecraft:flint"), 34.5,
+            Item.fromString("techdawn:crushed_coal_ore"), 21d,
             Item.fromString("techdawn:crushed_copper_ore"), 7d,
             Item.fromString("techdawn:crushed_gold_ore"), 1.5,
             Item.fromString("techdawn:crushed_iron_ore"), 7.5,
@@ -39,7 +39,7 @@ public final class GoldPanListener implements Listener {
 
     public static final Object2DoubleOpenHashMap<Item> STONE_GOLD_PAN_ITEMS_FLINT_GRAVEL = new Object2DoubleOpenHashMap<>(Map.of(
             Item.AIR_ITEM, 30d,
-            Item.fromString("techdawn:crushed_coal_ore"), 7d,
+            Item.fromString("techdawn:crushed_coal_ore"), 14d,
             Item.fromString("techdawn:crushed_copper_ore"), 7d,
             Item.fromString("techdawn:crushed_gold_ore"), 1.5,
             Item.fromString("techdawn:crushed_iron_ore"), 7.5,

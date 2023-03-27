@@ -12,7 +12,7 @@ import cn.powernukkitx.techdawn.block.construct.TarImpregnatedWoodPlankBlock;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import cn.powernukkitx.techdawn.util.LevelUtil;
 
-public class TarBottleListener implements Listener {
+public final class TarBottleListener implements Listener {
     @EventHandler
     public void onBottleUse(PlayerInteractEvent event) {
         if (event.getAction() != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) return;
