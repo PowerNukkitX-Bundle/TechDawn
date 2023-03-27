@@ -20,6 +20,6 @@ public class StoneNugget extends BaseNugget {
     @NotNull
     @Override
     public String getTags() {
-        return "stone_nugget nugget";
+        return "stone_nugget nugget stone";
     }
 }

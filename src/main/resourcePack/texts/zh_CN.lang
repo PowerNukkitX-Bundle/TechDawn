@@ -71,6 +71,10 @@ item.techdawn:crushed_redstone_ore=粉碎的红石矿石
 item.techdawn:crushed_tin_ore=粉碎的锡矿石
 
 item.techdawn:stone_nugget=石子
+item.techdawn:coal_nugget=煤粒
+item.techdawn:clean_coal_nugget=精煤粒
+
+item.techdawn:clean_coal=精煤
 
 tile.techdawn:flint_gravel.name=燧石沙砾
 
