@@ -301,6 +301,23 @@
       "AAA"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:stone_block_slab"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_gear_template"
+    },
+    "shape": [
+      "A A",
+      "   ",
+      "A A"
+    ]
+  },
   // blast furnace related
   {
     "input": {
@@ -359,6 +376,28 @@
     "shape": [
       "A A",
       " A "
+    ]
+  },
+  // gears
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_stick"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_gear"
+    },
+    "shape": [
+      "AAA",
+      "ABA",
+      "AAA"
     ]
   }
 ]
