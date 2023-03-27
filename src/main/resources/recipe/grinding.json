@@ -218,5 +218,15 @@
       "type": "item",
       "id": "techdawn:crude_tough_copper_dust"
     }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:coal"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:coal_dust"
+    }
   }
 ]

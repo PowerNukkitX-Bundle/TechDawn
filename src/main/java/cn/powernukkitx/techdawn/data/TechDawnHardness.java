@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public interface TechDawnHardness {
     int HARDNESS_WOODEN = 1;
+    int HARDNESS_COAL = 1;
     int HARDNESS_STONE = 28;
     int HARDNESS_COPPER = 30;
     int HARDNESS_TOUGH_COPPER = 28;
