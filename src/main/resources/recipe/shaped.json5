@@ -399,5 +399,56 @@
       "ABA",
       "AAA"
     ]
+  },
+  // machine
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:cobblestone"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:hopper"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_extractor"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BBB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:cobblestone"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:piston"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_grinder"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BBB"
+    ]
   }
 ]
