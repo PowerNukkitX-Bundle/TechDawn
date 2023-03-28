@@ -361,6 +361,90 @@
       "AAA"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:copper_plate"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_outlet_flue"
+    },
+    "shape": [
+      "A A",
+      "A A",
+      "A A"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:bronze_plate"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_outlet_flue"
+    },
+    "shape": [
+      "A A",
+      "A A",
+      "A A"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:copper_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:blast_furnace"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:brick_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_blast_furnace"
+    },
+    "shape": [
+      "AAA",
+      "ACA",
+      "ABA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:bronze_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:blast_furnace"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:brick_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:bronze_blast_furnace"
+    },
+    "shape": [
+      "AAA",
+      "ACA",
+      "ABA"
+    ]
+  },
   // gold pans
   {
     "input": {
