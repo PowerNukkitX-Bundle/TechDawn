@@ -484,6 +484,73 @@
       "AAA"
     ]
   },
+  // wire
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:iron_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_wire",
+      "count": 4
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      " A "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_wire",
+      "count": 8
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      " A "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:stainless_steel_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_wire",
+      "count": 16
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      " A "
+    ]
+  },
   // machine
   {
     "input": {
