@@ -40,6 +40,7 @@ item.techdawn:stainless_steel_hammer=Stainless Steel Hammer
 item.techdawn:stone_hammer=Stone Hammer
 item.techdawn:tough_copper_hammer=Tough Copper Hammer
 item.techdawn:wooden_hammer=Wooden Hammer
+item.techdawn:tin_hammer=Tin Hammer
 
 item.techdawn:stone_gold_pan=Stone Gold Pan
 
@@ -60,6 +61,18 @@ item.techdawn:stainless_steel_plate=Stainless Steel Plate
 item.techdawn:steel_plate=Steel Plate
 item.techdawn:tough_copper_plate=Tough Copper Plate
 item.techdawn:tin_plate=Tin Plate
+
+item.techdawn:annealed_copper_gear=Annealed Copper Gear
+item.techdawn:antiseptic_wood_gear=Antiseptic Wood Gear
+item.techdawn:bronze_gear=Bronze Gear
+item.techdawn:copper_gear=Copper Gear
+item.techdawn:diamond_gear=Diamond Gear
+item.techdawn:gold_gear=Gold Gear
+item.techdawn:iron_gear=Iron Gear
+item.techdawn:stainless_steel_gear=Stainless Steel Gear
+item.techdawn:steel_gear=Steel Gear
+item.techdawn:tin_gear=Tin Gear
+item.techdawn:tough_copper_gear=Tough Copper Gear
 
 item.techdawn:crushed_coal_ore=Crushed Coal Ore
 item.techdawn:crushed_copper_ore=Crushed Copper Ore
@@ -101,4 +114,17 @@ tile.techdawn:steel_anvil.name=Steel Anvil
 tile.techdawn:tin_anvil.name=Tin Anvil
 tile.techdawn:tough_copper_anvil.name=Tough Copper Anvil
 
+tile.techdawn:annealed_copper_block.name=Annealed Copper Block
+tile.techdawn:bronze_block.name=Bronze Block
+tile.techdawn:crude_annealed_copper_block.name=Crude Annealed Copper Block
+tile.techdawn:crude_tough_copper_block.name=Crude Tough Copper Block
+tile.techdawn:stainless_steel_block.name=Stainless Steel Block
+tile.techdawn:steel_block.name=Steel Block
+tile.techdawn:tin_block.name=Tin Block
+tile.techdawn:tough_copper_block.name=Tough Copper Block
+
 tile.techdawn:stone_plate_template.name=Stone Plate Template
+tile.techdawn:stone_gear_template.name=Stone Gear Template
+
+tile.techdawn:base_wire.name=Test-only Wire
+tile.techdawn:annealed_copper_wire.name=Annealed Copper Wire
