@@ -88,10 +88,14 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
         return 15;
     }
 
+    protected String getUITitle() {
+        return "ui.techdawn.basic_fuel_generator";
+    }
+
     @NotNull
     @Override
     public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.basic_fuel_generator");
+        var customInv = new CustomInventory(InventoryType.FURNACE, getUITitle());
         customInv.setItem(0, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         customInv.setItem(1, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/25 阻止潜在的多人刷物品

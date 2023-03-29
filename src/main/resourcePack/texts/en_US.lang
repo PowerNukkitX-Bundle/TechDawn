@@ -130,4 +130,5 @@ tile.techdawn:stone_gear_template.name=Stone Gear Template
 tile.techdawn:base_wire.name=Test-only Wire
 tile.techdawn:annealed_copper_wire.name=Annealed Copper Wire
 
-techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box
+tile.techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box
+tile.techdawn:basic_fuel_generator.name=Basic Fuel Generator

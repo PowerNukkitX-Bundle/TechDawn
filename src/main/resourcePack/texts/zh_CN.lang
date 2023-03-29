@@ -131,3 +131,4 @@ tile.techdawn:base_wire.name=测试用线缆
 tile.techdawn:annealed_copper_wire.name=退火铜线缆
 
 tile.techdawn:basic_redstone_battery_box.name=基础红石电池盒
+tile.techdawn:basic_fuel_generator.name=基础火力发电机
