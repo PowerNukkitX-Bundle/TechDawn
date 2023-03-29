@@ -67,9 +67,13 @@ public class BaseBatteryBoxBlockEntity extends MachineBlockEntity implements Ene
         return 50;
     }
 
+    protected String getUITitle() {
+        return "ui.techdawn.base_battery_box";
+    }
+
     @NotNull
     public CustomInventory generateUI() {
-        var displayInventory = new CustomInventory(InventoryType.CHEST, "ui.techdawn.base_battery_box");
+        var displayInventory = new CustomInventory(InventoryType.CHEST, getUITitle());
         displayInventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         displayInventory.setDefaultItemHandler(((item, event) -> event.setCancelled()));
         return displayInventory;

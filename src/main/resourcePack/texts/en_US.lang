@@ -6,6 +6,7 @@ ui.techdawn_vanilla-like.bronze_blast_furnace=Bronze Blast Furnace
 ui.techdawn_vanilla-like.invalid_structure=§cInvalid Multi-block Structure
 ui.techdawn.stone_extractor=Stone Extractor
 ui.techdawn.stone_grinder=Stone Grinder
+ui.techdawn.basic_redstone_battery_box=Basic Redstone Battery Box
 
 item.techdawn:bronze_ingot=Bronze Ingot
 item.techdawn:tough_copper_ingot=Tough Copper Ingot
@@ -128,3 +129,5 @@ tile.techdawn:stone_gear_template.name=Stone Gear Template
 
 tile.techdawn:base_wire.name=Test-only Wire
 tile.techdawn:annealed_copper_wire.name=Annealed Copper Wire
+
+techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box

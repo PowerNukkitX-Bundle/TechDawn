@@ -601,5 +601,30 @@
       "BCB",
       "BBB"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_wire"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:redstone_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_redstone_battery_box"
+    },
+    "shape": [
+      "ABA",
+      "BCB",
+      "ABA"
+    ]
   }
 ]
