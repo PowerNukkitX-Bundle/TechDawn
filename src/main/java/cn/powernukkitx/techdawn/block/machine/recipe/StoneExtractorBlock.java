@@ -70,7 +70,7 @@ public class StoneExtractorBlock extends BlockSolid implements CustomBlock, Bloc
             var be = getOrCreateBlockEntity();
             player.addWindow(be.getDisplayInventory());
             be.requestUIUpdateImmediately();
-            LevelUtil.resendAroundBlocks(this);
+            if (item.canBePlaced()) LevelUtil.resendAroundBlocks(this, player);
             return true;
         }
         return false;

@@ -86,7 +86,7 @@ public class BaseTemplateBlock extends BlockTransparentMeta implements CustomBlo
         var down = this.down();
         if (down.canBeActivated()) {
             var result = down.onActivate(item, player);
-            LevelUtil.resendAroundBlocks(this);
+            LevelUtil.resendAroundBlocks(this, player);
             return result;
         } else {
             return super.onActivate(item, player);

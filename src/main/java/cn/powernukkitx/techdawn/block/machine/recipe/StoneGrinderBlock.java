@@ -70,7 +70,7 @@ public class StoneGrinderBlock extends BlockSolid implements CustomBlock, BlockE
             StoneGrinderBlockEntity be = getOrCreateBlockEntity();
             player.addWindow(be.getDisplayInventory());
             be.requestUIUpdateImmediately();
-            LevelUtil.resendAroundBlocks(this);
+            if (item.canBePlaced()) LevelUtil.resendAroundBlocks(this, player);
             return true;
         }
         return false;

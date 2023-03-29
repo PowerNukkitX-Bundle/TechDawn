@@ -14,6 +14,10 @@ public final class LevelUtil {
     }
 
     public static void resendAroundBlocks(@NotNull Position position) {
+        resendAroundBlocks(position, position.getLevel().getChunkPlayers(position.getChunkX(), position.getChunkZ()).values().toArray(Player.EMPTY_ARRAY));
+    }
+
+    public static void resendAroundBlocks(@NotNull Position position, @NotNull Player... players) {
         var blocks = new Vector3[6];
         blocks[0] = position.add(1, 0, 0);
         blocks[1] = position.add(-1, 0, 0);
@@ -21,7 +25,7 @@ public final class LevelUtil {
         blocks[3] = position.add(0, -1, 0);
         blocks[4] = position.add(0, 0, 1);
         blocks[5] = position.add(0, 0, -1);
-        position.level.sendBlocks(position.getLevel().getChunkPlayers(position.getChunkX(), position.getChunkZ()).values().toArray(Player.EMPTY_ARRAY), blocks);
+        position.level.sendBlocks(players, blocks);
     }
 
     public static void sendSwingArm(@Nullable Player player) {

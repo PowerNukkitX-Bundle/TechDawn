@@ -13,6 +13,7 @@ import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.battery.BaseBatteryBoxBlockEntity;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,6 +62,7 @@ public class BaseBatteryBoxBlock extends BlockSolid implements CustomBlock, Bloc
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
         if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
             player.addWindow(getOrCreateBlockEntity().getDisplayInventory());
+            if (item.canBePlaced()) LevelUtil.resendAroundBlocks(this, player);
             return true;
         }
         return false;

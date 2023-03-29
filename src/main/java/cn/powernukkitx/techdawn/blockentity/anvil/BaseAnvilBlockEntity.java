@@ -72,7 +72,7 @@ public class BaseAnvilBlockEntity extends BlockEntity implements TechDawnHardnes
 
     public boolean onActive(@NotNull Item item, @NotNull Player player) {
         // 强制刷新客户端防止错误渲染的虚方块
-        if (!item.isNull()) LevelUtil.resendAroundBlocks(this);
+        if (!item.isNull() && item.canBePlaced()) LevelUtil.resendAroundBlocks(this, player);
         // 防止点击过快
         if (!InventoryUtil.ensurePlayerSafeForCustomInv(player)) return true;
         if (!item.isNull()) {

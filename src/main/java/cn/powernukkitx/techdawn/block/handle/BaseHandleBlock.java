@@ -13,6 +13,7 @@ import cn.nukkit.math.BlockVector3;
 import cn.nukkit.math.Vector3f;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.entity.handle.BaseHandleEntity;
+import cn.powernukkitx.techdawn.util.LevelUtil;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.jetbrains.annotations.NotNull;
@@ -107,6 +108,7 @@ public class BaseHandleBlock extends BlockTransparent implements CustomBlock {
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
         getHandleEntity().onPlayerInteract(player);
+        if (item.canBePlaced()) LevelUtil.resendAroundBlocks(this, player);
         return true;
     }
 

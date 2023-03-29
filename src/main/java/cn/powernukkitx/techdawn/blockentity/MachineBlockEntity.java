@@ -116,6 +116,9 @@ public abstract class MachineBlockEntity extends BlockEntity implements EnergyHo
         super.close();
     }
 
+    /**
+     * 尝试立即刷新UI，此操作将仅会更新重要数据，如物品栏内的物品等（防止刷物品）；但不重要信息可能不会被更新。
+     */
     public void requestUIUpdateImmediately() {
         uiManger.update(true);
     }
