@@ -247,8 +247,8 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
             result = true;
         } else {
             var fuel = inventory.getFuel();
-            if (fuel != null && fuel.getId() != Item.AIR && Fuel.duration.containsKey(fuel.getId())) {
-                maxBurnTime = Fuel.duration.get(fuel.getId());
+            if (fuel != null && fuel.getId() != Item.AIR && Fuel.isFuel(fuel)) {
+                maxBurnTime = Fuel.getFuelDuration(fuel);
                 burnTime = maxBurnTime;
                 var newFuel = fuel.clone();
                 newFuel.setCount(newFuel.getCount() - 1);
