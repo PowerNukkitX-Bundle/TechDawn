@@ -24,7 +24,6 @@ import cn.powernukkitx.techdawn.blockentity.MachineBlockEntity;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.inventory.recipe.BaseElectricFurnaceInventory;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -85,8 +84,8 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
 
     @NotNull
     @Override
-    public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.base_electric_furnace");
+    public cn.powernukkitx.fakeInv.CustomInventory generateUI() {
+        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, "ui.techdawn.base_electric_furnace");
         customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setSmelting(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
@@ -101,7 +100,7 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
     }
 
     @Override
-    public void updateUI(@NotNull CustomInventory inventory, boolean immediately) {
+    public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
         inventory.setItem(0, this.inventory.getItem(0));
         inventory.sendSlot(0, inventory.getViewers());
         inventory.setItem(2, this.inventory.getItem(1));

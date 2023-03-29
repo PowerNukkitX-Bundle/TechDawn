@@ -7,8 +7,6 @@ author: PowerNukkitX dev team
 authors: ["Superice666"]
 description: TechDawn reborn on PNX
 website: https://github.com/PowerNukkitX/TechDawn
-depend:
-  - FakeInventories
 
 permissions:
   techdawn.all:

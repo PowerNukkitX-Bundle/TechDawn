@@ -8,6 +8,7 @@ import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.tag.CompoundTag;
+import cn.powernukkitx.fakeInv.CustomInventory;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.blockentity.MachineBlockEntity;
@@ -15,7 +16,6 @@ import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
 import cn.powernukkitx.techdawn.util.BlockFaceIterator;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(BlockEntity.class)
@@ -79,7 +79,7 @@ public class BaseBatteryBoxBlockEntity extends MachineBlockEntity implements Ene
         return displayInventory;
     }
 
-    public void updateUI(@NotNull CustomInventory inventory, boolean immediately) {
+    public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
         inventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         inventory.sendSlot(13, inventory.getViewers());
     }

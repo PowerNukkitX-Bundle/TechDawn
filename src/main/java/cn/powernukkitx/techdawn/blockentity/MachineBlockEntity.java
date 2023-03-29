@@ -5,11 +5,11 @@ import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.energy.EnergyType;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
+import cn.powernukkitx.fakeInv.CustomInventory;
 import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.util.UIManger;
 import com.google.common.util.concurrent.AtomicDouble;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class MachineBlockEntity extends BlockEntity implements EnergyHolder {

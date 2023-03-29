@@ -16,10 +16,7 @@ import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
-import cn.powernukkitx.techdawn.listener.CauldronListener;
-import cn.powernukkitx.techdawn.listener.GoldPanListener;
-import cn.powernukkitx.techdawn.listener.HammerListener;
-import cn.powernukkitx.techdawn.listener.TarBottleListener;
+import cn.powernukkitx.techdawn.listener.*;
 import cn.powernukkitx.techdawn.util.RecipeUtil;
 
 import java.io.IOException;
@@ -109,6 +106,7 @@ public final class Main extends PluginBase {
         Server.getInstance().getPluginManager().registerEvents(new GoldPanListener(), this);
         Server.getInstance().getPluginManager().registerEvents(new TarBottleListener(), this);
         Server.getInstance().getPluginManager().registerEvents(new CauldronListener(), this);
+        Server.getInstance().getPluginManager().registerEvents(new InventoriesListener(), this);
     }
 
     private void registerRandomTickableBlock() {

@@ -17,6 +17,7 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.network.protocol.ContainerSetDataPacket;
 import cn.nukkit.utils.OptionalBoolean;
+import cn.powernukkitx.fakeInv.CustomInventory;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.block.construct.CopperBrickBlock;
@@ -29,7 +30,6 @@ import cn.powernukkitx.techdawn.multi.MultiBlockStruct;
 import cn.powernukkitx.techdawn.multi.StructPointMatcher;
 import cn.powernukkitx.techdawn.recipe.VarProcessingTick;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package cn.powernukkitx.techdawn.util;
 
 import cn.nukkit.Server;
+import cn.powernukkitx.fakeInv.CustomInventory;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;

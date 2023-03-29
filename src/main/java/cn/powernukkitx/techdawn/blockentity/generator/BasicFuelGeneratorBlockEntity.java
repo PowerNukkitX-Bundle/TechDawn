@@ -24,7 +24,6 @@ import cn.powernukkitx.techdawn.inventory.generator.BasicFuelGeneratorInventory;
 import cn.powernukkitx.techdawn.item.icon.ChargeIconItem;
 import cn.powernukkitx.techdawn.util.BlockFaceIterator;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
-import me.iwareq.fakeinventories.CustomInventory;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("removal")
@@ -94,8 +93,8 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
 
     @NotNull
     @Override
-    public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, getUITitle());
+    public cn.powernukkitx.fakeInv.CustomInventory generateUI() {
+        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, getUITitle());
         customInv.setItem(0, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         customInv.setItem(1, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/25 阻止潜在的多人刷物品
@@ -106,7 +105,7 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
     }
 
     @Override
-    public void updateUI(@NotNull CustomInventory inventory, boolean immediately) {
+    public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
         inventory.setItem(0, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         inventory.setItem(1, this.inventory.getItem(0));
         inventory.sendContents(inventory.getViewers());
