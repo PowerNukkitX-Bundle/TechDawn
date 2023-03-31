@@ -627,16 +627,6 @@
       "ABA"
     ]
   },
-  // hammer
-  /*BronzeHammer
-CopperHammer
-DiamondHammer
-IronHammer
-StainlessSteelHammer
-StoneHammer
-TinHammer
-ToughCopperHammer
-WoodenHammer*/
   {
     "input": {
       "A": {
@@ -687,7 +677,7 @@ WoodenHammer*/
       },
       "B": {
         "type": "item",
-        "id": "minecraft:tin_ingot"
+        "id": "techdawn:tin_ingot"
       }
     },
     "output": {
@@ -729,7 +719,7 @@ WoodenHammer*/
       },
       "B": {
         "type": "item",
-        "id": "minecraft:bronze_ingot"
+        "id": "techdawn:bronze_ingot"
       }
     },
     "output": {
@@ -750,7 +740,7 @@ WoodenHammer*/
       },
       "B": {
         "type": "item",
-        "id": "minecraft:steel_ingot"
+        "id": "techdawn:steel_ingot"
       }
     },
     "output": {
@@ -834,7 +824,7 @@ WoodenHammer*/
       },
       "B": {
         "type": "item",
-        "id": "minecraft:stainless_steel_ingot"
+        "id": "techdawn:stainless_steel_ingot"
       }
     },
     "output": {
@@ -855,7 +845,7 @@ WoodenHammer*/
       },
       "B": {
         "type": "item",
-        "id": "minecraft:tough_copper_ingot"
+        "id": "techdawn:tough_copper_ingot"
       }
     },
     "output": {
