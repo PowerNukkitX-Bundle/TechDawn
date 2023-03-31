@@ -556,7 +556,7 @@
     "input": {
       "A": {
         "type": "item",
-        "id": "techdawn:antiseptic_wood_gear"
+        "id": "techdawn:flint_gravel"
       },
       "B": {
         "type": "item",
