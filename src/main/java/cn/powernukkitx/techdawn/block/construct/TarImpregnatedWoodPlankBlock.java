@@ -3,11 +3,14 @@ package cn.powernukkitx.techdawn.block.construct;
 import cn.nukkit.block.BlockSolid;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
+import cn.nukkit.inventory.ItemTag;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Level;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @AutoRegister(CustomBlock.class)
 public class TarImpregnatedWoodPlankBlock extends BlockSolid implements CustomBlock {
@@ -24,6 +27,7 @@ public class TarImpregnatedWoodPlankBlock extends BlockSolid implements CustomBl
 
     @Override
     public CustomBlockDefinition getDefinition() {
+        ItemTag.registerItemTag(getNamespaceId(), List.of("minecraft:planks"));
         return CustomBlockDefinition.builder(this, "techdawn-blocks-construct-tar_impregnated_wood_plank").build();
     }
 

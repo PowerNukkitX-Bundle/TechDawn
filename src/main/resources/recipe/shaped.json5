@@ -626,5 +626,36 @@
       "BCB",
       "ABA"
     ]
+  },
+  // hammer
+  /*BronzeHammer
+CopperHammer
+DiamondHammer
+IronHammer
+StainlessSteelHammer
+StoneHammer
+TinHammer
+ToughCopperHammer
+WoodenHammer*/
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:stick"
+      },
+      "B": {
+        "type": "tag",
+        "tag": "minecraft:planks"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wooden_hammer"
+    },
+    "shape": [
+      "BBB",
+      "BAB",
+      " A "
+    ]
   }
 ]
