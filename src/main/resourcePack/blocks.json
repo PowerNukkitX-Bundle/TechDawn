@@ -6,5 +6,8 @@
   ],
   "techdawn:flint_gravel": {
     "sound": "gravel"
+  },
+  "techdawn:base_hinge": {
+    "textures": "techdawn-blocks-hinge-base_hinge-dyn"
   }
 }

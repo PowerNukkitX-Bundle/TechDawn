@@ -1,0 +1,8 @@
+[
+  {
+    "flipbook_texture": "textures/blocks/hinge/base_hinge",
+    "atlas_tile": "techdawn-blocks-hinge-base_hinge-dyn",
+    "ticks_per_frame": 1,
+    "blend_frames": false
+  }
+]

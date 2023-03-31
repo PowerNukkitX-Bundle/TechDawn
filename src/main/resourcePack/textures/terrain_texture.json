@@ -8,6 +8,9 @@
       "textures": {
         "path": "textures/blocks/pipe"
       }
+    },
+    "techdawn-blocks-hinge-base_hinge-dyn": {
+      "textures": "textures/blocks/hinge/base_hinge"
     }
   }
 }
