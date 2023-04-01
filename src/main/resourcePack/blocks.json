@@ -8,6 +8,7 @@
     "sound": "gravel"
   },
   "techdawn:base_hinge": {
-    "textures": "techdawn-blocks-hinge-base_hinge-dyn"
+    "textures": "techdawn-blocks-hinge-base_hinge-dyn",
+    "sound": "chain"
   }
 }

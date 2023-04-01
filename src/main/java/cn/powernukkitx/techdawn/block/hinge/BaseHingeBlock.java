@@ -1,6 +1,7 @@
 package cn.powernukkitx.techdawn.block.hinge;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockTransparentMeta;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
@@ -11,12 +12,16 @@ import cn.nukkit.blockproperty.BlockProperties;
 import cn.nukkit.blockproperty.BooleanBlockProperty;
 import cn.nukkit.blockproperty.CommonBlockProperties;
 import cn.nukkit.item.Item;
+import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.Vector3f;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.block.TechDawnWorkableBlock;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static cn.nukkit.blockproperty.CommonBlockProperties.EMPTY_PROPERTIES;
+import static cn.nukkit.blockproperty.CommonBlockProperties.PILLAR_AXIS;
 
 @AutoRegister(CustomBlock.class)
 public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock, TechDawnWorkableBlock {
@@ -55,14 +60,34 @@ public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock,
                 .geometry("geometry.techdawn.hinge")
                 .selectionBox(new Vector3f(-8f, 2, -2f), new Vector3f(16f, 12f, 4f))
                 .collisionBox(new Vector3f(-8f, 2, -2f), new Vector3f(16f, 12f, 4f))
-                .permutations(new Permutation(Component.builder().materialInstances(staticMaterial).build(),
-                        "q.block_property('working') == false && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90)).build(),
-                                "q.block_property('working') == false && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).build(),
-                                "q.block_property('working') == true && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90)).build(),
-                                "q.block_property('working') == true && q.block_property('transposed') == true"))
+                .permutations(new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 0, 90)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == false"),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 0, 0)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == false"),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 90, 0)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == false"),
+
+                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 0, 90)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 0, 0)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 90, 0)).build(),
+                                "q.block_property('working') == false && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == true"),
+
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 0, 90)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == false"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 0, 0)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == false"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 90, 0)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == false"),
+
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 0, 90)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 0, 0)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 90, 0)).build(),
+                                "q.block_property('working') == true && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == true")
+                )
                 .build();
     }
 
@@ -111,5 +136,52 @@ public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock,
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
+        if (player != null) {
+            if (player.isSneaking()) {
+                this.setPropertyValue(PILLAR_AXIS, face.getOpposite().getAxis());
+            } else {
+                var pitch = Math.abs(player.getPitch());
+                if (pitch > 60) {
+                    this.setPropertyValue(PILLAR_AXIS, BlockFace.Axis.Y);
+                } else {
+                    this.setPropertyValue(PILLAR_AXIS, player.getDirection().getOpposite().getAxis());
+                }
+            }
+            // 如果相邻两边有一边是转置的，那么就设置为转置状态
+            var axis = getPillarAxis();
+            boolean transposed = getPropertyValue(TRANSPOSED);
+            if (!transposed) {
+                switch (axis) {
+                    case X -> transposed = isNeighbourTransposed(1, 0, 0) || isNeighbourTransposed(-1, 0, 0);
+                    case Y -> transposed = isNeighbourTransposed(0, 1, 0) || isNeighbourTransposed(0, -1, 0);
+                    case Z -> transposed = isNeighbourTransposed(0, 0, 1) || isNeighbourTransposed(0, 0, -1);
+                }
+            }
+            this.setPropertyValue(TRANSPOSED, transposed);
+        }
+        return super.place(item, block, target, face, fx, fy, fz, player);
+    }
+
+    private boolean isNeighbourTransposed(int dx, int dy, int dz) {
+        var block = this.add(dx, dy, dz). getLevelBlock();
+        var prop = block.getProperties();
+        if (prop == EMPTY_PROPERTIES || !prop.contains("transposed")) return false;
+        return block.getPropertyValue(TRANSPOSED);
+    }
+
+    public BlockFace.Axis getPillarAxis() {
+        return getPropertyValue(PILLAR_AXIS);
+    }
+
+    public void setPillarAxis(BlockFace.Axis axis) {
+        var same = getPillarAxis() == axis;
+        if (!same) {
+            setPropertyValue(PILLAR_AXIS, axis);
+            level.setBlock(this, this, true, false);
+        }
     }
 }
