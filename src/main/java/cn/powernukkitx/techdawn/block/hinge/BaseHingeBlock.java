@@ -127,11 +127,9 @@ public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock,
         if (player != null && InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
             if (!player.isSneaking()) {
                 this.setWorkingProperty(!getWorkingProperty());
-                System.out.println(this.getWorkingProperty());
             } else {
                 this.setPropertyValue(TRANSPOSED, !getPropertyValue(TRANSPOSED));
                 level.setBlock(this, this, true, false);
-                System.out.println(this.getPropertyValue(TRANSPOSED));
             }
             return true;
         }
