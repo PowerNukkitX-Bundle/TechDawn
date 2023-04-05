@@ -18,7 +18,6 @@ public class BronzeIngot extends BaseIngot {
         return "bronze_ingot bronze";
     }
 
-
     @Override
     public int getHardnessTier() {
         return HARDNESS_BRONZE;

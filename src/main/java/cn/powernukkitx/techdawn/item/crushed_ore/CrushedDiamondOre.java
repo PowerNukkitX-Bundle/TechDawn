@@ -7,7 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
 @AutoRegisterData("#getTags")
-public class CrushedDiamondOre extends BaseCrushedOre {
+public class
+CrushedDiamondOre extends BaseCrushedOre {
     public CrushedDiamondOre() {
         super("techdawn:crushed_diamond_ore");
     }
