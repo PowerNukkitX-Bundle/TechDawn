@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 @AutoRegisterData("#getTags")
 public class BasicCircuitBoard extends BaseCircuitBoard {
     public BasicCircuitBoard() {
-        super("techdawn:basic_circuit_board","basic_circuit_board");
+        super("techdawn:basic_circuit_board");
     }
 
     @Override

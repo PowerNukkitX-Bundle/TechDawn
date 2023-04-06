@@ -8,8 +8,8 @@ import cn.powernukkitx.techdawn.data.TechDawnHardness;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BaseCircuitBoard extends ItemCustom implements TechDawnHardness {
-    public BaseCircuitBoard(@NotNull String id, @NotNull String textureName) {
-        super(id, null, textureName);
+    public BaseCircuitBoard(@NotNull String id) {
+        super(id, null, "techdawn-items-misc-" + id.substring(id.lastIndexOf(":") + 1));
     }
 
     @Override
