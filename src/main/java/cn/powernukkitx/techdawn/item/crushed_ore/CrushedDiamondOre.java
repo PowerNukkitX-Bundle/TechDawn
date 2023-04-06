@@ -11,7 +11,6 @@ public class CrushedDiamondOre extends BaseCrushedOre {
     public CrushedDiamondOre() {
         super("techdawn:crushed_diamond_ore");
     }
-
     @NotNull
     @Override
     public String getTags() {
