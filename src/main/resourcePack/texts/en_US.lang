@@ -132,3 +132,8 @@ tile.techdawn:annealed_copper_wire.name=Annealed Copper Wire
 
 tile.techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box
 tile.techdawn:basic_fuel_generator.name=Basic Fuel Generator
+
+tile.techdawn:base_hinge.name=Test-only Hinge
+tile.techdawn:antiseptic_wood_hinge.name=Antiseptic Wood Hinge
+tile.techdawn:base_gear_box.name=Test-only Gearbox
+tile.techdawn:antiseptic_wood_gear_box.name=Antiseptic Wood Gearbox
