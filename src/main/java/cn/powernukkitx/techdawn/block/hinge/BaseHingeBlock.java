@@ -119,7 +119,7 @@ public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock,
 
     @Override
     public boolean canBeActivated() {
-        return true;
+        return false; // When you need debug it, you can change it to true
     }
 
     @Override
