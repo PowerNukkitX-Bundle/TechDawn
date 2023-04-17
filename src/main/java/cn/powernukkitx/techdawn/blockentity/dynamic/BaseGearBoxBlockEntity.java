@@ -29,6 +29,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     protected final AtomicDouble storedEnergy;
     private int hingeBlockIdCache;
     private final int spaceTime;
+    private double transferRate;
     private int lastFullUpdateTick;
 
     public BaseGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
@@ -36,6 +37,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
         storedEnergy = new AtomicDouble(0);
         spaceTime = SPACE_TIME.getAndIncrement() % 4;
         lastFullUpdateTick = Server.getInstance().getTick();
+        transferRate = Double.NaN;
     }
 
     @Override
@@ -129,7 +131,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
 
     @Override
     public double getMaxStorage() {
-        return 22;
+        return getTransferRate() * 4;
     }
 
     @Override
@@ -148,6 +150,13 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     @Override
     public boolean isTransposed() {
         return this.level.getBlockStateAt((int) this.x, (int) this.y, (int) this.z).getPropertyValue(BaseGearBoxBlock.TRANSPOSED);
+    }
+
+    public double getTransferRate() {
+        if (Double.isNaN(transferRate)) {
+            return transferRate = this.namedTag.getDouble("transfer_rate");
+        }
+        return transferRate;
     }
 
     protected boolean isHingeBlock(int blockId, int dx, int dy, int dz, boolean transposed) {
@@ -179,11 +188,11 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     @Override
     public boolean onUpdate() {
         var currentTick = Server.getInstance().getTick();
-        if (((currentTick + spaceTime) & 3) == 0) { // 错开更新时间避免峰值卡顿var face = getBlock().getBlockFace();
+        if (((currentTick + spaceTime) & 3) == 0) { // 错开更新时间避免峰值卡顿
             var energyStorage = getStoredEnergy();
-            if (energyStorage > 4.5d) {
-                setStoredEnergy(energyStorage - 4.5d);
-                energyStorage = 4.5d;
+            if (energyStorage > getTransferRate()) {
+                setStoredEnergy(energyStorage - getTransferRate());
+                energyStorage = getTransferRate();
             } else {
                 setStoredEnergy(0);
             }

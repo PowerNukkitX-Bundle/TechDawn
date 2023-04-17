@@ -106,7 +106,8 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
             }
         }
         return BlockEntityHolder.setBlockAndCreateEntity(this, true, true,
-                new CompoundTag().putString("hinge_type", "techdawn:antiseptic_wood_hinge")) != null;
+                new CompoundTag().putString("hinge_type", "techdawn:antiseptic_wood_hinge")
+                        .putDouble("transfer_rate", 4.5)) != null;
     }
 
     @Override
