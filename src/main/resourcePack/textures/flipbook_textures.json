@@ -4,5 +4,11 @@
     "atlas_tile": "techdawn-blocks-hinge-base_hinge-dyn",
     "ticks_per_frame": 1,
     "blend_frames": false
+  },
+  {
+    "flipbook_texture": "textures/blocks/hinge/antiseptic_wood_hinge",
+    "atlas_tile": "techdawn-blocks-hinge-antiseptic_wood_hinge-dyn",
+    "ticks_per_frame": 1,
+    "blend_frames": false
   }
 ]

@@ -107,6 +107,7 @@ public final class Main extends PluginBase {
         Server.getInstance().getPluginManager().registerEvents(new TarBottleListener(), this);
         Server.getInstance().getPluginManager().registerEvents(new CauldronListener(), this);
         Server.getInstance().getPluginManager().registerEvents(new InventoriesListener(), this);
+        Server.getInstance().getScheduler().scheduleDelayedRepeatingTask(this, new TickListener(this), 1, 1);
     }
 
     private void registerRandomTickableBlock() {
