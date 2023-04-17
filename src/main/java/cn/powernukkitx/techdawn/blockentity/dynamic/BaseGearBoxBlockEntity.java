@@ -172,7 +172,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     }
 
     @Override
-    public double handleDynamicTransferring(double amount) {
+    public double handleDynamicTransferring(double amount, BlockFace direction) {
         for (var each : this.getOutputFaces()) {
             var tmpBlockEntity = this.level.getBlockEntity(new Position((int) this.x + each.getXOffset(), (int) this.y + each.getYOffset(), (int) this.z + each.getZOffset()));
             if (tmpBlockEntity instanceof EnergyHolder energyHolder && energyHolder.canAcceptInput(Rotation.getInstance(), each.getOpposite())) {
@@ -224,7 +224,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
             DynamicManager.requestUpdateHinge(hingePositions, this.level.getName(), energyStorage > 0);
             // 检测铰链链接的目标并输出
             if (targetGearBox != null && energyStorage > 0) {
-                targetGearBox.handleDynamicTransferring(energyStorage);
+                targetGearBox.handleDynamicTransferring(energyStorage, face);
             }
             // 记录最后一次有能量变化的更新
             if (energyStorage > 0)
