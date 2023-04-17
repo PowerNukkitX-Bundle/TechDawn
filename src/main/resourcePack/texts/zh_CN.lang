@@ -90,6 +90,8 @@ item.techdawn:coal_nugget=煤粒
 item.techdawn:clean_coal_nugget=精煤粒
 
 item.techdawn:clean_coal=精煤
+item.techdawn:basic_circuit_board=基础电路板
+item.techdawn:advanced_circuit_board=高级电路板
 
 tile.techdawn:flint_gravel.name=燧石沙砾
 

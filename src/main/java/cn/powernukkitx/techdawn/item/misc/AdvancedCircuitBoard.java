@@ -1,6 +1,6 @@
 package cn.powernukkitx.techdawn.item.misc;
 
-import cn.nukkit.item.customitem.CustomItem;;
+import cn.nukkit.item.customitem.CustomItem;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ public class AdvancedCircuitBoard extends BaseCircuitBoard {
 
     @Override
     public int getHardnessTier() {
-        return HARDNESS_GOLD;
+        return HARDNESS_DIAMOND;
     }
 
     @NotNull

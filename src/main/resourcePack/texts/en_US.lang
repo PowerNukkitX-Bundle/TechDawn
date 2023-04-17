@@ -90,6 +90,8 @@ item.techdawn:coal_nugget=Coal Nugget
 item.techdawn:clean_coal_nugget=Clean Coal Nugget
 
 item.techdawn:clean_coal=Clean Coal
+item.techdawn:basic_circuit_board=Basic Circuit Board
+item.techdawn:advanced_circuit_board=Advanced Circuit Board
 
 tile.techdawn:flint_gravel.name=Flint Gravel
 
