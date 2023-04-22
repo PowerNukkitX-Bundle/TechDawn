@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @AutoRegisterData("TechDawn_BaseTransposingGearBoxBlockEntity")
 public class BaseTransposingGearBoxBlockEntity extends BlockEntity implements TechDawnDynamicHandler, TransposableBlockEntity {
     private int hingeBlockIdCache;
-    private double transferRate;
+    private double transferRate = Double.NaN;
 
     public BaseTransposingGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);

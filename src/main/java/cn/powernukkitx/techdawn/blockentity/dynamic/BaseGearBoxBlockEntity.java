@@ -29,7 +29,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     protected final AtomicDouble storedEnergy;
     private int hingeBlockIdCache;
     private final int spaceTime;
-    private double transferRate;
+    private double transferRate = Double.NaN;
     private int lastFullUpdateTick;
 
     public BaseGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
@@ -37,7 +37,6 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
         storedEnergy = new AtomicDouble(0);
         spaceTime = SPACE_TIME.getAndIncrement() % 4;
         lastFullUpdateTick = Server.getInstance().getTick();
-        transferRate = Double.NaN;
     }
 
     @Override
