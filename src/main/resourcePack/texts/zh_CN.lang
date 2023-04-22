@@ -132,6 +132,8 @@ tile.techdawn:stone_gear_template.name=石制齿轮模
 tile.techdawn:base_wire.name=测试用线缆
 tile.techdawn:annealed_copper_wire.name=退火铜线缆
 
+tile.techdawn:base_electric_furnace.name=测试用电炉
+tile.techdawn:base_battery_box.name=测试用电池盒
 tile.techdawn:basic_redstone_battery_box.name=基础红石电池盒
 tile.techdawn:basic_fuel_generator.name=基础火力发电机
 
@@ -139,3 +141,5 @@ tile.techdawn:base_hinge.name=测试用铰链
 tile.techdawn:antiseptic_wood_hinge.name=防腐木铰链
 tile.techdawn:base_gear_box.name=测试用齿轮箱
 tile.techdawn:antiseptic_wood_gear_box.name=防腐木齿轮箱
+tile.techdawn:antiseptic_wood_handle.name=防腐木手柄方块
+tile.techdawn:wood_handle.name=木手柄方块
