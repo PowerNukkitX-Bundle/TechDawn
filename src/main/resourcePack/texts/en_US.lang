@@ -141,5 +141,7 @@ tile.techdawn:base_hinge.name=Test-only Hinge
 tile.techdawn:antiseptic_wood_hinge.name=Antiseptic Wood Hinge
 tile.techdawn:base_gear_box.name=Test-only Gearbox
 tile.techdawn:antiseptic_wood_gear_box.name=Antiseptic Wood Gearbox
+tile.techdawn:base_transposing_gear_box.name=Test-only Transposing Gearbox
+tile.techdawn:antiseptic_wood_transposing_gear_box.name=Antiseptic Wood Transposing Gearbox
 tile.techdawn:antiseptic_wood_handle.name=Antiseptic Wood Handle
 tile.techdawn:wood_handle.name=Wood Handle

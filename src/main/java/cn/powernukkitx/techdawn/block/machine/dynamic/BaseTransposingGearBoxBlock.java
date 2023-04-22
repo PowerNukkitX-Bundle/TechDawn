@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
 public class BaseTransposingGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseTransposingGearBoxBlockEntity> {
-    public static final BooleanBlockProperty TRANSPOSED = new BooleanBlockProperty("transposed", true);
+    public static final BooleanBlockProperty TRANSPOSED = new BooleanBlockProperty("transposed", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(TRANSPOSED, CommonBlockProperties.FACING_DIRECTION);
 
     @SuppressWarnings("unused")

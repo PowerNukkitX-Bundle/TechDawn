@@ -141,5 +141,7 @@ tile.techdawn:base_hinge.name=测试用铰链
 tile.techdawn:antiseptic_wood_hinge.name=防腐木铰链
 tile.techdawn:base_gear_box.name=测试用齿轮箱
 tile.techdawn:antiseptic_wood_gear_box.name=防腐木齿轮箱
+tile.techdawn:base_transposing_gear_box.name=测试用变位齿轮箱
+tile.techdawn:antiseptic_wood_transposing_gear_box.name=防腐木变位齿轮箱
 tile.techdawn:antiseptic_wood_handle.name=防腐木手柄方块
 tile.techdawn:wood_handle.name=木手柄方块
