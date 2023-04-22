@@ -172,7 +172,14 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     }
 
     @Override
+    public boolean isDirectionAcceptable(BlockFace directionFace, boolean isTransposed) {
+        var block = getBlock();
+        return block.getBlockFace().getOpposite() == directionFace && block.isTransposed() == isTransposed;
+    }
+
+    @Override
     public double handleDynamicTransferring(double amount, BlockFace direction) {
+        if (amount == 0) return 0;
         for (var each : this.getOutputFaces()) {
             var tmpBlockEntity = this.level.getBlockEntity(new Position((int) this.x + each.getXOffset(), (int) this.y + each.getYOffset(), (int) this.z + each.getZOffset()));
             if (tmpBlockEntity instanceof EnergyHolder energyHolder && energyHolder.canAcceptInput(Rotation.getInstance(), each.getOpposite())) {
@@ -207,7 +214,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
                 var pos = new Position((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
                 var blockId = this.level.getBlockIdAt((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
                 if (!hingePositions.isEmpty() && this.level.getBlockEntity(pos) instanceof TechDawnDynamicHandler energyHolder) {
-                    if (energyHolder instanceof TransposableBlockEntity transposableBlockEntity && (this.isTransposed() != transposableBlockEntity.isTransposed())) {
+                    if (!energyHolder.isDirectionAcceptable(face, transposed)) {
                         break;
                     }
                     targetGearBox = energyHolder;
@@ -223,7 +230,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
             }
             DynamicManager.requestUpdateHinge(hingePositions, this.level.getName(), energyStorage > 0);
             // 检测铰链链接的目标并输出
-            if (targetGearBox != null && energyStorage > 0) {
+            if (targetGearBox != null) {
                 targetGearBox.handleDynamicTransferring(energyStorage, face);
             }
             // 记录最后一次有能量变化的更新
