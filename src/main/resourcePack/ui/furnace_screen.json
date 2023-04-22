@@ -24,6 +24,10 @@
                 "$fuel_visible": false
               },
               {
+                "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
+                "$fuel_visible": false
+              },
+              {
                 "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",
                 "$padding_fuel": [
                   0,
@@ -86,6 +90,7 @@
   "furnace_input_panel": {
     "anchor_from": "left_middle",
     "anchor_to": "left_middle",
+    "$input_visible": true,
     "variables": [
       {
         "requires": "(($container_title - 'ui.techdawn') = $container_title)",
@@ -121,15 +126,24 @@
           0,
           18
         ]
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
+        "$input_visible": false
       }
     ],
-    "offset": "$padding_furnace"
+    "offset": "$padding_furnace",
+    "visible": "$input_visible"
   },
   "furnace_arrow_empty_image": {
     "$arrow_visible": true,
     "variables": [
       {
         "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
+        "$arrow_visible": false
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
         "$arrow_visible": false
       }
     ],
@@ -141,19 +155,64 @@
       {
         "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
         "$arrow_visible": false
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
+        "$arrow_visible": false
       }
     ],
     "visible": "$arrow_visible"
   },
   "furnace_output_panel": {
     "$output_visible": true,
+    "$padding_output": [
+      0,
+      0
+    ],
     "variables": [
       {
         "requires": "(not (($container_title - 'ui.techdawn.basic_fuel_generator') = $container_title))",
         "$output_visible": false
+      },
+      {
+        "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
+        "$padding_output": [
+          -32,
+          0
+        ]
       }
     ],
-    "visible": "$output_visible"
+    "offset": "$padding_output",
+    "visible": "$output_visible",
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "input_mask@common.techdawn_ui_mask_1x1_big": {
+              "$mask_visible": false,
+              "$mask_offset": [
+                0,
+                0
+              ],
+              "variables": [
+                {
+                  "requires": "(not (($container_title - 'ui.techdawn.base_battery_box') = $container_title)) or (not (($container_title - 'ui.techdawn.basic_redstone_battery_box') = $container_title))",
+                  "$mask_visible": true,
+                  "$mask_offset": [
+                    -14,
+                    -2
+                  ]
+                }
+              ],
+              "visible": "$mask_visible",
+              "offset": "$mask_offset"
+            }
+          }
+        ]
+      }
+    ]
   },
   "furnace_panel_top_half": {
     "modifications": [

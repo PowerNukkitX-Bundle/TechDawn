@@ -73,15 +73,15 @@ public class BaseBatteryBoxBlockEntity extends MachineBlockEntity implements Ene
 
     @NotNull
     public CustomInventory generateUI() {
-        var displayInventory = new CustomInventory(InventoryType.CHEST, getUITitle());
-        displayInventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        var displayInventory = new CustomInventory(InventoryType.FURNACE, getUITitle());
+        displayInventory.setItem(2, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
         displayInventory.setDefaultItemHandler(((item, event) -> event.setCancelled()));
         return displayInventory;
     }
 
     public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
-        inventory.setItem(13, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
-        inventory.sendSlot(13, inventory.getViewers());
+        inventory.setItem(2, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        inventory.sendSlot(2, inventory.getViewers());
     }
 
     @Override
