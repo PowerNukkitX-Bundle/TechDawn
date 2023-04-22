@@ -7,7 +7,7 @@ import cn.powernukkitx.techdawn.item.ItemConstants;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("stainless_steel_hammer minecraft:netherite_tier")
+@AutoRegisterData("#getTags")
 public class StainlessSteelHammer extends BaseHammer {
 
     public StainlessSteelHammer() {

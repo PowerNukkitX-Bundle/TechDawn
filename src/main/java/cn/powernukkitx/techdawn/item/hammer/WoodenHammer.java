@@ -7,7 +7,7 @@ import cn.powernukkitx.techdawn.item.ItemConstants;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("wooden_hammer minecraft:wooden_tier")
+@AutoRegisterData("#getTags")
 public class WoodenHammer extends BaseHammer {
 
     public WoodenHammer() {

@@ -7,7 +7,7 @@ import cn.powernukkitx.techdawn.item.ItemConstants;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("diamond_hammer minecraft:diamond_tier")
+@AutoRegisterData("#getTags")
 public class DiamondHammer extends BaseHammer {
 
     public DiamondHammer() {

@@ -7,7 +7,7 @@ import cn.powernukkitx.techdawn.item.ItemConstants;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomItem.class)
-@AutoRegisterData("stone_hammer minecraft:stone_tier")
+@AutoRegisterData("#getTags")
 public class StoneHammer extends BaseHammer {
 
     public StoneHammer() {
