@@ -9,36 +9,36 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
 import cn.powernukkitx.techdawn.block.machine.dynamic.BaseGearBoxBlock;
-import cn.powernukkitx.techdawn.block.machine.dynamic.BaseTransposingGearBoxBlock;
+import cn.powernukkitx.techdawn.block.machine.dynamic.BaseHorizontalSteeringGearBoxBlock;
 import cn.powernukkitx.techdawn.energy.DynamicManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 @AutoRegister(BlockEntity.class)
-@AutoRegisterData("TechDawn_BaseTransposingGearBoxBlockEntity")
-public class BaseTransposingGearBoxBlockEntity extends BlockEntity implements TechDawnDynamicHandler, TransposableBlockEntity {
+@AutoRegisterData("TechDawn_BaseHorizontalSteeringGearBoxBlockEntity")
+public class BaseHorizontalSteeringGearBoxBlockEntity extends BlockEntity implements TechDawnDynamicHandler, TransposableBlockEntity {
     private int hingeBlockIdCache;
     private double transferRate = Double.NaN;
 
-    public BaseTransposingGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
+    public BaseHorizontalSteeringGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
     }
 
     @Override
     @NotNull
     public String getName() {
-        return "TechDawn_BaseTransposingGearBoxBlockEntity";
+        return "TechDawn_BaseHorizontalSteeringGearBoxBlockEntity";
     }
 
     @Override
     public boolean isBlockEntityValid() {
-        return super.getBlock() instanceof BaseTransposingGearBoxBlock;
+        return super.getBlock() instanceof BaseHorizontalSteeringGearBoxBlock;
     }
 
     @Override
-    public BaseTransposingGearBoxBlock getBlock() {
-        return (BaseTransposingGearBoxBlock) super.getBlock();
+    public BaseHorizontalSteeringGearBoxBlock getBlock() {
+        return (BaseHorizontalSteeringGearBoxBlock) super.getBlock();
     }
 
     @Override
@@ -68,9 +68,9 @@ public class BaseTransposingGearBoxBlockEntity extends BlockEntity implements Te
     @Override
     public boolean isDirectionAcceptable(BlockFace directionFace, boolean isTransposed) {
         var block = getBlock();
-        if (directionFace == block.getBlockFace()) {
-            return block.isTransposed() != isTransposed;
-        } else if (directionFace == block.getBlockFace().getOpposite()) {
+        if (directionFace == block.getBlockFace().getOpposite()) {
+            return block.isTransposed() == isTransposed;
+        } else if (directionFace == block.getBlockFace().rotateYCCW().getOpposite()) {
             return block.isTransposed() == isTransposed;
         }
         return false;
@@ -78,15 +78,20 @@ public class BaseTransposingGearBoxBlockEntity extends BlockEntity implements Te
 
     @Override
     public double handleDynamicTransferring(double amount, BlockFace direction) {
+        var block = getBlock();
+        var blockFace = block.getBlockFace();
+        if (blockFace.getOpposite() == direction) {
+            direction = blockFace.rotateYCCW();
+        } else {
+            direction = block.getBlockFace();
+        }
         var xOffset = direction.getXOffset();
         var yOffset = direction.getYOffset();
         var zOffset = direction.getZOffset();
         var hingePositions = new ArrayList<Position>();
         TechDawnDynamicHandler targetGearBox = null;
         amount = Math.min(amount, getTransferRate());
-        var block = getBlock();
         var transposed = block.isTransposed();
-        if (direction != block.getBlockFace()) transposed = !transposed;
         for (int i = 0; i < 8; i++) {
             var pos = new Position((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
             var blockId = this.level.getBlockIdAt((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
@@ -111,38 +116,5 @@ public class BaseTransposingGearBoxBlockEntity extends BlockEntity implements Te
             targetGearBox.handleDynamicTransferring(amount, direction);
         }
         return amount;
-    }
-
-    @Override
-    public boolean onUpdate() {
-//        var currentTick = Server.getInstance().getTick();
-//        var directions = new ArrayList<BlockFace>(2);
-//        if (((currentTick - lastFullUpdateTickFront) & 3) == 0) { // 更新前方正在转动的铰链到停止
-//            directions.add(getBlock().getBlockFace());
-//        }
-//        if (((currentTick - lastFullUpdateTickBack) & 3) == 0) { // 更新后方正在转动的铰链到停止
-//            directions.add(getBlock().getBlockFace().getOpposite());
-//        }
-//        for (var direction : directions) {
-//            var xOffset = direction.getXOffset();
-//            var yOffset = direction.getYOffset();
-//            var zOffset = direction.getZOffset();
-//            var hingePositions = new ArrayList<Position>();
-//            var transposed = getBlock().isTransposed();
-//            for (int i = 0; i < 8; i++) {
-//                var pos = new Position((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
-//                var blockId = this.level.getBlockIdAt((int) this.x + xOffset, (int) this.y + yOffset, (int) this.z + zOffset);
-//                if (!isHingeBlock(blockId, xOffset, yOffset, zOffset, transposed)) {
-//                    break;
-//                }
-//                hingePositions.add(pos);
-//                xOffset += direction.getXOffset();
-//                yOffset += direction.getYOffset();
-//                zOffset += direction.getZOffset();
-//            }
-//            DynamicManager.requestUpdateHinge(hingePositions, this.level.getName(), false);
-//        }
-//        return currentTick - lastFullUpdateTickFront <= 4 || currentTick - lastFullUpdateTickBack <= 4;
-        return false;
     }
 }

@@ -20,23 +20,23 @@ import cn.nukkit.math.Vector3f;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
-import cn.powernukkitx.techdawn.blockentity.dynamic.BaseGearBoxBlockEntity;
+import cn.powernukkitx.techdawn.blockentity.dynamic.BaseHorizontalSteeringGearBoxBlockEntity;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
-public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseGearBoxBlockEntity> {
+public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseHorizontalSteeringGearBoxBlockEntity> {
     public static final BooleanBlockProperty TRANSPOSED = new BooleanBlockProperty("transposed", false);
-    public static final BlockProperties PROPERTIES = new BlockProperties(TRANSPOSED, CommonBlockProperties.FACING_DIRECTION);
+    public static final BlockProperties PROPERTIES = new BlockProperties(TRANSPOSED, CommonBlockProperties.DIRECTION);
 
     @SuppressWarnings("unused")
-    public BaseGearBoxBlock() {
+    public BaseHorizontalSteeringGearBoxBlock() {
         super(0);
     }
 
     @SuppressWarnings("unused")
-    public BaseGearBoxBlock(int meta) {
+    public BaseHorizontalSteeringGearBoxBlock(int meta) {
         super(meta);
     }
 
@@ -48,7 +48,7 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
     @NotNull
     @Override
     public String getNamespaceId() {
-        return "techdawn:base_gear_box";
+        return "techdawn:base_horizontal_steering_gear_box";
     }
 
     protected String getMainTextureName() {
@@ -57,36 +57,31 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
 
     @Override
     public CustomBlockDefinition getDefinition() {
+        var transposedMaterial = Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
+                .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
+                .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back");
         return CustomBlockDefinition
                 .builder(this, Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
-                        .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_side")
-                        .east(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_side")
+                        .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
                         .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back"))
-                .permutations(new Permutation(Component.builder().rotation(new Vector3f(90, 0, 0)).build(),
-                                "q.block_property('facing_direction') == 0 && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().rotation(new Vector3f(270, 0, 0)).build(),
-                                "q.block_property('facing_direction') == 1 && q.block_property('transposed') == false"),
+                .permutations(
                         new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).build(),
-                                "q.block_property('facing_direction') == 3 && q.block_property('transposed') == false"),
+                                "q.block_property('direction') == 0 && q.block_property('transposed') == false"),
                         new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).build(),
-                                "q.block_property('facing_direction') == 2 && q.block_property('transposed') == false"),
+                                "q.block_property('direction') == 2 && q.block_property('transposed') == false"),
                         new Permutation(Component.builder().rotation(new Vector3f(0, 270, 0)).build(),
-                                "q.block_property('facing_direction') == 5 && q.block_property('transposed') == false"),
+                                "q.block_property('direction') == 3 && q.block_property('transposed') == false"),
                         new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).build(),
-                                "q.block_property('facing_direction') == 4 && q.block_property('transposed') == false"),
-
-                        new Permutation(Component.builder().rotation(new Vector3f(90, 90, 0)).build(),
-                                "q.block_property('facing_direction') == 0 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(270, 90, 0)).build(),
-                                "q.block_property('facing_direction') == 1 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 90)).build(),
-                                "q.block_property('facing_direction') == 3 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 90)).build(),
-                                "q.block_property('facing_direction') == 2 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(270, 360, 90)).build(),
-                                "q.block_property('facing_direction') == 5 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(90, 180, 90)).build(),
-                                "q.block_property('facing_direction') == 4 && q.block_property('transposed') == true"))
+                                "q.block_property('direction') == 1 && q.block_property('transposed') == false"),
+                        
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).materialInstances(transposedMaterial).build(),
+                                "q.block_property('direction') == 0 && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).materialInstances(transposedMaterial).build(),
+                                "q.block_property('direction') == 2 && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().rotation(new Vector3f(270, 360, 0)).materialInstances(transposedMaterial).build(),
+                                "q.block_property('direction') == 3 && q.block_property('transposed') == true"),
+                        new Permutation(Component.builder().rotation(new Vector3f(90, 180, 0)).materialInstances(transposedMaterial).build(),
+                                "q.block_property('direction') == 1 && q.block_property('transposed') == true"))
                 .build();
     }
 
@@ -96,13 +91,7 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
             if (player.isSneaking()) {
                 setBlockFace(face.getOpposite());
             } else {
-                if (player.pitch > 60) {
-                    setBlockFace(BlockFace.DOWN);
-                } else if (player.pitch < -60) {
-                    setBlockFace(BlockFace.UP);
-                } else {
-                    setBlockFace(player.getDirection().getOpposite());
-                }
+                setBlockFace(player.getDirection().getOpposite());
             }
         }
         return BlockEntityHolder.setBlockAndCreateEntity(this, true, true,
@@ -146,12 +135,12 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
 
     @Override
     public BlockFace getBlockFace() {
-        return getPropertyValue(CommonBlockProperties.FACING_DIRECTION);
+        return getPropertyValue(CommonBlockProperties.DIRECTION);
     }
 
     @Override
     public void setBlockFace(BlockFace face) {
-        setPropertyValue(CommonBlockProperties.FACING_DIRECTION, face);
+        setPropertyValue(CommonBlockProperties.DIRECTION, face);
     }
 
     public boolean isTransposed() {
@@ -164,13 +153,13 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
 
     @NotNull
     @Override
-    public Class<? extends BaseGearBoxBlockEntity> getBlockEntityClass() {
-        return BaseGearBoxBlockEntity.class;
+    public Class<? extends BaseHorizontalSteeringGearBoxBlockEntity> getBlockEntityClass() {
+        return BaseHorizontalSteeringGearBoxBlockEntity.class;
     }
 
     @NotNull
     @Override
     public String getBlockEntityType() {
-        return "TechDawn_BaseGearBoxBlockEntity";
+        return "TechDawn_BaseHorizontalSteeringGearBoxBlockEntity";
     }
 }

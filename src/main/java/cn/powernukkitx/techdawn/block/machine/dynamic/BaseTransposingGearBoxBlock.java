@@ -96,9 +96,9 @@ public class BaseTransposingGearBoxBlock extends BlockSolidMeta implements Custo
                 setBlockFace(face.getOpposite());
             } else {
                 if (player.pitch > 60) {
-                    setBlockFace(BlockFace.UP);
-                } else if (player.pitch < -60) {
                     setBlockFace(BlockFace.DOWN);
+                } else if (player.pitch < -60) {
+                    setBlockFace(BlockFace.UP);
                 } else {
                     setBlockFace(player.getDirection().getOpposite());
                 }
