@@ -8,6 +8,9 @@ ui.techdawn.stone_extractor=石制萃取机
 ui.techdawn.stone_grinder=石制研磨机
 ui.techdawn.basic_redstone_battery_box=基础红石电池盒
 
+ui.techdawn.component.stored_energy=已储存能量
+ui.techdawn.component.container=容器
+
 item.techdawn:bronze_ingot=青铜锭
 item.techdawn:tough_copper_ingot=韧铜锭
 item.techdawn:hot_tough_copper_ingot=热韧铜锭

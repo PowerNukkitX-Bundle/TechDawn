@@ -95,19 +95,23 @@ public class BasicFuelGeneratorBlockEntity extends MachineBlockEntity implements
     @Override
     public cn.powernukkitx.fakeInv.CustomInventory generateUI() {
         var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, getUITitle());
-        customInv.setItem(0, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        var iconItem = ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage());
+        customInv.setItem(0, iconItem);
         customInv.setItem(1, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/25 阻止潜在的多人刷物品
             inventory.setFuel(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
         });
+        customInv.setItem(2, iconItem);
         customInv.setDefaultItemHandler((item, inventoryTransactionEvent) -> inventoryTransactionEvent.setCancelled());
         return customInv;
     }
 
     @Override
     public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
-        inventory.setItem(0, ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage()));
+        var iconItem = ChargeIconItem.ofRF(getStoredEnergy(), getMaxStorage());
+        inventory.setItem(0, iconItem);
         inventory.setItem(1, this.inventory.getItem(0));
+        inventory.setItem(2, iconItem);
         inventory.sendContents(inventory.getViewers());
         if (!immediately && burnTime != 0) {
             for (var each : inventory.getViewers()) {

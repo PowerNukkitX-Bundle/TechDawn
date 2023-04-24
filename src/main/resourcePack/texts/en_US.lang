@@ -106,6 +106,9 @@ tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank
 tile.techdawn:stone_grinder.name=Stone Grinder
 
+ui.techdawn.component.stored_energy=Stored Energy
+ui.techdawn.component.container=Container
+
 tile.techdawn:annealed_copper_anvil.name=Annealed Copper Anvil
 tile.techdawn:bronze_anvil.name=Bronze Anvil
 tile.techdawn:copper_anvil.name=Copper Anvil
