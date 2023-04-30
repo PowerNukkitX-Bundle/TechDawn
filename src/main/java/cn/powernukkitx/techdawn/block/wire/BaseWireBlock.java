@@ -25,6 +25,8 @@ import cn.powernukkitx.techdawn.energy.EnergyNetworkManager;
 import cn.powernukkitx.techdawn.energy.RF;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 @AutoRegister(CustomBlock.class)
 public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, BlockEntityHolder<BaseWireBlockEntity> {
     // 0: 不连接，1: 向正半轴连接，2: 向负半轴连接，3: 双向连接
@@ -64,7 +66,14 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
     public CustomBlockDefinition getDefinition() {
         return processBoneVisibility(CustomBlockDefinition
                 .builder(this, Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
-                .geometry("geometry.pipe"))
+                .geometry(new Geometry("geometry.pipe")
+                        .boneVisibility("top", false)
+                        .boneVisibility("bottom", false)
+                        .boneVisibility("north", false)
+                        .boneVisibility("east", false)
+                        .boneVisibility("south", false)
+                        .boneVisibility("west", false)
+                ))
                 .customBuild(nbt -> componentNBTProcessor(nbt.getCompound("components")));
     }
 
@@ -180,55 +189,28 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
 
     // 线缆连接渲染
     private @NotNull CustomBlockDefinition.Builder processBoneVisibility(@NotNull CustomBlockDefinition.Builder def) {
+        var list = new ArrayList<Permutation>(64);
         for (var xl = 0; xl < 4; xl++) {
             for (var yl = 0; yl < 4; yl++) {
                 for (var zl = 0; zl < 4; zl++) {
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("top", yl == 1 || yl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("bottom", yl == 2 || yl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("north", zl == 2 || zl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("east", xl == 1 || xl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("south", zl == 1 || zl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
-                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("west", xl == 2 || xl == 3))
-                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    list.add(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe")
+                                    .boneVisibility("top", yl == 1 || yl == 3)
+                                    .boneVisibility("bottom", yl == 2 || yl == 3)
+                                    .boneVisibility("north", zl == 2 || zl == 3)
+                                    .boneVisibility("east", xl == 1 || xl == 3)
+                                    .boneVisibility("south", zl == 1 || zl == 3)
+                                    .boneVisibility("west", xl == 2 || xl == 3)
+                            ).build(),
+                            "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " +
+                                    yl + " && q.block_property('pnx:z_link') == " + zl));
                 }
             }
         }
+        def.permutations(list.toArray(Permutation[]::new));
         return def;
     }
 
     private void componentNBTProcessor(@NotNull CompoundTag componentNBT) {
-//        // 线缆连接渲染
-//        componentNBT.putCompound("minecraft:part_visibility", new CompoundTag()
-//                .putCompound("boneConditions", new CompoundTag()
-//                        .putCompound("top", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:y_link') == 1 || q.block_property('pnx:y_link') == 3")
-//                                .putString("bone_name", "top")
-//                                .putInt("molang_version", 6))
-//                        .putCompound("bottom", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:y_link') == 2 || q.block_property('pnx:y_link') == 3")
-//                                .putString("bone_name", "bottom")
-//                                .putInt("molang_version", 6))
-//                        .putCompound("north", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:z_link') == 2 || q.block_property('pnx:z_link') == 3")
-//                                .putString("bone_name", "north")
-//                                .putInt("molang_version", 6))
-//                        .putCompound("east", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:x_link') == 1 || q.block_property('pnx:x_link') == 3")
-//                                .putString("bone_name", "east")
-//                                .putInt("molang_version", 6))
-//                        .putCompound("south", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:z_link') == 1 || q.block_property('pnx:z_link') == 3")
-//                                .putString("bone_name", "south")
-//                                .putInt("molang_version", 6))
-//                        .putCompound("west", new CompoundTag()
-//                                .putString("bone_condition", "q.block_property('pnx:x_link') == 2 || q.block_property('pnx:x_link') == 3")
-//                                .putString("bone_name", "west")
-//                                .putInt("molang_version", 6))));
         // 碰撞箱和选择箱
         componentNBT.putCompound("minecraft:collision_box", new CompoundTag()
                         .putBoolean("enabled", true)
