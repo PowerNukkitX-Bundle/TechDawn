@@ -150,3 +150,7 @@ tile.techdawn:antiseptic_wood_handle.name=Antiseptic Wood Handle
 tile.techdawn:wood_handle.name=Wood Handle
 tile.techdawn:base_horizontal_steering_gear_box.name=Test-only Horizontal Steering Gearbox
 tile.techdawn:antiseptic_wood_horizontal_steering_gear_box.name=Antiseptic Wood Horizontal Steering Gearbox
+tile.techdawn:base_vertical_down_steering_gear_box.name=Test-only Vertical Down Steering Gearbox
+tile.techdawn:antiseptic_wood_vertical_down_gear_box.name=Antiseptic Wood Vertical Down Steering Gearbox
+tile.techdawn:base_vertical_up_steering_gear_box.name=Test-only Vertical Up Steering Gearbox
+tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=Antiseptic Wood Vertical Up Steering Gearbox

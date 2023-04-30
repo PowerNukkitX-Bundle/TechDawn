@@ -97,9 +97,9 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
                 setBlockFace(face.getOpposite());
             } else {
                 if (player.pitch > 60) {
-                    setBlockFace(BlockFace.DOWN);
-                } else if (player.pitch < -60) {
                     setBlockFace(BlockFace.UP);
+                } else if (player.pitch < -60) {
+                    setBlockFace(BlockFace.DOWN);
                 } else {
                     setBlockFace(player.getDirection().getOpposite());
                 }

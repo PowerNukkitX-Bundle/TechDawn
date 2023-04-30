@@ -150,3 +150,7 @@ tile.techdawn:antiseptic_wood_handle.name=防腐木手柄方块
 tile.techdawn:wood_handle.name=木手柄方块
 tile.techdawn:base_horizontal_steering_gear_box.name=测试用水平转向齿轮箱
 tile.techdawn:antiseptic_wood_horizontal_steering_gear_box.name=防腐木水平转向齿轮箱
+tile.techdawn:base_vertical_down_steering_gear_box.name=测试用垂直下转向齿轮箱
+tile.techdawn:antiseptic_wood_vertical_down_gear_box.name=防腐木垂直下转向齿轮箱
+tile.techdawn:base_vertical_up_steering_gear_box.name=测试用垂直上转向齿轮箱
+tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=防腐木垂直上转向齿轮箱

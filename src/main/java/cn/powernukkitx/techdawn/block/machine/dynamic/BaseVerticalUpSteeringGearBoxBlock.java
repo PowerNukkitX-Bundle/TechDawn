@@ -20,23 +20,23 @@ import cn.nukkit.math.Vector3f;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.utils.Faceable;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
-import cn.powernukkitx.techdawn.blockentity.dynamic.BaseHorizontalSteeringGearBoxBlockEntity;
+import cn.powernukkitx.techdawn.blockentity.dynamic.BaseVerticalSteeringGearBoxBlockEntity;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @AutoRegister(CustomBlock.class)
-public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseHorizontalSteeringGearBoxBlockEntity> {
+public class BaseVerticalUpSteeringGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseVerticalSteeringGearBoxBlockEntity> {
     public static final BooleanBlockProperty TRANSPOSED = new BooleanBlockProperty("transposed", false);
     public static final BlockProperties PROPERTIES = new BlockProperties(TRANSPOSED, CommonBlockProperties.DIRECTION);
 
     @SuppressWarnings("unused")
-    public BaseHorizontalSteeringGearBoxBlock() {
+    public BaseVerticalUpSteeringGearBoxBlock() {
         super(0);
     }
 
     @SuppressWarnings("unused")
-    public BaseHorizontalSteeringGearBoxBlock(int meta) {
+    public BaseVerticalUpSteeringGearBoxBlock(int meta) {
         super(meta);
     }
 
@@ -48,22 +48,30 @@ public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implement
     @NotNull
     @Override
     public String getNamespaceId() {
-        return "techdawn:base_horizontal_steering_gear_box";
+        return "techdawn:base_vertical_up_steering_gear_box";
     }
 
     protected String getMainTextureName() {
         return "techdawn-blocks-gear_box-antiseptic_wood_gear_box";
     }
 
+    protected Materials createMaterials() {
+        return Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
+                .up(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
+                .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back");
+    }
+
+    protected Materials createTransposedMaterials() {
+        return Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
+                .up(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
+                .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back");
+    }
+
     @Override
     public CustomBlockDefinition getDefinition() {
-        var transposedMaterial = Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
-                .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front_transposed")
-                .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back");
+        var transposedUpMaterial = createTransposedMaterials();
         return CustomBlockDefinition
-                .builder(this, Materials.builder().north(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
-                        .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_front")
-                        .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back"))
+                .builder(this, createMaterials())
                 .permutations(
                         new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).build(),
                                 "q.block_property('direction') == 0 && q.block_property('transposed') == false"),
@@ -73,16 +81,22 @@ public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implement
                                 "q.block_property('direction') == 3 && q.block_property('transposed') == false"),
                         new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).build(),
                                 "q.block_property('direction') == 1 && q.block_property('transposed') == false"),
-                        
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).materialInstances(transposedMaterial).build(),
+
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 0 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).materialInstances(transposedMaterial).build(),
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 2 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(270, 360, 0)).materialInstances(transposedMaterial).build(),
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 270, 0)).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 3 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(90, 180, 0)).materialInstances(transposedMaterial).build(),
+                        new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 1 && q.block_property('transposed') == true"))
-                .build();
+                                .build();
+    }
+
+    protected CompoundTag createBlockEntityNBT() {
+        return new CompoundTag().putString("hinge_type", "techdawn:antiseptic_wood_hinge")
+                .putDouble("transfer_rate", 4.5)
+                .putBoolean("is_up", true);
     }
 
     @Override
@@ -94,9 +108,7 @@ public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implement
                 setBlockFace(player.getDirection().getOpposite());
             }
         }
-        return BlockEntityHolder.setBlockAndCreateEntity(this, true, true,
-                new CompoundTag().putString("hinge_type", "techdawn:antiseptic_wood_hinge")
-                        .putDouble("transfer_rate", 4.5)) != null;
+        return BlockEntityHolder.setBlockAndCreateEntity(this, true, true, createBlockEntityNBT()) != null;
     }
 
     @Override
@@ -153,13 +165,13 @@ public class BaseHorizontalSteeringGearBoxBlock extends BlockSolidMeta implement
 
     @NotNull
     @Override
-    public Class<? extends BaseHorizontalSteeringGearBoxBlockEntity> getBlockEntityClass() {
-        return BaseHorizontalSteeringGearBoxBlockEntity.class;
+    public Class<? extends BaseVerticalSteeringGearBoxBlockEntity> getBlockEntityClass() {
+        return BaseVerticalSteeringGearBoxBlockEntity.class;
     }
 
     @NotNull
     @Override
     public String getBlockEntityType() {
-        return "TechDawn_BaseHorizontalSteeringGearBoxBlockEntity";
+        return "TechDawn_BaseVerticalSteeringGearBoxBlockEntity";
     }
 }
