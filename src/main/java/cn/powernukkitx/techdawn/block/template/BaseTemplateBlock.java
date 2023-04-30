@@ -23,6 +23,8 @@ import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
+
 @AutoRegister(CustomBlock.class)
 public class BaseTemplateBlock extends BlockTransparentMeta implements CustomBlock, TechDawnHardness, Faceable {
 
@@ -59,13 +61,13 @@ public class BaseTemplateBlock extends BlockTransparentMeta implements CustomBlo
                 .geometry("geometry.techdawn.template")
                 .selectionBox(new Vector3f(-6f, 0, -6f), new Vector3f(12f, 1f, 12f))
                 .collisionBox(new Vector3f(-6f, 0, -6f), new Vector3f(12f, 1f, 12f))
-                .permutations(new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).build(),
+                .permutations(new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 0, 0))).build(),
                                 "q.block_property('direction') == 0"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 270, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 270, 0))).build(),
                                 "q.block_property('direction') == 1"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 180, 0))).build(),
                                 "q.block_property('direction') == 2"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
                                 "q.block_property('direction') == 3"))
                 .build();
     }

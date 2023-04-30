@@ -25,6 +25,8 @@ import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
+
 @AutoRegister(CustomBlock.class)
 public class BaseVerticalUpSteeringGearBoxBlock extends BlockSolidMeta implements CustomBlock, Faceable, BlockEntityHolder<BaseVerticalSteeringGearBoxBlockEntity> {
     public static final BooleanBlockProperty TRANSPOSED = new BooleanBlockProperty("transposed", false);
@@ -73,22 +75,22 @@ public class BaseVerticalUpSteeringGearBoxBlock extends BlockSolidMeta implement
         return CustomBlockDefinition
                 .builder(this, createMaterials())
                 .permutations(
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 180, 0))).build(),
                                 "q.block_property('direction') == 0 && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 0, 0))).build(),
                                 "q.block_property('direction') == 2 && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 270, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 270, 0))).build(),
                                 "q.block_property('direction') == 3 && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
                                 "q.block_property('direction') == 1 && q.block_property('transposed') == false"),
 
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 180, 0)).materialInstances(transposedUpMaterial).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 180, 0))).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 0 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 0, 0)).materialInstances(transposedUpMaterial).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 0, 0))).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 2 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 270, 0)).materialInstances(transposedUpMaterial).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 270, 0))).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 3 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().rotation(new Vector3f(0, 90, 0)).materialInstances(transposedUpMaterial).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 90, 0))).materialInstances(transposedUpMaterial).build(),
                                 "q.block_property('direction') == 1 && q.block_property('transposed') == true"))
                                 .build();
     }

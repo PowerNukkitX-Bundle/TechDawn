@@ -6,7 +6,10 @@ import cn.nukkit.block.BlockEntityHolder;
 import cn.nukkit.block.BlockTransparentMeta;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
+import cn.nukkit.block.customblock.data.Component;
+import cn.nukkit.block.customblock.data.Geometry;
 import cn.nukkit.block.customblock.data.Materials;
+import cn.nukkit.block.customblock.data.Permutation;
 import cn.nukkit.blockproperty.BlockProperties;
 import cn.nukkit.blockproperty.IntBlockProperty;
 import cn.nukkit.energy.EnergyHolder;
@@ -24,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
 public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, BlockEntityHolder<BaseWireBlockEntity> {
+    // 0: 不连接，1: 向正半轴连接，2: 向负半轴连接，3: 双向连接
     public static IntBlockProperty X_LINK = new IntBlockProperty("pnx:x_link", true, 3, 0);
     public static IntBlockProperty Y_LINK = new IntBlockProperty("pnx:y_link", true, 3, 0);
     public static IntBlockProperty Z_LINK = new IntBlockProperty("pnx:z_link", true, 3, 0);
@@ -58,9 +62,9 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
 
     @Override
     public CustomBlockDefinition getDefinition() {
-        return CustomBlockDefinition
+        return processBoneVisibility(CustomBlockDefinition
                 .builder(this, Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
-                .geometry("geometry.pipe")
+                .geometry("geometry.pipe"))
                 .customBuild(nbt -> componentNBTProcessor(nbt.getCompound("components")));
     }
 
@@ -136,6 +140,7 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
     public boolean onBreak(Item item) {
         return super.onBreak(item);
     }
+
     @Override
     public int onTouch(Player player, PlayerInteractEvent.Action action) {
         // debug
@@ -173,34 +178,57 @@ public class BaseWireBlock extends BlockTransparentMeta implements CustomBlock, 
         }
     }
 
+    // 线缆连接渲染
+    private @NotNull CustomBlockDefinition.Builder processBoneVisibility(@NotNull CustomBlockDefinition.Builder def) {
+        for (var xl = 0; xl < 4; xl++) {
+            for (var yl = 0; yl < 4; yl++) {
+                for (var zl = 0; zl < 4; zl++) {
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("top", yl == 1 || yl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("bottom", yl == 2 || yl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("north", zl == 2 || zl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("east", xl == 1 || xl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("south", zl == 1 || zl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                    def.permutations(new Permutation(Component.builder().geometry(new Geometry("geometry.pipe").boneVisibility("west", xl == 2 || xl == 3))
+                            .build(), "q.block_property('pnx:x_link') == " + xl + " && q.block_property('pnx:y_link') == " + yl + " && q.block_property('pnx:z_link') == " + zl));
+                }
+            }
+        }
+        return def;
+    }
+
     private void componentNBTProcessor(@NotNull CompoundTag componentNBT) {
-        // 线缆连接渲染
-        componentNBT.putCompound("minecraft:part_visibility", new CompoundTag()
-                .putCompound("boneConditions", new CompoundTag()
-                        .putCompound("top", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:y_link') == 1 || q.block_property('pnx:y_link') == 3")
-                                .putString("bone_name", "top")
-                                .putInt("molang_version", 6))
-                        .putCompound("bottom", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:y_link') == 2 || q.block_property('pnx:y_link') == 3")
-                                .putString("bone_name", "bottom")
-                                .putInt("molang_version", 6))
-                        .putCompound("north", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:z_link') == 2 || q.block_property('pnx:z_link') == 3")
-                                .putString("bone_name", "north")
-                                .putInt("molang_version", 6))
-                        .putCompound("east", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:x_link') == 1 || q.block_property('pnx:x_link') == 3")
-                                .putString("bone_name", "east")
-                                .putInt("molang_version", 6))
-                        .putCompound("south", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:z_link') == 1 || q.block_property('pnx:z_link') == 3")
-                                .putString("bone_name", "south")
-                                .putInt("molang_version", 6))
-                        .putCompound("west", new CompoundTag()
-                                .putString("bone_condition", "q.block_property('pnx:x_link') == 2 || q.block_property('pnx:x_link') == 3")
-                                .putString("bone_name", "west")
-                                .putInt("molang_version", 6))));
+//        // 线缆连接渲染
+//        componentNBT.putCompound("minecraft:part_visibility", new CompoundTag()
+//                .putCompound("boneConditions", new CompoundTag()
+//                        .putCompound("top", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:y_link') == 1 || q.block_property('pnx:y_link') == 3")
+//                                .putString("bone_name", "top")
+//                                .putInt("molang_version", 6))
+//                        .putCompound("bottom", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:y_link') == 2 || q.block_property('pnx:y_link') == 3")
+//                                .putString("bone_name", "bottom")
+//                                .putInt("molang_version", 6))
+//                        .putCompound("north", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:z_link') == 2 || q.block_property('pnx:z_link') == 3")
+//                                .putString("bone_name", "north")
+//                                .putInt("molang_version", 6))
+//                        .putCompound("east", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:x_link') == 1 || q.block_property('pnx:x_link') == 3")
+//                                .putString("bone_name", "east")
+//                                .putInt("molang_version", 6))
+//                        .putCompound("south", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:z_link') == 1 || q.block_property('pnx:z_link') == 3")
+//                                .putString("bone_name", "south")
+//                                .putInt("molang_version", 6))
+//                        .putCompound("west", new CompoundTag()
+//                                .putString("bone_condition", "q.block_property('pnx:x_link') == 2 || q.block_property('pnx:x_link') == 3")
+//                                .putString("bone_name", "west")
+//                                .putInt("molang_version", 6))));
         // 碰撞箱和选择箱
         componentNBT.putCompound("minecraft:collision_box", new CompoundTag()
                         .putBoolean("enabled", true)

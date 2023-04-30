@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import static cn.nukkit.blockproperty.CommonBlockProperties.EMPTY_PROPERTIES;
 import static cn.nukkit.blockproperty.CommonBlockProperties.PILLAR_AXIS;
+import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
 
 @AutoRegister(CustomBlock.class)
 public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock, TechDawnWorkableBlock {
@@ -60,32 +61,32 @@ public class BaseHingeBlock extends BlockTransparentMeta implements CustomBlock,
                 .geometry("geometry.techdawn.hinge")
                 .selectionBox(new Vector3f(-8f, 2, -2f), new Vector3f(16f, 12f, 4f))
                 .collisionBox(new Vector3f(-8f, 2, -2f), new Vector3f(16f, 12f, 4f))
-                .permutations(new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 0, 90)).build(),
+                .permutations(new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(0, 0, 90))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 0, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(0, 0, 0))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(0, 90, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == false"),
 
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 0, 90)).build(),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(90, 0, 90))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 0, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(90, 0, 0))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().materialInstances(staticMaterial).rotation(new Vector3f(90, 90, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(staticMaterial).transformation(fromRotation(new Vector3f(90, 90, 0))).build(),
                                 "q.block_property('working') == false && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == true"),
 
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 0, 90)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 0, 90))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 0, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 0, 0))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(0, 90, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == false"),
 
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 0, 90)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(90, 0, 90))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'y' && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 0, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(90, 0, 0))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'x' && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().materialInstances(workingMaterial).rotation(new Vector3f(90, 90, 0)).build(),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(90, 90, 0))).build(),
                                 "q.block_property('working') == true && q.block_property('pillar_axis') == 'z' && q.block_property('transposed') == true")
                 )
                 .build();
