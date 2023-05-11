@@ -1,0 +1,22 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "techdawn:base_windmill",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "textures/entity/windmill/antiseptic_wood"
+      },
+      "geometry": {
+        "default": "geometry.techdawn.windmill"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "enable_attachables": false,
+      "hide_armor": true
+    }
+  }
+}
