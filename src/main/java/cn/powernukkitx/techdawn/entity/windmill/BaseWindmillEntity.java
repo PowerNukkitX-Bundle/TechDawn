@@ -88,6 +88,9 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
         if (currentTick >= nextAnimateTick) {
             if (output < getMinOutput()) {
                 nextAnimateTick += 200;
+                var animationBuilder = AnimateEntityPacket.Animation.builder();
+                animationBuilder.animation("animation.techdawn.windmill.rotate_stop");
+                Entity.playAnimationOnEntities(animationBuilder.build(), List.of(this));
                 return super.onUpdate(currentTick);
             }
             level.addParticle(new HappyVillagerParticle(this.add(this.getDirectionVector().normalize().multiply(1.5f))));
@@ -141,7 +144,7 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
                 }
                 return airCount;
             }).sum();
-            this.windCoefficient = windOfHeight(y) * windOfFilling(totalAirCount / (11 * 11 * 11f + 5 * 5 * 5 * 3f));
+            this.windCoefficient = windOfHeight(y) * windOfFilling(1 - (totalAirCount / (11 * 11 * 11f + 5 * 5 * 5 * 3f)));
             // 雨天20%风力加成
             if (level.isRaining()) {
                 this.windCoefficient = Math.min(this.windCoefficient * 1.2f, 1f);
@@ -154,6 +157,6 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
     }
 
     public static float windOfFilling(float filling) {
-        return 2f * (sigmod(filling * 8f) - 0.5f);
+        return 1f - 2f * (sigmod(filling * 8f) - 0.5f);
     }
 }

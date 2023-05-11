@@ -2,7 +2,6 @@
 	"format_version": "1.8.0",
 	"animations": {
 		"animation.techdawn.windmill.rotate_18": {
-			"animation_length": 18,
 			"loop": true,
 			"bones": {
 				"head": {
@@ -17,7 +16,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_17": {
-			"animation_length": 17,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -31,7 +30,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_16": {
-			"animation_length": 16,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -45,7 +44,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_15": {
-			"animation_length": 15,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -59,7 +58,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_14": {
-			"animation_length": 14,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -73,7 +72,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_13": {
-			"animation_length": 13,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -87,7 +86,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_12": {
-			"animation_length": 12,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -101,7 +100,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_11": {
-			"animation_length": 11,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -115,7 +114,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_10": {
-			"animation_length": 10,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -129,7 +128,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_9": {
-			"animation_length": 9,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -143,7 +142,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_8": {
-			"animation_length": 8,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -157,7 +156,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_7": {
-			"animation_length": 7,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -171,7 +170,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_6": {
-			"animation_length": 6,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -185,7 +184,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_5": {
-			"animation_length": 5,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -199,7 +198,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_4": {
-			"animation_length": 4,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -213,7 +212,7 @@
 			}
 		},
 		"animation.techdawn.windmill.rotate_3": {
-			"animation_length": 3,
+			"loop": true,
 			"bones": {
 				"head": {
 					"relative_to": {
@@ -222,6 +221,20 @@
 					"rotation": {
 						"0.0": [0, 0, 0.01],
 						"3.0": [0, 0, -360]
+					}
+				}
+			}
+		},
+		"animation.techdawn.windmill.rotate_stop": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": [0, 0, 0.01],
+						"9999.9": [0, 0, 0.02]
 					}
 				}
 			}
