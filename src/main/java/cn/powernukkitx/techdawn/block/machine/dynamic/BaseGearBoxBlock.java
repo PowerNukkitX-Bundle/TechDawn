@@ -128,6 +128,8 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
         var tags = ItemTag.getTagSet(item.getNamespaceId());
         if (tags.contains("hammer") || tags.contains("wrench")) {
             setTransposed(!isTransposed());
+            var be = getBlockEntity();
+            if (be != null) be.setForceUpdate(true);
             level.setBlock(this, this, true, true);
             level.addSound(this, getTransposeSound());
             return true;

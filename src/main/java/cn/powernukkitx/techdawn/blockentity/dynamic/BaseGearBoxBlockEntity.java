@@ -31,6 +31,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     private final int spaceTime;
     private double transferRate = Double.NaN;
     private int lastFullUpdateTick;
+    private boolean forceUpdate = false;
 
     public BaseGearBoxBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -195,6 +196,7 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     public boolean onUpdate() {
         var currentTick = Server.getInstance().getTick();
         if (((currentTick + spaceTime) & 3) == 0) { // 错开更新时间避免峰值卡顿
+            if (forceUpdate) forceUpdate = false;
             var energyStorage = getStoredEnergy();
             if (energyStorage > getTransferRate()) {
                 setStoredEnergy(energyStorage - getTransferRate());
@@ -236,6 +238,10 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
             if (energyStorage > 0)
                 lastFullUpdateTick = currentTick;
         }
-        return getStoredEnergy() > 0 || currentTick - lastFullUpdateTick < 4;
+        return getStoredEnergy() > 0 || currentTick - lastFullUpdateTick < 4 || forceUpdate;
+    }
+
+    public void setForceUpdate(boolean forceUpdate) {
+        this.forceUpdate = forceUpdate;
     }
 }

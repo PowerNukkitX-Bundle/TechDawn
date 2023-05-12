@@ -5,7 +5,7 @@ import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
-public class AntisepticWoodVerticalDownGearBoxBlock extends BaseVerticalUpSteeringGearBoxBlock {
+public class AntisepticWoodVerticalDownGearBoxBlock extends BaseVerticalDownSteeringGearBoxBlock {
     @SuppressWarnings("unused")
     public AntisepticWoodVerticalDownGearBoxBlock() {
         super(0);
