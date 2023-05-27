@@ -154,3 +154,5 @@ tile.techdawn:base_vertical_down_steering_gear_box.name=测试用垂直下转向
 tile.techdawn:antiseptic_wood_vertical_down_gear_box.name=防腐木垂直下转向齿轮箱
 tile.techdawn:base_vertical_up_steering_gear_box.name=测试用垂直上转向齿轮箱
 tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=防腐木垂直上转向齿轮箱
+
+tile.techdawn:base_windmill.name=测试用风车方块

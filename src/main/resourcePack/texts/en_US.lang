@@ -154,3 +154,5 @@ tile.techdawn:base_vertical_down_steering_gear_box.name=Test-only Vertical Down 
 tile.techdawn:antiseptic_wood_vertical_down_gear_box.name=Antiseptic Wood Vertical Down Steering Gearbox
 tile.techdawn:base_vertical_up_steering_gear_box.name=Test-only Vertical Up Steering Gearbox
 tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=Antiseptic Wood Vertical Up Steering Gearbox
+
+tile.techdawn:base_windmill.name=Test-only Windmill Block

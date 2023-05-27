@@ -15,6 +15,7 @@ import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.AnimateEntityPacket;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.block.windmill.BaseWindmillBlock;
 import cn.powernukkitx.techdawn.energy.Rotation;
 import cn.powernukkitx.techdawn.util.MathUtil;
 
@@ -99,6 +100,9 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
             var animationBuilder = AnimateEntityPacket.Animation.builder();
             animationBuilder.animation("animation.techdawn.windmill.rotate_" + second);
             Entity.playAnimationOnEntities(animationBuilder.build(), List.of(this));
+        }
+        if (!(getTickCachedLevelBlock() instanceof BaseWindmillBlock)) {
+            close();
         }
         return super.onUpdate(currentTick);
     }
