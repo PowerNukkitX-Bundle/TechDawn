@@ -51,6 +51,8 @@ item.techdawn:antiseptic_wood_stick=Antiseptic Wood Stick
 item.techdawn:tar_impregnated_wood_stick=Tar Impregnated Wood Stick
 item.techdawn:antiseptic_wood_handle_item=Antiseptic Wood Handle
 item.techdawn:wood_handle_item=Wood Handle
+item.techdawn:antiseptic_wood_windmill_item=Antiseptic Wood Windmill
+item.techdawn:wood_windmill_item=Wood Windmill
 
 item.techdawn:annealed_copper_plate=Annealed Copper Plate
 item.techdawn:bronze_plate=Bronze Plate
@@ -156,3 +158,5 @@ tile.techdawn:base_vertical_up_steering_gear_box.name=Test-only Vertical Up Stee
 tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=Antiseptic Wood Vertical Up Steering Gearbox
 
 tile.techdawn:base_windmill.name=Test-only Windmill Block
+tile.techdawn:wood_windmill.name=Wood Windmill Block
+tile.techdawn:antiseptic_wood_windmill.name=Antiseptic Wood Windmill Block

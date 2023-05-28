@@ -9,8 +9,6 @@ import cn.nukkit.entity.custom.CustomEntity;
 import cn.nukkit.entity.custom.CustomEntityDefinition;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
-import cn.nukkit.level.particle.HappyVillagerParticle;
-import cn.nukkit.level.particle.RedstoneParticle;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.AnimateEntityPacket;
@@ -20,6 +18,7 @@ import cn.powernukkitx.techdawn.energy.Rotation;
 import cn.powernukkitx.techdawn.util.MathUtil;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 import static cn.powernukkitx.techdawn.util.MathUtil.sigmod;
@@ -78,9 +77,6 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
     @Override
     public boolean onUpdate(int currentTick) {
         var output = getMaxOutput() * this.windCoefficient;
-        if (output >= getMinOutput()) {
-            level.addParticle(new RedstoneParticle(this.add(0, 1.5).add(this.getDirectionVector())));
-        }
         if (output >= getMinOutput() && level.getBlockEntity(this.add(0, 1.5).add(this.getDirectionVector()))
                 instanceof EnergyHolder holder &&
                 holder.canAcceptInput(Rotation.getInstance(), this.getDirection().getOpposite())) {
@@ -94,14 +90,13 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
                 Entity.playAnimationOnEntities(animationBuilder.build(), List.of(this));
                 return super.onUpdate(currentTick);
             }
-            level.addParticle(new HappyVillagerParticle(this.add(this.getDirectionVector().normalize().multiply(1.5f))));
             var second = Math.round(MathUtil.scale(-output, -getMaxOutput(), -getMinOutput(), 3, 18));
             nextAnimateTick += second * 20;
             var animationBuilder = AnimateEntityPacket.Animation.builder();
             animationBuilder.animation("animation.techdawn.windmill.rotate_" + second);
             Entity.playAnimationOnEntities(animationBuilder.build(), List.of(this));
         }
-        if (!(getTickCachedLevelBlock() instanceof BaseWindmillBlock)) {
+        if (!(level.getTickCachedBlock(this.add(-0.5, 1, -0.5).add(this.getHorizontalFacing().getUnitVector().multiply(-0.3))) instanceof BaseWindmillBlock)) {
             close();
         }
         return super.onUpdate(currentTick);
@@ -116,11 +111,11 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
     }
 
     protected float getMaxOutput() {
-        return 4.5f;
+        return 3f;
     }
 
     protected float getMinOutput() {
-        return 0.75f;
+        return 0.5f;
     }
 
     @Override
@@ -153,6 +148,10 @@ public class BaseWindmillEntity extends Entity implements CustomEntity, EntityAs
             if (level.isRaining()) {
                 this.windCoefficient = Math.min(this.windCoefficient * 1.2f, 1f);
             }
+        }
+        // 每4tick进行一次±10%以内的干扰
+        if ((currentTick & 3) == 0) {
+            this.windCoefficient = Math.min(this.windCoefficient * (ThreadLocalRandom.current().nextFloat() * 0.2f + 0.9f), 1f);
         }
     }
 

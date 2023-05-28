@@ -24,10 +24,10 @@ public class WoodWindmillEntity extends BaseWindmillEntity {
     }
 
     protected float getMaxOutput() {
-        return 3f;
+        return 2f;
     }
 
     protected float getMinOutput() {
-        return 0.5f;
+        return 1f / 3f;
     }
 }

@@ -2,7 +2,7 @@
   "format_version": "1.10.0",
   "minecraft:client_entity": {
     "description": {
-      "identifier": "techdawn:base_windmill",
+      "identifier": "techdawn:antiseptic_wood_windmill",
       "materials": {
         "default": "entity"
       },

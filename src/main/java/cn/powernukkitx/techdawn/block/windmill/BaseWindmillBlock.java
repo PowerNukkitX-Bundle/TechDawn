@@ -102,9 +102,6 @@ public class BaseWindmillBlock extends BlockTransparentMeta implements CustomBlo
     public BaseWindmillEntity getWindmillEntity(boolean doNotCreate) {
         return entityCache.get(this.asBlockVector3(), k -> {
             var entityPos = this.add(0.5, -1, 0.5).add(this.getBlockFace().getUnitVector().multiply(-0.3));
-            System.out.println(this.level.fastNearbyEntities(new SimpleAxisAlignedBB(
-                    this.x - 2, this.y - 2, this.z - 2, this.x + 2, this.y + 2, this.z + 2
-            )));
             var tmp = this.level.fastNearbyEntities(new SimpleAxisAlignedBB(
                             this.x - 2, this.y - 2, this.z - 2, this.x + 2, this.y + 2, this.z + 2
                     )).stream()

@@ -54,6 +54,8 @@ item.techdawn:antiseptic_wood_stick=防腐木棍
 item.techdawn:tar_impregnated_wood_stick=焦油浸渍的木棍
 item.techdawn:antiseptic_wood_handle_item=防腐木曲柄
 item.techdawn:wood_handle_item=木制曲柄
+item.techdawn:antiseptic_wood_windmill_item=防腐木风车
+item.techdawn:wood_windmill_item=木制风车
 
 item.techdawn:annealed_copper_plate=退火铜板
 item.techdawn:bronze_plate=青铜板
@@ -156,3 +158,5 @@ tile.techdawn:base_vertical_up_steering_gear_box.name=测试用垂直上转向�
 tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=防腐木垂直上转向齿轮箱
 
 tile.techdawn:base_windmill.name=测试用风车方块
+tile.techdawn:wood_windmill.name=测试用木风车方块
+tile.techdawn:antiseptic_wood_windmill.name=测试用防腐木风车方块
