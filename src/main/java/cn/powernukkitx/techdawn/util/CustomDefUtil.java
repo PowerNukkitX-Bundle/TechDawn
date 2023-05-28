@@ -51,6 +51,37 @@ public final class CustomDefUtil {
                 .customBuild(nbt -> nbt.getCompound("components").remove("minecraft:material_instances"));
     }
 
+    public static CustomBlockDefinition get4DirectionWorkingFrontBackMachineDef(CustomBlock block, String workingTexture, String waitingTexture, String topTexture, String sideTexture, String backTexture) {
+        var workingMaterial = Materials.builder()
+                .up(Materials.RenderMethod.OPAQUE, topTexture)
+                .south(Materials.RenderMethod.OPAQUE, workingTexture)
+                .north(Materials.RenderMethod.OPAQUE, backTexture)
+                .any(Materials.RenderMethod.OPAQUE, sideTexture);
+        var waitingMaterial = Materials.builder()
+                .up(Materials.RenderMethod.OPAQUE, topTexture)
+                .south(Materials.RenderMethod.OPAQUE, waitingTexture)
+                .north(Materials.RenderMethod.OPAQUE, backTexture)
+                .any(Materials.RenderMethod.OPAQUE, sideTexture);
+        return CustomBlockDefinition.builder(block, Materials.builder())
+                .permutations(new Permutation(Component.builder().materialInstances(waitingMaterial).build(),
+                                "q.block_property('direction') == 0 && q.block_property('working') == 0"),
+                        new Permutation(Component.builder().materialInstances(waitingMaterial).transformation(fromRotation(new Vector3f(0, 270, 0))).build(),
+                                "q.block_property('direction') == 1 && q.block_property('working') == 0"),
+                        new Permutation(Component.builder().materialInstances(waitingMaterial).transformation(fromRotation(new Vector3f(0, 180, 0))).build(),
+                                "q.block_property('direction') == 2 && q.block_property('working') == 0"),
+                        new Permutation(Component.builder().materialInstances(waitingMaterial).transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
+                                "q.block_property('direction') == 3 && q.block_property('working') == 0"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).build(),
+                                "q.block_property('direction') == 0 && q.block_property('working') == 1"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 270, 0))).build(),
+                                "q.block_property('direction') == 1 && q.block_property('working') == 1"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 180, 0))).build(),
+                                "q.block_property('direction') == 2 && q.block_property('working') == 1"),
+                        new Permutation(Component.builder().materialInstances(workingMaterial).transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
+                                "q.block_property('direction') == 3 && q.block_property('working') == 1"))
+                .customBuild(nbt -> nbt.getCompound("components").remove("minecraft:material_instances"));
+    }
+
     @Contract("_ -> new")
     public static @NotNull Transformation fromRotation(@NotNull Vector3f rotation) {
         rotation.x /= 90;

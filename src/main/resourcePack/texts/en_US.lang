@@ -7,6 +7,7 @@ ui.techdawn_vanilla-like.invalid_structure=§cInvalid Multi-block Structure
 ui.techdawn.stone_extractor=Stone Extractor
 ui.techdawn.stone_grinder=Stone Grinder
 ui.techdawn.basic_redstone_battery_box=Basic Redstone Battery Box
+ui.techdawn.basic_kinetic_generator=Basic Kinetic Generator
 
 item.techdawn:bronze_ingot=Bronze Ingot
 item.techdawn:tough_copper_ingot=Tough Copper Ingot
@@ -141,6 +142,7 @@ tile.techdawn:base_electric_furnace.name=Test-only Electric Furnace
 tile.techdawn:base_battery_box.name=Test-only Battery Box
 tile.techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box
 tile.techdawn:basic_fuel_generator.name=Basic Fuel Generator
+tile.techdawn:basic_kinetic_generator.name=Basic Kinetic Generator
 
 tile.techdawn:base_hinge.name=Test-only Hinge
 tile.techdawn:antiseptic_wood_hinge.name=Antiseptic Wood Hinge

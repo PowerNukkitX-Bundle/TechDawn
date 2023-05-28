@@ -13,17 +13,21 @@ import com.google.common.util.concurrent.AtomicDouble;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class MachineBlockEntity extends BlockEntity implements EnergyHolder {
-    private final AtomicDouble storedEnergy;
+    private AtomicDouble storedEnergy;
 
     protected final UIManger uiManger = new UIManger(this::generateUI, this::updateUI);
 
     public MachineBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-        this.storedEnergy = new AtomicDouble(0);
+        initEnergy();
         loadNBT();
         if (putIntoEnergyNetwork()) {
             EnergyNetworkManager.putMachineAt(getFloorX(), getFloorY(), getFloorZ(), getLevel(), this);
         }
+    }
+
+    protected void initEnergy() {
+        this.storedEnergy = new AtomicDouble(0);
     }
 
     @NotNull
