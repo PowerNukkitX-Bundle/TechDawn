@@ -14,8 +14,8 @@ public interface TechDawnHardness {
     int HARDNESS_WOODEN = 1;
     int HARDNESS_COAL = 1;
     int HARDNESS_STONE = 28;
-    int HARDNESS_COPPER = 30;
-    int HARDNESS_TOUGH_COPPER = 28;
+    int HARDNESS_COPPER = 28;
+    int HARDNESS_TOUGH_COPPER = 30;
     int HARDNESS_ANNEALED_COPPER = 25;
     int HARDNESS_BRONZE = 30; // but in real-world, bronze is much harder than copper
     int HARDNESS_GOLD = 25;
@@ -24,6 +24,7 @@ public interface TechDawnHardness {
     int HARDNESS_DIAMOND = 100;
     int HARDNESS_STAINLESS_STEEL = 60;
     int HARDNESS_TIN = 15;
+    int HARDNESS_SILICON = 70;
 
     int getHardnessTier();
 

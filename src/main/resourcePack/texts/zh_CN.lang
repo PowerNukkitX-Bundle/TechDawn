@@ -68,6 +68,7 @@ item.techdawn:stainless_steel_plate=不锈钢板
 item.techdawn:steel_plate=钢板
 item.techdawn:tough_copper_plate=韧铜板
 item.techdawn:tin_plate=锡板
+item.techdawn:silicon_plate=硅板
 
 item.techdawn:annealed_copper_gear=退火铜齿轮
 item.techdawn:antiseptic_wood_gear=防腐木齿轮
@@ -98,6 +99,7 @@ item.techdawn:clean_coal_nugget=精煤粒
 item.techdawn:clean_coal=精煤
 item.techdawn:basic_circuit_board=基础电路板
 item.techdawn:advanced_circuit_board=高级电路板
+item.techdawn:silicon=硅
 
 tile.techdawn:flint_gravel.name=燧石沙砾
 

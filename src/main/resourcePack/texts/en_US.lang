@@ -65,6 +65,7 @@ item.techdawn:stainless_steel_plate=Stainless Steel Plate
 item.techdawn:steel_plate=Steel Plate
 item.techdawn:tough_copper_plate=Tough Copper Plate
 item.techdawn:tin_plate=Tin Plate
+item.techdawn:silicon_plate=Silicon Plate
 
 item.techdawn:annealed_copper_gear=Annealed Copper Gear
 item.techdawn:antiseptic_wood_gear=Antiseptic Wood Gear
@@ -91,6 +92,7 @@ item.techdawn:crushed_tin_ore=Crushed Tin Ore
 item.techdawn:stone_nugget=Pebble
 item.techdawn:coal_nugget=Coal Nugget
 item.techdawn:clean_coal_nugget=Clean Coal Nugget
+item.techdawn:silicon=Silicon
 
 item.techdawn:clean_coal=Clean Coal
 item.techdawn:basic_circuit_board=Basic Circuit Board
