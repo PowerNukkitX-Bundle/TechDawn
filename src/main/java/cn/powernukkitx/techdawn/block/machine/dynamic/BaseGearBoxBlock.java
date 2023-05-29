@@ -64,9 +64,9 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
                         .west(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_side")
                         .east(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_side")
                         .any(Materials.RenderMethod.OPAQUE, getMainTextureName() + "_back"))
-                .permutations(new Permutation(Component.builder().transformation(fromRotation(new Vector3f(90, 0, 0))).build(),
+                .permutations(new Permutation(Component.builder().transformation(fromRotation(new Vector3f(270, 90, 0))).build(),
                                 "q.block_property('facing_direction') == 0 && q.block_property('transposed') == false"),
-                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(270, 0, 0))).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(90, 90, 0))).build(),
                                 "q.block_property('facing_direction') == 1 && q.block_property('transposed') == false"),
                         new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 180, 0))).build(),
                                 "q.block_property('facing_direction') == 3 && q.block_property('transposed') == false"),
@@ -77,9 +77,9 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
                         new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 90, 0))).build(),
                                 "q.block_property('facing_direction') == 4 && q.block_property('transposed') == false"),
 
-                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(90, 90, 0))).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(270, 0, 0))).build(),
                                 "q.block_property('facing_direction') == 0 && q.block_property('transposed') == true"),
-                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(270, 90, 0))).build(),
+                        new Permutation(Component.builder().transformation(fromRotation(new Vector3f(90, 0, 0))).build(),
                                 "q.block_property('facing_direction') == 1 && q.block_property('transposed') == true"),
                         new Permutation(Component.builder().transformation(fromRotation(new Vector3f(0, 180, 90))).build(),
                                 "q.block_property('facing_direction') == 3 && q.block_property('transposed') == true"),
@@ -123,6 +123,7 @@ public class BaseGearBoxBlock extends BlockSolidMeta implements CustomBlock, Fac
 
     @Override
     public boolean onActivate(@NotNull Item item, @Nullable Player player) {
+        System.out.println(getBlockFace());
         if (item.isNull()) return false;
         if (player != null && !InventoryUtil.ensurePlayerSafeForCustomInv(player)) return false;
         var tags = ItemTag.getTagSet(item.getNamespaceId());
