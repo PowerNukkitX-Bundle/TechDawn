@@ -180,12 +180,27 @@ public class BaseGearBoxBlockEntity extends BlockEntity implements EnergyHolder,
     @Override
     public double handleDynamicTransferring(double amount, BlockFace direction) {
         if (amount == 0) return 0;
+        var beList = new ArrayList<EnergyHolder>(2);
         for (var each : this.getOutputFaces()) {
             var tmpBlockEntity = this.level.getBlockEntity(new Position((int) this.x + each.getXOffset(), (int) this.y + each.getYOffset(), (int) this.z + each.getZOffset()));
             if (tmpBlockEntity instanceof EnergyHolder energyHolder && energyHolder.canAcceptInput(Rotation.getInstance(), each.getOpposite())) {
-                var availableStorageSpace = energyHolder.getMaxStorage() - energyHolder.getStoredEnergy();
+                beList.add(energyHolder);
+            }
+        }
+        if (beList.isEmpty()) return amount;
+        var eachEnergy = amount / beList.size();
+        for (var each : beList) {
+            var availableStorageSpace = each.getMaxStorage() - each.getStoredEnergy();
+            var energyToTransfer = Math.min(eachEnergy, availableStorageSpace);
+            each.inputInto(Rotation.getInstance(), energyToTransfer);
+            amount -= energyToTransfer;
+        }
+        if (amount > 0) {
+            for (var each : beList) {
+                if (amount <= 0) return 0;
+                var availableStorageSpace = each.getMaxStorage() - each.getStoredEnergy();
                 var energyToTransfer = Math.min(amount, availableStorageSpace);
-                energyHolder.inputInto(Rotation.getInstance(), energyToTransfer);
+                each.inputInto(Rotation.getInstance(), energyToTransfer);
                 amount -= energyToTransfer;
             }
         }
