@@ -182,6 +182,20 @@
   {
     "input": {
       "type": "item",
+      "id": "techdawn:silicon"
+    },
+    "template": {
+      "type": "item",
+      "id": "techdawn:stone_plate_template"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:silicon_plate"
+    }
+  },
+  {
+    "input": {
+      "type": "item",
       "id": "techdawn:annealed_copper_ingot"
     },
     "template": {

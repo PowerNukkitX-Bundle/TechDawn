@@ -34,5 +34,41 @@
     },
     "processingTick": 9600,
     "xp": 0
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:sand"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:silicon"
+    },
+    "processingTick": 4800,
+    "xp": 2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:quartz"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:silicon"
+    },
+    "processingTick": 3600,
+    "xp": 2
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "techdawn:quartz_dust"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:silicon"
+    },
+    "processingTick": 2400,
+    "xp": 2
   }
 ]

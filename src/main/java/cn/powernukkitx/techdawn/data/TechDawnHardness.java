@@ -57,7 +57,7 @@ public interface TechDawnHardness {
      */
     static int tryGetHardnessTier(@Nullable Item item) {
         if (item == null || item.isNull()) return -1;
-        if (item instanceof TechDawnHardness) return -1;
+        if (item instanceof TechDawnHardness hardness) return hardness.getHardnessTier();
         var nid = item.getNamespaceId();
         var pureId = nid.substring(nid.indexOf(':') + 1);
         if (pureId.contains("wood") || pureId.contains("wooden")) return HARDNESS_WOODEN;

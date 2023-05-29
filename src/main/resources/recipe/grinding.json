@@ -238,5 +238,15 @@
       "type": "item",
       "id": "techdawn:clean_coal_dust"
     }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:quartz"
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:quartz_dust"
+    }
   }
 ]
