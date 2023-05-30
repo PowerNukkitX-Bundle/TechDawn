@@ -102,6 +102,8 @@ item.techdawn:basic_circuit_board=基础电路板
 item.techdawn:advanced_circuit_board=高级电路板
 item.techdawn:silicon=硅
 
+item.techdawn:rubber_sapling=橡胶树苗
+
 tile.techdawn:flint_gravel.name=燧石沙砾
 
 tile.techdawn:bronze_brick.name=青铜砖块
@@ -165,3 +167,5 @@ tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=防腐木垂直上转向
 tile.techdawn:base_windmill.name=测试用风车方块
 tile.techdawn:wood_windmill.name=测试用木风车方块
 tile.techdawn:antiseptic_wood_windmill.name=测试用防腐木风车方块
+
+tile.techdawn:rubber_sapling_block.name=橡胶树苗方块

@@ -14,5 +14,8 @@
   "techdawn:antiseptic_wood_hinge": {
     "textures": "techdawn-blocks-hinge-antiseptic_wood_hinge-dyn",
     "sound": "scaffolding"
+  },
+  "techdawn:rubber_sapling_block": {
+    "sound": "grass"
   }
 }

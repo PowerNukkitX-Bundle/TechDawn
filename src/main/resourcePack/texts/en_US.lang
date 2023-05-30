@@ -95,6 +95,8 @@ item.techdawn:coal_nugget=Coal Nugget
 item.techdawn:clean_coal_nugget=Clean Coal Nugget
 item.techdawn:silicon=Silicon
 
+item.techdawn:rubber_sapling=Rubber Sapling
+
 item.techdawn:clean_coal=Clean Coal
 item.techdawn:basic_circuit_board=Basic Circuit Board
 item.techdawn:advanced_circuit_board=Advanced Circuit Board
@@ -165,3 +167,5 @@ tile.techdawn:antiseptic_wood_vertical_up_gear_box.name=Antiseptic Wood Vertical
 tile.techdawn:base_windmill.name=Test-only Windmill Block
 tile.techdawn:wood_windmill.name=Wood Windmill Block
 tile.techdawn:antiseptic_wood_windmill.name=Antiseptic Wood Windmill Block
+
+tile.techdawn:rubber_sapling_block.name=Rubber Sampling Block

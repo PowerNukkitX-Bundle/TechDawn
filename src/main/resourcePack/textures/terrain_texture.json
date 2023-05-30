@@ -14,6 +14,9 @@
     },
     "techdawn-blocks-hinge-antiseptic_wood_hinge-dyn": {
       "textures": "textures/blocks/hinge/antiseptic_wood_hinge"
+    },
+    "techdawn-items-misc-rubber_sapling": {
+      "textures": "textures/items/misc/rubber_sapling"
     }
   }
 }
