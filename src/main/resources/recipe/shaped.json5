@@ -857,5 +857,179 @@
       "BAB",
       " A "
     ]
+  },
+  // dynamic
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_hinge",
+      "count": 3
+    },
+    "shape": [
+      "AAA",
+      "   ",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_gear_box"
+    },
+    "shape": [
+      "CBC",
+      "AAA",
+      "CBC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_horizontal_steering_gear_box"
+    },
+    "shape": [
+      "CCC",
+      "AAA",
+      "CCC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_transposing_gear_box"
+    },
+    "shape": [
+      "CCC",
+      "ABA",
+      "CCC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_vertical_down_gear_box"
+    },
+    "shape": [
+      "CCC",
+      "CAA",
+      "CAC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_vertical_down_gear_box"
+    },
+    "shape": [
+      "CCC",
+      "AAC",
+      "CAC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_vertical_up_gear_box"
+    },
+    "shape": [
+      "CAC",
+      "CAA",
+      "CCC"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_hinge"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_vertical_up_gear_box"
+    },
+    "shape": [
+      "CAC",
+      "AAC",
+      "CCC"
+    ]
   }
 ]
