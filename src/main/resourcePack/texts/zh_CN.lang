@@ -169,3 +169,5 @@ tile.techdawn:wood_windmill.name=测试用木风车方块
 tile.techdawn:antiseptic_wood_windmill.name=测试用防腐木风车方块
 
 tile.techdawn:rubber_sapling_block.name=橡胶树苗方块
+tile.techdawn:rubber_leaves.name=橡胶树叶
+tile.techdawn:rubber_log.name=橡胶树原木

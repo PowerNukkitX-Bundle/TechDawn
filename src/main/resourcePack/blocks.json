@@ -17,5 +17,11 @@
   },
   "techdawn:rubber_sapling_block": {
     "sound": "grass"
+  },
+  "techdawn:rubber_leaves": {
+    "sound": "grass"
+  },
+  "techdawn:rubber_log": {
+    "sound": "wood"
   }
 }

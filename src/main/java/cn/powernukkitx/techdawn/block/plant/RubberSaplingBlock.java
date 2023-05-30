@@ -1,22 +1,24 @@
 package cn.powernukkitx.techdawn.block.plant;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.Block;
-import cn.nukkit.block.BlockCrops;
-import cn.nukkit.block.BlockFlowable;
-import cn.nukkit.block.BlockFlower;
+import cn.nukkit.block.*;
 import cn.nukkit.block.customblock.CustomBlock;
 import cn.nukkit.block.customblock.CustomBlockDefinition;
 import cn.nukkit.block.customblock.data.Materials;
 import cn.nukkit.blockproperty.BlockProperties;
 import cn.nukkit.blockproperty.BooleanBlockProperty;
+import cn.nukkit.event.level.StructureGrowEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.ListChunkManager;
 import cn.nukkit.level.particle.BoneMealParticle;
 import cn.nukkit.math.BlockFace;
+import cn.nukkit.math.NukkitRandom;
+import cn.nukkit.math.Vector3;
 import cn.nukkit.math.Vector3f;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.worldgen.object.ObjectRubberTree;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -129,7 +131,20 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
     }
 
     private void grow() {
-        System.out.println("grow");
+        ListChunkManager chunkManager = new ListChunkManager(this.level);
+        Vector3 vector3 = new Vector3(this.x, this.y - 1, this.z);
+        ObjectRubberTree.growTree(chunkManager, this.getFloorX(), this.getFloorY(), this.getFloorZ(), new NukkitRandom());
+        StructureGrowEvent ev = new StructureGrowEvent(this, chunkManager.getBlocks());
+        this.level.getServer().getPluginManager().callEvent(ev);
+        if (ev.isCancelled()) {
+            return;
+        }
+        if (this.level.getBlock(vector3).getId() == BlockID.DIRT_WITH_ROOTS) {
+            this.level.setBlock(vector3, Block.get(BlockID.DIRT));
+        }
+        for (Block block : ev.getBlockList()) {
+            this.level.setBlock(block, block);
+        }
     }
 
     @NotNull

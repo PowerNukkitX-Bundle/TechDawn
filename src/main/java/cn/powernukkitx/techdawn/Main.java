@@ -112,5 +112,7 @@ public final class Main extends PluginBase {
 
     private void registerRandomTickableBlock() {
         Level.setCanRandomTick(BlockState.of("techdawn:tar_impregnated_wood_plank").getBlockId(), true);
+        Level.setCanRandomTick(BlockState.of("techdawn:rubber_log").getBlockId(), true);
+        Level.setCanRandomTick(BlockState.of("techdawn:rubber_leaves").getBlockId(), true);
     }
 }
