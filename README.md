@@ -12,6 +12,22 @@ TechDawn 科技黎明，是一个以科技和探索为核心的我的世界基�
 
 此项目基于有附加条件的MIT许可证开源，当且仅当用于与网易公司，NetEase Inc.，我的世界中国版或MineCraft China没有关联的项目。  
 
+以下文件基于无附加条件的MIT许可证开源：
+
+- `src/main/resourcePack/textures/blocks/plant/rubber_leaves.png`
+- `src/main/resourcePack/textures/blocks/plant/rubber_log_side.png`
+- `src/main/resourcePack/textures/blocks/plant/rubber_log_top.png`
+- `src/main/resourcePack/textures/blocks/plant/rubber_log_sap.png`
+- `src/main/resourcePack/sounds/sap_extract.ogg`
+- `src/main/resourcePack/textures/blocks/construct/rubber_plank.png`
+- `src/main/resourcePack/textures/items/misc/rubber.png`
+- `src/main/resourcePack/textures/items/misc/rubber_sapling.png`
+- `src/main/resourcePack/textures/items/misc/sillicon.png`
+- `src/test/java/cn/powernukkitx/techdawn/tool/RemoveBgTool.java`
+- `.github/workflows/maven.yml`
+- `LICENSE`
+- `pom.xml`
+
 ## 鸣谢
 
 - [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX)  
