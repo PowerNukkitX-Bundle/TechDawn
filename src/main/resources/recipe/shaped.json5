@@ -34,6 +34,23 @@
       "A"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:rubber_plank"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:stick",
+      "count": 4
+    },
+    "shape": [
+      "A",
+      "A"
+    ]
+  },
   // stick to handle
   {
     "input": {

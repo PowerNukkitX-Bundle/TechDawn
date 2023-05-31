@@ -120,5 +120,18 @@
       "id": "techdawn:coal_nugget",
       "count": 9
     }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:rubber_log"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:rubber_plank",
+      "count": 4
+    }
   }
 ]
