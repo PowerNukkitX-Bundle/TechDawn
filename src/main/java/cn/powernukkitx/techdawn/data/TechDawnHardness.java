@@ -26,6 +26,7 @@ public interface TechDawnHardness {
     int HARDNESS_TIN = 15;
     int HARDNESS_SILICON = 70;
     int HARDNESS_QUARTZ = 70;
+    int HARDNESS_RUBBER = 1;
 
     int getHardnessTier();
 

@@ -94,13 +94,15 @@ item.techdawn:crushed_tin_ore=Crushed Tin Ore
 item.techdawn:stone_nugget=Pebble
 item.techdawn:coal_nugget=Coal Nugget
 item.techdawn:clean_coal_nugget=Clean Coal Nugget
-item.techdawn:silicon=Silicon
 
 item.techdawn:rubber_sapling=Rubber Sapling
 
 item.techdawn:clean_coal=Clean Coal
 item.techdawn:basic_circuit_board=Basic Circuit Board
 item.techdawn:advanced_circuit_board=Advanced Circuit Board
+item.techdawn:silicon=Silicon
+item.techdawn:solidified_sap=Solidified Sap
+item.techdawn:rubber=Rubber
 
 tile.techdawn:flint_gravel.name=Flint Gravel
 
