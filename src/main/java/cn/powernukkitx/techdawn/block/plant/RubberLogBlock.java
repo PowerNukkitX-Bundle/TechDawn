@@ -13,12 +13,16 @@ import cn.nukkit.blockproperty.CommonBlockProperties;
 import cn.nukkit.blockproperty.IntBlockProperty;
 import cn.nukkit.blockstate.BlockState;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemGlassBottle;
 import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Level;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.Vector3f;
+import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.item.bottle.SapGlassBottle;
+import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -177,11 +181,46 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
                 if (leafExists) {
                     setSapping(true);
                     getLevel().setBlock(this, this, true, true);
+                } else {
+                    return Level.BLOCK_UPDATE_RANDOM;
                 }
             } else {
                 return Level.BLOCK_UPDATE_RANDOM;
             }
         }
         return Level.BLOCK_UPDATE_NORMAL;
+    }
+
+    @Override
+    public boolean canBeActivated() {
+        return true;
+    }
+
+    @Override
+    public boolean onActivate(@NotNull Item item, Player player) {
+        if (isSapping() && item instanceof ItemGlassBottle) {
+            if (player != null && !InventoryUtil.ensurePlayerSafeForCustomInv(player)) {
+                return false;
+            }
+            {
+                var pk = new PlaySoundPacket();
+                pk.name = "techdawn.sap_extract";
+                pk.volume = 1;
+                pk.pitch = 1;
+                pk.x = this.getFloorX();
+                pk.y = this.getFloorY();
+                pk.z = this.getFloorZ();
+                this.level.addChunkPacket(this.getChunkX(), this.getChunkZ(), pk);
+            }
+            setSapping(false);
+            getLevel().setBlock(this, this, true, true);
+            if (player != null) {
+                player.getInventory().addItem(new SapGlassBottle());
+            } else {
+                level.dropItem(this.add(0.5, 0.5, 0.5), new SapGlassBottle());
+            }
+            return true;
+        }
+        return super.onActivate(item, player);
     }
 }

@@ -4,6 +4,10 @@
     "techdawn.wood_handle": {
       "category": "block",
       "sounds": ["sounds/wood_handle"]
+    },
+    "techdawn.sap_extract": {
+      "category": "block",
+      "sounds": ["sounds/sap_extract"]
     }
   }
 }
