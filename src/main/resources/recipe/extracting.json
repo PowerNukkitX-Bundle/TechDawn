@@ -14,5 +14,29 @@
       "type": "item",
       "id": "techdawn:tar_glass_bottle"
     }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:rubber_log"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:solidified_sap"
+    }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:solidified_sap"
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:rubber"
+    }
   }
 ]

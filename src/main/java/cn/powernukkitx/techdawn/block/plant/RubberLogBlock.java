@@ -18,11 +18,13 @@ import cn.nukkit.item.ItemTool;
 import cn.nukkit.level.Level;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.Vector3f;
+import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.PlaySoundPacket;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.item.bottle.SapGlassBottle;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.util.ItemUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -82,6 +84,7 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
 
     @Override
     public CustomBlockDefinition getDefinition() {
+        ItemUtil.registerFuel("techdawn:rubber_log", 300);
         var normalMaterials = Materials.builder().any(Materials.RenderMethod.OPAQUE, "techdawn-blocks-plant-rubber_log_side")
                 .up(Materials.RenderMethod.OPAQUE, "techdawn-blocks-plant-rubber_log_top")
                 .down(Materials.RenderMethod.OPAQUE, "techdawn-blocks-plant-rubber_log_top");
@@ -107,7 +110,11 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
                 .permutation(new Permutation(Component.builder().materialInstances(sappingMaterials)
                         .transformation(fromRotation(new Vector3f(90, 0, 0))).build(),
                         "q.block_property('pillar_axis') == 'z' && q.block_property('status') >= 2"))
-                .customBuild(nbt -> nbt.getCompound("components").remove("minecraft:material_instances"));
+                .customBuild(nbt -> {
+                    var component = nbt.getCompound("components");
+                    component.remove("minecraft:material_instances");
+                    component.putCompound("minecraft:fuel", new CompoundTag().putFloat("duration", 300));
+                });
     }
 
     @Override

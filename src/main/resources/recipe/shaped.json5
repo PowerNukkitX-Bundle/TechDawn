@@ -1048,5 +1048,27 @@
       "AAC",
       "CCC"
     ]
+  },
+  // misc
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:sap_glass_bottle"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:solidified_sap"
+    },
+    "shape": [
+      "A"
+    ],
+    "extra": [
+      {
+        "type": "item",
+        "id": "minecraft:glass_bottle"
+      }
+    ]
   }
 ]

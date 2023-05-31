@@ -126,16 +126,25 @@ public final class RecipeUtil {
             for (var each : arr) {
                 var recipeObj = each.getAsJsonObject();
                 var inputs = recipeObj.get("input").getAsJsonArray();
-                var input = inputs.get(1).getAsJsonObject();
-                var extracted = inputs.get(0).getAsJsonObject();
+
                 var output = recipeObj.get("output").getAsJsonObject();
                 ItemDescriptor inputDes;
                 ItemDescriptor extractedDes;
-                if (jsonObjectContains(input, "type", "item")) {
-                    inputDes = new DefaultDescriptor(getItemFromJson(input));
+
+                if (inputs.size() >= 2) {
+                    var input = inputs.get(1).getAsJsonObject();
+                    if (jsonObjectContains(input, "type", "item")) {
+                        inputDes = new DefaultDescriptor(getItemFromJson(input));
+                    } else {
+                        inputDes = new ItemTagDescriptor(input.get("tag").getAsString(), 1);
+                    }
                 } else {
-                    inputDes = new ItemTagDescriptor(input.get("tag").getAsString(), 1);
+                    var air = Item.AIR_ITEM.clone();
+                    air.setCount(0);
+                    inputDes = new DefaultDescriptor(air);
                 }
+
+                var extracted = inputs.get(0).getAsJsonObject();
                 if (jsonObjectContains(extracted, "type", "item")) {
                     extractedDes = new DefaultDescriptor(getItemFromJson(extracted));
                 } else {
@@ -194,6 +203,7 @@ public final class RecipeUtil {
        }
      ]
     */
+    @SuppressWarnings("DataFlowIssue")
     public static void registerShapedRecipes() throws IOException {
         var s = Main.class.getResourceAsStream("/recipe/shaped.json5");
         if (s == null) {
@@ -208,6 +218,8 @@ public final class RecipeUtil {
                 var input = recipeObj.get("input").getAsJsonObject();
                 var output = recipeObj.get("output").getAsJsonObject();
                 var shape = recipeObj.get("shape").getAsJsonArray();
+                var extra = recipeObj.has("extra") ? recipeObj.get("extra").getAsJsonArray() : null;
+                List<Item> extraList = extra == null || extra.size() == 0 ? List.of() : new ArrayList<>(extra.size());
                 var shapeArr = new String[shape.size()];
                 for (int i = 0; i < shape.size(); i++) {
                     shapeArr[i] = shape.get(i).getAsString();
@@ -222,7 +234,16 @@ public final class RecipeUtil {
                         map.put(key, new ItemTagDescriptor(value.get("tag").getAsString(), 1));
                     }
                 }
-                manager.registerShapedRecipe(new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, List.of()));
+                if (extra != null && extra.size() != 0) {
+                    for (var eachExtra : extra) {
+                        if (jsonObjectContains(eachExtra.getAsJsonObject(), "type", "item")) {
+                            extraList.add(getItemFromJson(eachExtra.getAsJsonObject()));
+                        } else {
+                            throw new IllegalStateException("Tag extra for shaped recipe is not supported yet");
+                        }
+                    }
+                }
+                manager.registerShapedRecipe(new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, extraList));
             }
         }
     }

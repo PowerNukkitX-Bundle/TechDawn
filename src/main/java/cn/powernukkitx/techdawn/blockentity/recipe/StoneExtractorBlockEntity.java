@@ -23,7 +23,7 @@ import cn.powernukkitx.techdawn.inventory.recipe.StoneExtractorInventory;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static cn.nukkit.inventory.BaseInventory.AIR_ITEM;
 
@@ -190,17 +190,31 @@ public class StoneExtractorBlockEntity extends MachineBlockEntity implements Rec
         Item input = this.inventory.getInput();
         Item extracted = this.inventory.getExtracted();
         Item product = this.inventory.getResult();
-        var smelt = this.server.getCraftingManager().matchModProcessRecipe("extracting", List.of(input, extracted));
+        var ingredientList = new ArrayList<Item>(2);
+        if (input.getCount() > 0) {
+            ingredientList.add(input);
+        }
+        if (extracted.getCount() > 0) {
+            ingredientList.add(extracted);
+        }
+        var smelt = this.server.getCraftingManager().matchModProcessRecipe("extracting", ingredientList);
         // 配方是否合适
         boolean canSmelt = false;
         if (smelt != null) {
-            canSmelt = (input.getCount() > 0 && extracted.getCount() > 0 && ((smelt.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
+            canSmelt = ((input.getCount() > 0 || extracted.getCount() > 0) && ((smelt.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
             //检查输入
-            if (!(smelt.getIngredients().get(0).match(input) || smelt.getIngredients().get(1).match(input))) {
-                canSmelt = false;
-            }
-            if (!(smelt.getIngredients().get(0).match(extracted) || smelt.getIngredients().get(1).match(extracted))) {
-                canSmelt = false;
+            var ingredients = smelt.getIngredients();
+            if (ingredients.size() == 2) {
+                if (!(smelt.getIngredients().get(0).match(input) || smelt.getIngredients().get(1).match(input))) {
+                    canSmelt = false;
+                }
+                if (!(smelt.getIngredients().get(0).match(extracted) || smelt.getIngredients().get(1).match(extracted))) {
+                    canSmelt = false;
+                }
+            } else if (ingredients.size() == 1) {
+                if (!(smelt.getIngredients().get(0).match(input) || smelt.getIngredients().get(0).match(extracted))) {
+                    canSmelt = false;
+                }
             }
         }
         if (canSmelt) {
