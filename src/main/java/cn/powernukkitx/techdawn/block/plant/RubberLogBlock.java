@@ -14,12 +14,15 @@ import cn.nukkit.blockproperty.IntBlockProperty;
 import cn.nukkit.blockstate.BlockState;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemTool;
+import cn.nukkit.level.Level;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.math.Vector3f;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
 
@@ -156,5 +159,29 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
     @Override
     public int getToolType() {
         return ItemTool.TYPE_AXE;
+    }
+
+    public int onUpdate(int type) {
+        if (type == Level.BLOCK_UPDATE_RANDOM) { // Sapping
+            if (isNature() && !isSapping() && ThreadLocalRandom.current().nextFloat() < 0.25f) {
+                var leafExists = false;
+                for (var dy = 0; dy < 8; dy++) {
+                    var block = this.level.getBlock(this.getFloorX(), this.getFloorY() + dy, this.getFloorZ());
+                    if (block instanceof RubberLeavesBlock) {
+                        leafExists = true;
+                        break;
+                    } else if (block instanceof RubberLogBlock rubberLogBlock && !rubberLogBlock.isNature()) {
+                        break;
+                    }
+                }
+                if (leafExists) {
+                    setSapping(true);
+                    getLevel().setBlock(this, this, true, true);
+                }
+            } else {
+                return Level.BLOCK_UPDATE_RANDOM;
+            }
+        }
+        return Level.BLOCK_UPDATE_NORMAL;
     }
 }
