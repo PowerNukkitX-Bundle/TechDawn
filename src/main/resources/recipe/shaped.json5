@@ -1049,6 +1049,69 @@
       "CCC"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "tag",
+        "tag": "minecraft:planks"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_blade"
+    },
+    "shape": [
+      "BAB",
+      "BAB",
+      "BAB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:rubber_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_blade"
+    },
+    "shape": [
+      "BAB",
+      "BAB",
+      "BAB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_stick"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_blade"
+    },
+    "shape": [
+      "BAB",
+      "BAB",
+      "BAB"
+    ]
+  },
   // misc
   {
     "input": {
