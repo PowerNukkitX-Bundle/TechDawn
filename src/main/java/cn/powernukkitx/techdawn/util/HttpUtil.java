@@ -3,12 +3,12 @@ package cn.powernukkitx.techdawn.util;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
 import java.util.zip.ZipFile;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -44,9 +44,9 @@ public final class HttpUtil {
                     entryFile.mkdirs();
                 } else {
                     entryFile.getParentFile().mkdirs();
-                    try (var inputStream = zipFile.getInputStream(entry)) {
-                        var outputStream = entryFile.exists() ? new File(dir, entry.getName() + ".tmp").toPath() : entryFile.toPath();
-                        Files.copy(inputStream, outputStream);
+                    try (var inputStream = zipFile.getInputStream(entry);
+                         var outputStream = new FileOutputStream(new File(dir, entry.getName()))) {
+                        inputStream.transferTo(outputStream);
                     }
                 }
             }

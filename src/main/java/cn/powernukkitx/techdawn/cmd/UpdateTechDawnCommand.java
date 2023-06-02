@@ -38,9 +38,9 @@ public class UpdateTechDawnCommand extends Command {
             log.addError("Invalid operation: " + operation).output();
             return 0;
         }
-        String apiEndpoint = list.size() > 1 ? list.getResult(1) : "www.powernukkitx.com";
+        String apiEndpoint = list.size() > 2 ? list.getResult(1) : "powernukkitx.com";
         CompletableFuture.runAsync(() -> {
-            var currentJarModifiedTime = Main.INSTANCE.getFile().lastModified();
+            var currentJarModifiedTime = Main.INSTANCE.getFile().lastModified() - 9999999;
             var currentMcPackModifiedTime = new File("./resource_packs/TechDawn.mcpack").lastModified();
             var jarUpdated = false;
             var mcPackUpdated = false;
@@ -55,7 +55,7 @@ public class UpdateTechDawnCommand extends Command {
                             log.addSuccess("New version found!").output();
                             log.addSuccess("Downloading...").output();
                             var oldFile = new File(Main.INSTANCE.getFile().getParentFile(), "TechDawn.old.jar");
-                            Files.move(Main.INSTANCE.getFile().toPath(), oldFile.toPath());
+                            Files.copy(Main.INSTANCE.getFile().toPath(), oldFile.toPath());
                             HttpUtil.downloadAndDecompressZip(Main.INSTANCE.getFile().getParentFile(), "https://" + apiEndpoint + "/api/download/" +
                                     each.getValue().getAsJsonObject().get("downloadId").getAsLong());
                             log.addSuccess("Downloaded!").output();
@@ -68,7 +68,7 @@ public class UpdateTechDawnCommand extends Command {
                         if (latestMcPackModifiedTime > currentMcPackModifiedTime) {
                             log.addSuccess("Downloading...").output();
                             var oldFile = new File("./resource_packs/TechDawn.old.mcpack");
-                            Files.move(new File("./resource_packs/TechDawn.mcpack").toPath(), oldFile.toPath());
+                            Files.copy(new File("./resource_packs/TechDawn.mcpack").toPath(), oldFile.toPath());
                             HttpUtil.downloadAndDecompressZip(new File("./resource_packs"), "https://" + apiEndpoint + "/api/download/" +
                                     each.getValue().getAsJsonObject().get("downloadId").getAsLong());
                             log.addSuccess("Downloaded!").output();
