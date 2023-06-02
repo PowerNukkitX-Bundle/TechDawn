@@ -8,6 +8,7 @@ ui.techdawn.stone_extractor=石制萃取机
 ui.techdawn.stone_grinder=石制研磨机
 ui.techdawn.basic_redstone_battery_box=基础红石电池盒
 ui.techdawn.basic_kinetic_generator=基础动能发电机
+ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
 ui.techdawn.component.stored_energy=已储存能量
 ui.techdawn.component.container=容器

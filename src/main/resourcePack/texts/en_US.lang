@@ -8,6 +8,7 @@ ui.techdawn.stone_extractor=Stone Extractor
 ui.techdawn.stone_grinder=Stone Grinder
 ui.techdawn.basic_redstone_battery_box=Basic Redstone Battery Box
 ui.techdawn.basic_kinetic_generator=Basic Kinetic Generator
+ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 
 item.techdawn:bronze_ingot=Bronze Ingot
 item.techdawn:tough_copper_ingot=Tough Copper Ingot

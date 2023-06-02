@@ -1,5 +1,6 @@
 package cn.powernukkitx.techdawn.cmd;
 
+import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
@@ -85,7 +86,10 @@ public class UpdateTechDawnCommand extends Command {
             if (jarUpdated || mcPackUpdated) {
                 log.addSuccess("Updated!").output();
                 if ("update-and-stop".equals(operation)) {
-                    Main.INSTANCE.getServer().shutdown();
+                    Server.getInstance().getScheduler().scheduleDelayedTask(Main.INSTANCE, () ->
+                            Main.INSTANCE.getServer().shutdown(), 20 * 5);
+                    Server.getInstance().getOnlinePlayers().values().forEach(player ->
+                            player.sendMessage("ui.techdawn.chat.update_and_shutdown"));
                 }
             }
         });
