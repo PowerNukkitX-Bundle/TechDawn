@@ -55,6 +55,7 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
                 .geometry("geometry.techdawn.sapling")
                 .selectionBox(new Vector3f(-6, 0, -6), new Vector3f(12, 12, 12))
                 .collisionBox(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0))
+                .breakTime(0)
                 .build();
     }
 
@@ -102,10 +103,12 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
                 return Level.BLOCK_UPDATE_NORMAL;
             }
         } else if (type == Level.BLOCK_UPDATE_RANDOM) { //Growth
-            if (ThreadLocalRandom.current().nextInt(1, 8) == 1 && getLevel().getFullLight(add(0, 1, 0)) >= BlockCrops.MINIMUM_LIGHT_LEVEL) {
+            if (getLevel().getFullLight(add(0, 1, 0)) >= BlockCrops.MINIMUM_LIGHT_LEVEL) {
                 if (isAged()) {
+                    System.out.println("grow");
                     this.grow();
                 } else {
+                    System.out.println("aged");
                     setAged(true);
                     this.getLevel().setBlock(this, this, true);
                     return Level.BLOCK_UPDATE_RANDOM;
@@ -151,5 +154,15 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
     @Override
     public BlockProperties getProperties() {
         return PROPERTIES;
+    }
+
+    @Override
+    public double getHardness() {
+        return 0.00001;
+    }
+
+    @Override
+    public double getResistance() {
+        return 0.00001;
     }
 }
