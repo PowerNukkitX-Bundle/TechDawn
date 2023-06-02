@@ -41,7 +41,7 @@ public class UpdateTechDawnCommand extends Command {
         }
         String apiEndpoint = list.size() > 2 ? list.getResult(1) : "powernukkitx.com";
         CompletableFuture.runAsync(() -> {
-            var currentJarModifiedTime = Main.INSTANCE.getFile().lastModified() - 9999999;
+            var currentJarModifiedTime = Main.INSTANCE.getFile().lastModified();
             var currentMcPackModifiedTime = new File("./resource_packs/TechDawn.mcpack").lastModified();
             var jarUpdated = false;
             var mcPackUpdated = false;
