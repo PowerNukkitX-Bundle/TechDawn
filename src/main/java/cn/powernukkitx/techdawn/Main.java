@@ -14,6 +14,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.customitem.CustomItem;
 import cn.nukkit.level.Level;
 import cn.nukkit.plugin.PluginBase;
+import cn.powernukkitx.techdawn.cmd.UpdateTechDawnCommand;
 import cn.powernukkitx.techdawn.energy.RF;
 import cn.powernukkitx.techdawn.item.hammer.BaseHammer;
 import cn.powernukkitx.techdawn.listener.*;
@@ -59,6 +60,7 @@ public final class Main extends PluginBase {
         }
         registerRandomTickableBlock();
         registerListeners();
+        this.getServer().getCommandMap().register("update-techdawn", new UpdateTechDawnCommand());
     }
 
     private void registerItemTag() {
