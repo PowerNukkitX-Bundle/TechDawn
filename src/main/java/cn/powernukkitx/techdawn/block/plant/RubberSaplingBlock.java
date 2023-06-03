@@ -17,6 +17,7 @@ import cn.nukkit.math.NukkitRandom;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.math.Vector3f;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
+import cn.powernukkitx.techdawn.item.plant.RubberSapling;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import cn.powernukkitx.techdawn.worldgen.object.ObjectRubberTree;
 import org.jetbrains.annotations.NotNull;
@@ -162,5 +163,12 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
     @Override
     public double getResistance() {
         return 0.00001;
+    }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        return new Item[]{
+                new RubberSapling()
+        };
     }
 }
