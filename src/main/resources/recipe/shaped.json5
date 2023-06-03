@@ -1112,6 +1112,69 @@
       "BAB"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_blade"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_windmill_item"
+    },
+    "shape": [
+      " B ",
+      "BAB",
+      " B "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:planks"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:wood_blade"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_windmill_item"
+    },
+    "shape": [
+      " B ",
+      "BAB",
+      " B "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:rubber_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:wood_blade"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_windmill_item"
+    },
+    "shape": [
+      " B ",
+      "BAB",
+      " B "
+    ]
+  },
   // misc
   {
     "input": {
