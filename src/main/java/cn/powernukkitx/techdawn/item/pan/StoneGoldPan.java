@@ -27,6 +27,7 @@ public class StoneGoldPan extends ItemCustomTool implements TechDawnHardness {
         return CustomItemDefinition.toolBuilder(this, ItemCreativeCategory.EQUIPMENT)
                 .creativeGroup("itemGroup.name.shovel")
                 .allowOffHand(true)
+                .handEquipped(true)
                 .tag(getTags().split(" +"))
                 .build();
     }

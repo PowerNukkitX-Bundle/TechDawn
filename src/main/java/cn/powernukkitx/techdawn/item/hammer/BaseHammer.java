@@ -20,6 +20,7 @@ public abstract class BaseHammer extends ItemCustomTool implements TechDawnHardn
                 .addExtraBlock("minecraft:gravel", Math.max(getTier() - 1, 1))
                 .creativeGroup("itemGroup.name.pickaxe")
                 .allowOffHand(true)
+                .handEquipped(true)
                 .tag((TAG + getTags()).split(" +"))
                 .build();
     }
