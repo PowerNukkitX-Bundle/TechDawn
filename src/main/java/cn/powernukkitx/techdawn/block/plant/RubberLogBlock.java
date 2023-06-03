@@ -221,6 +221,7 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
             }
             setSapping(false);
             getLevel().setBlock(this, this, true, true);
+            item.setCount(item.getCount() - 1);
             if (player != null) {
                 player.getInventory().addItem(new SapGlassBottle());
             } else {
