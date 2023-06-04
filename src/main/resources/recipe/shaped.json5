@@ -1136,8 +1136,8 @@
   {
     "input": {
       "A": {
-        "type": "item",
-        "id": "minecraft:planks"
+        "type": "tag",
+        "tag": "minecraft:planks"
       },
       "B": {
         "type": "item",
@@ -1179,8 +1179,8 @@
   {
     "input": {
       "A": {
-        "type": "item",
-        "id": "minecraft:planks"
+        "type": "tag",
+        "tag": "minecraft:planks"
       },
       "B": {
         "type": "item",
