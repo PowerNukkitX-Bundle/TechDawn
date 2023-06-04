@@ -61,6 +61,13 @@ public class BaseHopperBlockEntity extends BlockEntityHopper {
         return "TechDawn_BaseHopperBlockEntity";
     }
 
+    @Override
+    public boolean onUpdate() {
+        var r = super.onUpdate();
+        uiManger.update();
+        return r;
+    }
+
     @NotNull
     public CustomInventory generateUI() {
         var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.HOPPER, "ui.techdawn.base_hopper");
