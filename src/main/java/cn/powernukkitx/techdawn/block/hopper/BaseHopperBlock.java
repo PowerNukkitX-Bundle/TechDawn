@@ -116,10 +116,14 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
         return BlockEntityHolder.setBlockAndCreateEntity(this, true, true, nbt) != null;
     }
 
+    protected String getTextureName() {
+        return "techdawn-blocks-hopper-iron_hopper";
+    }
+
     @Override
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition.builder(this,
-                        Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, "techdawn-blocks-hopper-iron_hopper"))
+                        Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
                 .geometry("geometry.techdawn.hopper_down")
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
                         .rotation(new Vector3f(0, 180)).build(), "q.block_property('facing_direction') == 2"))

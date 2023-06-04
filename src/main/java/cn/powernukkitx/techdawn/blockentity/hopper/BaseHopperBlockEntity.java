@@ -68,13 +68,17 @@ public class BaseHopperBlockEntity extends BlockEntityHopper {
         return r;
     }
 
+    protected String getUITitle() {
+        return "ui.techdawn.base_hopper";
+    }
+
     @NotNull
     public CustomInventory generateUI() {
-        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.HOPPER, "ui.techdawn.base_hopper");
+        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.HOPPER, getUITitle());
         for (var i = 0; i < 5; i++) {
             int finalI = i;
             customInv.setItem(i, inventory.getItem(i), (item, inventoryTransactionEvent) -> {
-                // TODO: 2022/12/20 阻止潜在的多人刷物品
+                // TODO: 2023/6/4 阻止潜在的多人刷物品
                 inventory.setItem(finalI, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
             });
         }

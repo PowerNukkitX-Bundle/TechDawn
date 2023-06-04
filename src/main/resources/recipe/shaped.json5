@@ -1175,6 +1175,70 @@
       " B "
     ]
   },
+  // hopper
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:planks"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_hopper"
+    },
+    "shape": [
+      "A A",
+      "ABA",
+      " A "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:rubber_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:wood_hopper"
+    },
+    "shape": [
+      "A A",
+      "ABA",
+      " A "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:antiseptic_wood_hopper"
+    },
+    "shape": [
+      "A A",
+      "ABA",
+      " A "
+    ]
+  },
   // misc
   {
     "input": {
