@@ -11,6 +11,7 @@ ui.techdawn.basic_kinetic_generator=基础动能发电机
 ui.techdawn.base_hopper=测试用漏斗
 ui.techdawn.wood_hopper=木漏斗
 ui.techdawn.antiseptic_wood_hopper=防腐木漏斗
+ui.techdawn.powered_iron_hopper=动力漏斗
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
@@ -186,3 +187,4 @@ tile.techdawn:rubber_plank.name=橡胶树木板
 tile.techdawn:base_hopper.name=测试用漏斗
 tile.techdawn:wood_hopper.name=木漏斗
 tile.techdawn:antiseptic_wood_hopper.name=防腐木漏斗
+tile.techdawn:powered_iron_hopper.name=动力漏斗

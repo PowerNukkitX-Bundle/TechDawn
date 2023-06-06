@@ -53,7 +53,7 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
 
     @Override
     public boolean isSolid(BlockFace side) {
-        return side == BlockFace.UP;
+        return side == getDefaultOppositeBlockFace() || side == getDefaultBlockFace();
     }
 
     @Override
@@ -94,18 +94,26 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
         return "techdawn:base_hopper";
     }
 
+    protected BlockFace getDefaultBlockFace() {
+        return BlockFace.DOWN;
+    }
+
+    protected BlockFace getDefaultOppositeBlockFace() {
+        return BlockFace.UP;
+    }
+
     @Override
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
         var facing = face.getOpposite();
 
-        if (facing == BlockFace.UP) {
-            facing = BlockFace.DOWN;
+        if (facing == getDefaultOppositeBlockFace()) {
+            facing = getDefaultBlockFace();
         }
 
         setBlockFace(facing);
 
         if (this.level.getServer().isRedstoneEnabled()) {
-            boolean powered = this.isGettingPower();
+            boolean powered = this.isGettingPower() ^ reversed();
 
             if (powered == this.isEnabled()) {
                 this.setEnabled(!powered);
@@ -136,6 +144,10 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
                 .build();
     }
 
+    public boolean reversed() {
+        return false;
+    }
+
     @Override
     public int onUpdate(int type) {
         if (!this.level.getServer().isRedstoneEnabled()) {
@@ -143,7 +155,7 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
         }
 
         if (type == Level.BLOCK_UPDATE_NORMAL || type == Level.BLOCK_UPDATE_REDSTONE) {
-            boolean disabled = this.level.isBlockPowered(this.getLocation());
+            boolean disabled = this.level.isBlockPowered(this.getLocation()) ^ reversed();
 
             if (disabled == this.isEnabled()) {
                 this.setEnabled(!disabled);
