@@ -1239,6 +1239,31 @@
       " A "
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:iron_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:piston"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:powered_iron_hopper"
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      "ACA"
+    ]
+  },
   // misc
   {
     "input": {

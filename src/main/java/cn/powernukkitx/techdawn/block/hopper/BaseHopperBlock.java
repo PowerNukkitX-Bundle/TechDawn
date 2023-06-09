@@ -30,6 +30,7 @@ import cn.powernukkitx.techdawn.util.LevelUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
 import static cn.nukkit.blockproperty.CommonBlockProperties.FACING_DIRECTION;
 import static cn.nukkit.blockproperty.CommonBlockProperties.TOGGLE;
 
@@ -134,13 +135,13 @@ public class BaseHopperBlock extends BlockTransparentMeta implements CustomBlock
                         Materials.builder().any(Materials.RenderMethod.ALPHA_TEST, getTextureName()))
                 .geometry("geometry.techdawn.hopper_down")
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(0, 180)).build(), "q.block_property('facing_direction') == 2"))
+                        .transformation(fromRotation(new Vector3f(0, 180))).build(), "q.block_property('facing_direction') == 2"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(0, 0)).build(), "q.block_property('facing_direction') == 3"))
+                        .transformation(fromRotation(new Vector3f(0, 0))).build(), "q.block_property('facing_direction') == 3"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(0, 270)).build(), "q.block_property('facing_direction') == 4"))
+                        .transformation(fromRotation(new Vector3f(0, 270))).build(), "q.block_property('facing_direction') == 4"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(0, 90)).build(), "q.block_property('facing_direction') == 5"))
+                        .transformation(fromRotation(new Vector3f(0, 90))).build(), "q.block_property('facing_direction') == 5"))
                 .build();
     }
 

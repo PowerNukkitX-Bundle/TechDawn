@@ -21,7 +21,8 @@ public final class InventoryUtil {
 
     /**
      * 获取某个物品栏在某个指定槽位上发生的物品改动的即将发生的结果产物
-     * @param inventory 物品栏
+     *
+     * @param inventory   物品栏
      * @param transaction 在某个指定槽位上发生的物品栏变更
      * @return 即将发生的结果产物
      */
@@ -39,14 +40,54 @@ public final class InventoryUtil {
     }
 
     /**
+     * 判断某个物品栏在某个指定槽位上发生的物品改动是否安全
+     *
+     * @param sourceInventory  物品栏
+     * @param displayInventory 在某个指定槽位上发生的物品栏变更
+     * @param transaction      在某个指定槽位上发生的物品栏变更
+     * @return 是否安全
+     */
+    public static boolean isTransactionUnsafe(@NotNull Inventory sourceInventory, @NotNull Inventory displayInventory,
+                                              @NotNull InventoryTransaction transaction) {
+        for (var each : transaction.getActionList()) {
+            if (each instanceof SlotChangeAction action) {
+                if (action.getInventory() == displayInventory) {
+                    var slot = action.getSlot();
+                    if (slot < 0 || slot >= sourceInventory.getSize()) {
+                        return true;
+                    }
+                    if (!sourceInventory.getItem(slot).equalsExact(action.getSourceItem())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * 获取某个物品栏在某个指定槽位上发生的物品改动的即将发生的结果产物
+     *
      * @param inventory 物品栏
-     * @param event 在某个指定槽位上发生的物品栏变更事件
+     * @param event     在某个指定槽位上发生的物品栏变更事件
      * @return 即将发生的结果产物
      */
     @NotNull
     public static Item getSlotTransactionResult(Inventory inventory, @NotNull InventoryTransactionEvent event) {
         return getSlotTransactionResult(inventory, event.getTransaction());
+    }
+
+    /**
+     * 判断某个物品栏在某个指定槽位上发生的物品改动是否安全
+     *
+     * @param sourceInventory  物品栏
+     * @param displayInventory 在某个指定槽位上发生的物品栏变更事件
+     * @param event            在某个指定槽位上发生的物品栏变更事件
+     * @return 是否安全
+     */
+    public static boolean isTransactionUnsafe(@NotNull Inventory sourceInventory, @NotNull Inventory displayInventory,
+                                              @NotNull InventoryTransactionEvent event) {
+        return isTransactionUnsafe(sourceInventory, displayInventory, event.getTransaction());
     }
 
     public static boolean ensurePlayerSafeForCustomInv(@NotNull Player player) {
@@ -56,6 +97,6 @@ public final class InventoryUtil {
             return false;
         }
         lastClickTime.put(player.getLoaderId(), currentClick);
-        return true;
+        return !player.isSneaking();
     }
 }

@@ -78,9 +78,14 @@ public class BaseHopperBlockEntity extends BlockEntityHopper {
         for (var i = 0; i < 5; i++) {
             int finalI = i;
             customInv.setItem(i, inventory.getItem(i), (item, inventoryTransactionEvent) -> {
-                // TODO: 2023/6/4 阻止潜在的多人刷物品
-                inventory.setItem(finalI, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
-                uiManger.update(true);
+                // TODO: 2023/6/9 检查刷物品的发生原理
+                if (InventoryUtil.isTransactionUnsafe(inventory, customInv, inventoryTransactionEvent)) {
+                    inventoryTransactionEvent.setCancelled();
+                    uiManger.update(true);
+                } else {
+                    inventory.setItem(finalI, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
+                    uiManger.update(true);
+                }
             });
         }
         customInv.setDefaultItemHandler((item, inventoryTransactionEvent) -> {

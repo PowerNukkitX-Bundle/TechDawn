@@ -15,6 +15,8 @@ import cn.powernukkitx.techdawn.blockentity.hopper.BaseHopperBlockEntity;
 import cn.powernukkitx.techdawn.blockentity.hopper.PoweredIronHopperBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
+import static cn.powernukkitx.techdawn.util.CustomDefUtil.fromRotation;
+
 @AutoRegister(CustomBlock.class)
 public class PoweredIronHopperBlock extends BaseHopperBlock {
 
@@ -62,34 +64,34 @@ public class PoweredIronHopperBlock extends BaseHopperBlock {
         return CustomBlockDefinition.builder(this, unpoweredMaterial)
                 .geometry("geometry.techdawn.hopper_down")
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_down"))
-                        .rotation(new Vector3f(180, 0)).build(),
+                        .transformation(fromRotation(new Vector3f(180, 0))).build(),
                         "q.block_property('facing_direction') == 1 && q.block_property('toggle_bit') == true"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 0)).build(),
+                        .transformation(fromRotation(new Vector3f(180, 0))).build(),
                         "q.block_property('facing_direction') == 2 && q.block_property('toggle_bit') == true"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 180)).build(),
+                        .transformation(fromRotation(new Vector3f(180, 180))).build(),
                         "q.block_property('facing_direction') == 3 && q.block_property('toggle_bit') == true"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 90)).build(),
+                        .transformation(fromRotation(new Vector3f(180, 90))).build(),
                         "q.block_property('facing_direction') == 4 && q.block_property('toggle_bit') == true"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 270)).build(),
+                        .transformation(fromRotation(new Vector3f(180, 270))).build(),
                         "q.block_property('facing_direction') == 5 && q.block_property('toggle_bit') == true"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_down"))
-                        .rotation(new Vector3f(180, 0)).materialInstances(poweredMaterial).build(),
+                        .transformation(fromRotation(new Vector3f(180, 0))).materialInstances(poweredMaterial).build(),
                         "q.block_property('facing_direction') == 1 && q.block_property('toggle_bit') == false"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 0)).materialInstances(poweredMaterial).build(),
+                        .transformation(fromRotation(new Vector3f(180, 0))).materialInstances(poweredMaterial).build(),
                         "q.block_property('facing_direction') == 2 && q.block_property('toggle_bit') == false"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 180)).materialInstances(poweredMaterial).build(),
+                        .transformation(fromRotation(new Vector3f(180, 180))).materialInstances(poweredMaterial).build(),
                         "q.block_property('facing_direction') == 3 && q.block_property('toggle_bit') == false"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 90)).materialInstances(poweredMaterial).build(),
+                        .transformation(fromRotation(new Vector3f(180, 90))).materialInstances(poweredMaterial).build(),
                         "q.block_property('facing_direction') == 4 && q.block_property('toggle_bit') == false"))
                 .permutation(new Permutation(Component.builder().geometry(new Geometry("geometry.techdawn.hopper_side"))
-                        .rotation(new Vector3f(180, 270)).materialInstances(poweredMaterial).build(),
+                        .transformation(fromRotation(new Vector3f(180, 270))).materialInstances(poweredMaterial).build(),
                         "q.block_property('facing_direction') == 5 && q.block_property('toggle_bit') == false"))
                 .build();
     }
