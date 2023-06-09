@@ -84,9 +84,6 @@ public final class CustomDefUtil {
 
     @Contract("_ -> new")
     public static @NotNull Transformation fromRotation(@NotNull Vector3f rotation) {
-        rotation.x /= 90;
-        rotation.y /= 90;
-        rotation.z /= 90;
         return new Transformation(Vector3.ZERO, ONE, rotation.asVector3());
     }
 }
