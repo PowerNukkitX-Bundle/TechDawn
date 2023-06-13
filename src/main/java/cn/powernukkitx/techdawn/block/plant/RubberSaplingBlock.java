@@ -62,12 +62,16 @@ public class RubberSaplingBlock extends BlockFlowable implements CustomBlock {
 
     @Override
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, Player player) {
-        if (BlockFlower.isSupportValid(down())) {
-            this.getLevel().setBlock(block, this, true, true);
-            return true;
+        if (!BlockFlower.isSupportValid(down())) {
+            return false;
         }
 
-        return false;
+        if (this.getLevelBlock() instanceof BlockLiquid || this.getLevelBlockAtLayer(1) instanceof BlockLiquid) {
+            return false;
+        }
+
+        this.getLevel().setBlock(block, this, true, true);
+        return true;
     }
 
     @Override
