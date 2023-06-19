@@ -1196,7 +1196,7 @@
       "ABA",
       " A "
     ]
-  },  
+  },
   {
     "input": {
       "A": {
@@ -1232,6 +1232,49 @@
     "output": {
       "type": "item",
       "id": "techdawn:antiseptic_wood_hopper"
+    },
+    "shape": [
+      "A A",
+      "ABA",
+      " A "
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:chest"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:iron_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:hopper"
+    },
+    "shape": [
+      "B B",
+      "BAB",
+      " B "
+    ],
+    "delete": true
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:iron_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:hopper"
     },
     "shape": [
       "A A",

@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+import static cn.nukkit.inventory.CraftingManager.getItemHash;
+import static cn.nukkit.inventory.CraftingManager.getItemWithItemDescriptorsHash;
+
 public final class RecipeUtil {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().setLenient().create();
 
@@ -219,6 +222,7 @@ public final class RecipeUtil {
                 var output = recipeObj.get("output").getAsJsonObject();
                 var shape = recipeObj.get("shape").getAsJsonArray();
                 var extra = recipeObj.has("extra") ? recipeObj.get("extra").getAsJsonArray() : null;
+                var delete = recipeObj.has("delete") && recipeObj.get("delete").getAsBoolean();
                 List<Item> extraList = extra == null || extra.size() == 0 ? List.of() : new ArrayList<>(extra.size());
                 var shapeArr = new String[shape.size()];
                 for (int i = 0; i < shape.size(); i++) {
@@ -243,7 +247,18 @@ public final class RecipeUtil {
                         }
                     }
                 }
-                manager.registerShapedRecipe(new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, extraList));
+                var recipe = new ShapedRecipe(null, 1, getItemFromJson(output), shapeArr, map, extraList);
+                if (delete) {
+                    var subMap = manager.getShapedRecipeMap().get(getItemHash(recipe.getResult()));
+                    if (subMap != null) {
+                        var list1 = recipe.getIngredientsAggregate();
+                        var list2 = recipe.getNewIngredientList();
+                        var uuid = getItemWithItemDescriptorsHash(list1, list2);
+                        subMap.remove(uuid);
+                    }
+                } else {
+                    manager.registerShapedRecipe(recipe);
+                }
             }
         }
     }
