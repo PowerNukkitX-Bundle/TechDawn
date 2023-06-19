@@ -12,6 +12,8 @@ ui.techdawn.base_hopper=Hopper for Debug
 ui.techdawn.wood_hopper=Wood Hopper
 ui.techdawn.antiseptic_wood_hopper=Antiseptic Wood Hopper
 ui.techdawn.powered_iron_hopper=Powered Hopper
+ui.techdawn.powered_antiseptic_wood_hopper=Powered Antiseptic Wood Hopper
+ui.techdawn.powered_wood_hopper=Powered Wood Hopper
 
 ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 
@@ -188,3 +190,5 @@ tile.techdawn:base_hopper.name=Test-only Hopper
 tile.techdawn:wood_hopper.name=Wood Hopper
 tile.techdawn:antiseptic_wood_hopper.name=Antiseptic Wood Hopper
 tile.techdawn:powered_iron_hopper.name=Powered Iron Hopper
+tile.techdawn:powered_wood_hopper.name=Powered Wood Hopper
+tile.techdawn:powered_antiseptic_wood_hopper.name=Powered Antiseptic Wood Hopper

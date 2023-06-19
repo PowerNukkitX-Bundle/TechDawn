@@ -57,6 +57,11 @@ public class WoodHopperBlock extends BaseHopperBlock {
     }
 
     @Override
+    public int getToolTier() {
+        return 0;
+    }
+
+    @Override
     public BlockColor getColor() {
         return BlockColor.WOOD_BLOCK_COLOR;
     }

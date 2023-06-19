@@ -1307,6 +1307,81 @@
       "ACA"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:planks"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:piston"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:powered_wood_hopper"
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      "ACA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:rubber_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:piston"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:powered_wood_hopper"
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      "ACA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:antiseptic_wood_plank"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:chest"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:piston"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:powered_antiseptic_wood_hopper"
+    },
+    "shape": [
+      " A ",
+      "ABA",
+      "ACA"
+    ]
+  },
   // misc
   {
     "input": {

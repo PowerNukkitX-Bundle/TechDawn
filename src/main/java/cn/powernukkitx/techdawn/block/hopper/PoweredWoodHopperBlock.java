@@ -5,53 +5,63 @@ import cn.nukkit.item.ItemTool;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.hopper.BaseHopperBlockEntity;
-import cn.powernukkitx.techdawn.blockentity.hopper.PoweredIronHopperBlockEntity;
+import cn.powernukkitx.techdawn.blockentity.hopper.PoweredWoodHopperBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 @AutoRegister(CustomBlock.class)
-public class PoweredIronHopperBlock extends BasePoweredHopperBlock {
+public class PoweredWoodHopperBlock extends BasePoweredHopperBlock {
 
     @SuppressWarnings("unused")
-    public PoweredIronHopperBlock() {
+    public PoweredWoodHopperBlock() {
         this(0);
     }
 
-    public PoweredIronHopperBlock(int meta) {
+    public PoweredWoodHopperBlock(int meta) {
         super(meta);
     }
 
     @NotNull
     @Override
     public String getNamespaceId() {
-        return "techdawn:powered_iron_hopper";
+        return "techdawn:powered_wood_hopper";
     }
 
     @Override
     protected String getTextureName() {
-        return "techdawn-blocks-hopper-iron_hopper_unpowered";
+        return "techdawn-blocks-hopper-wood_hopper_unpowered";
     }
 
     protected String getPoweredTextureName() {
-        return "techdawn-blocks-hopper-iron_hopper_powered";
+        return "techdawn-blocks-hopper-wood_hopper_powered";
     }
-
     @Override
     public double getHardness() {
-        return 3;
+        return 2.0;
     }
 
     @Override
     public double getResistance() {
-        return 24;
+        return 15.0;
+    }
+
+    @Override
+    public int getBurnChance() {
+        return 1;
+    }
+
+    @Override
+    public int getBurnAbility() {
+        return 20;
     }
 
     @Override
     public int getToolType() {
-        return ItemTool.TYPE_PICKAXE;
+        return ItemTool.TYPE_AXE;
     }
 
+    @Override
     public int getToolTier() {
-        return ItemTool.TIER_WOODEN;
+        return 0;
     }
 
     @Override
@@ -62,12 +72,12 @@ public class PoweredIronHopperBlock extends BasePoweredHopperBlock {
     @NotNull
     @Override
     public Class<? extends BaseHopperBlockEntity> getBlockEntityClass() {
-        return PoweredIronHopperBlockEntity.class;
+        return PoweredWoodHopperBlockEntity.class;
     }
 
     @NotNull
     @Override
     public String getBlockEntityType() {
-        return "TechDawn_PoweredIronHopperBlockEntity";
+        return "TechDawn_PoweredWoodHopperBlockEntity";
     }
 }
