@@ -3,7 +3,7 @@
   "header": {
     "description": "PNX custom demo.",
     "name": "techdawn",
-    "uuid": "b7e42eca-844d-4a25-b104-1a378781ff7e",
+    "uuid": "f2fbd1da-0a97-4871-9f3f-d76b73228982",
     "version": [
       0,
       1,
@@ -19,7 +19,7 @@
     {
       "description": "PNX custom demo.",
       "type": "resources",
-      "uuid": "137792b9-7638-445d-af6b-41c4af0ac9ae",
+      "uuid": "8483cd66-15bf-4f38-90cb-f9a53e819acb",
       "version": [
         1,
         1,

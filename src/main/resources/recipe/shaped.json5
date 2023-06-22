@@ -1404,6 +1404,23 @@
       }
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:string"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:screen_mesh"
+    },
+    "shape": [
+      "AAA",
+      "AAA",
+      "AAA"
+    ]
+  },
   // coil
   {
     "input": {
