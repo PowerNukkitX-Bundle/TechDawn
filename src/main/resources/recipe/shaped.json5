@@ -1403,5 +1403,48 @@
         "id": "minecraft:glass_bottle"
       }
     ]
+  },
+  // coil
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "minecraft:copper_ingot"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:copper_coil"
+    },
+    "shape": [
+      "AAA",
+      "ABA",
+      "AAA"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_ingot"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:magnetized_steel_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:annealed_copper_coil"
+    },
+    "shape": [
+      "AAA",
+      "ABA",
+      "AAA"
+    ]
   }
 ]
