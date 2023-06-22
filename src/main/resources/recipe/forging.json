@@ -194,6 +194,20 @@
     }
   },
   {
+  "input": {
+    "type": "item",
+    "id": "techdawn:rubber"
+  },
+  "template": {
+    "type": "item",
+    "id": "techdawn:stone_plate_template"
+  },
+  "output": {
+    "type": "item",
+    "id": "techdawn:rubber_plate"
+  }
+},
+  {
     "input": {
       "type": "item",
       "id": "techdawn:annealed_copper_ingot"
