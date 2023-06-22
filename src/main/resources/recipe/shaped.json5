@@ -1446,5 +1446,26 @@
       "ABA",
       "AAA"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_coil"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_wire"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:electromagnet"
+    },
+    "shape": [
+      "A",
+      "B",
+      "A"
+    ]
   }
 ]

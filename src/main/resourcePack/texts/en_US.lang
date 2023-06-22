@@ -117,6 +117,7 @@ item.techdawn:wood_blade=Wood Blade
 item.techdawn:antiseptic_wood_blade=Antiseptic Wood Blade
 item.techdawn:copper_coil=Copper Coil
 item.techdawn:annealed_copper_coil=Annealed Copper Coil
+item.techdawn:electromagnet=Electromagnet
 
 tile.techdawn:flint_gravel.name=Flint Gravel
 
