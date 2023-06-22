@@ -1484,5 +1484,35 @@
       "B",
       "A"
     ]
+  },
+  // circuit board
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:silicon_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:rubber_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:gold_plate"
+      },
+      "D": {
+        "type": "item",
+        "id": "techdawn:tin_plate"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_circuit_board"
+    },
+    "shape": [
+      "DCD",
+      "DAD",
+      "BBB"
+    ]
   }
 ]
