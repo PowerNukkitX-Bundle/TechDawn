@@ -32,6 +32,7 @@ item.techdawn:hot_crude_annealed_copper_ingot=热粗制退火铜锭
 item.techdawn:steel_ingot=钢锭
 item.techdawn:stainless_steel_ingot=不锈钢锭
 item.techdawn:tin_ingot=锡锭
+item.techdawn:magnetized_steel_ingot=磁化钢锭
 
 item.techdawn:annealed_copper_dust=退火铜粉
 item.techdawn:tough_copper_dust=韧铜粉

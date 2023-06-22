@@ -133,5 +133,23 @@
       "id": "techdawn:rubber_plank",
       "count": 4
     }
+  },
+  {
+    "input": [
+      {
+        "type": "item",
+        "id": "techdawn:steel_ingot"
+      },
+      {
+        "type": "item",
+        "id": "minecraft:redstone",
+        "count": 4
+      }
+    ],
+    "output": {
+      "type": "item",
+      "id": "techdawn:magnetized_steel_ingot",
+      "count": 1
+    }
   }
 ]

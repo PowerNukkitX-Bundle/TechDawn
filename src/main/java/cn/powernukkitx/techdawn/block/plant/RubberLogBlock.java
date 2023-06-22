@@ -128,7 +128,7 @@ public class RubberLogBlock extends BlockLog implements CustomBlock {
         return PROPERTIES;
     }
 
-    protected BlockState getStrippedState() {
+    public BlockState getStrippedState() {
         return null;
     }
 
