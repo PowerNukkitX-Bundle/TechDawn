@@ -623,6 +623,31 @@
     "input": {
       "A": {
         "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:cobblestone"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:stone_pickaxe"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_digger"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BBB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
         "id": "techdawn:steel_plate"
       },
       "B": {

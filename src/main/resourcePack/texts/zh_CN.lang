@@ -15,6 +15,7 @@ ui.techdawn.powered_iron_hopper=动力漏斗
 ui.techdawn.powered_antiseptic_wood_hopper=动力防腐木漏斗
 ui.techdawn.powered_wood_hopper=动力木漏斗
 ui.techdawn.basic_electric_furnace=基础电炉
+ui.techdawn.stone_digger=石制挖掘机
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
@@ -136,6 +137,7 @@ tile.techdawn:antiseptic_wood_plank.name=防腐木板
 tile.techdawn:stone_extractor.name=石制萃取机
 tile.techdawn:tar_impregnated_wood_plank.name=焦油浸渍的木板
 tile.techdawn:stone_grinder.name=石制研磨机
+tile.techdawn:stone_digger.name=石制挖掘机
 
 tile.techdawn:annealed_copper_anvil.name=退火铜锻造砧
 tile.techdawn:bronze_anvil.name=青铜锻造砧

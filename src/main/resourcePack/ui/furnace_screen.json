@@ -27,6 +27,10 @@
             "$visible": false
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'digger') = $container_title))",
+            "$visible": false
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",
             "$offset": [
               0,
@@ -96,6 +100,10 @@
             "$offset": [0, 14]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'stone_digger') = $container_title))",
+            "$offset": [28, 22]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
             "$offset": [28, 2]
           },
@@ -139,6 +147,10 @@
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'kinetic_generator') = $container_title))",
             "$visible": false
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'digger') = $container_title))",
+            "$visible": false
           }
         ]
       }
@@ -163,6 +175,10 @@
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'kinetic_generator') = $container_title))",
             "$arrow_visible": false
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'digger') = $container_title))",
+            "$arrow_visible": false
           }
         ]
       }
@@ -181,6 +197,10 @@
         "value": [
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
+            "$visible": false
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'digger') = $container_title))",
             "$visible": false
           },
           {
