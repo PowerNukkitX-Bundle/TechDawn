@@ -1514,5 +1514,35 @@
       "DAD",
       "BBB"
     ]
+  },
+  // machine
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:copper_coil"
+      },
+      "D": {
+        "type": "item",
+        "id": "minecraft:furnace"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_electric_furnace"
+    },
+    "shape": [
+      "BAB",
+      "CDC",
+      "BCB"
+    ]
   }
 ]

@@ -92,7 +92,7 @@
         "operation": "insert_back",
         "value": [
           {
-            "requires": "(not (($container_title - 'ui.techdawn.base_electric_furnace') = $container_title))",
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_furnace') = $container_title))",
             "$offset": [0, 14]
           },
           {

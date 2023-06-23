@@ -82,10 +82,14 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
         return 3000;
     }
 
+    protected @NotNull String getUITitle() {
+        return "ui.techdawn.base_electric_furnace";
+    }
+
     @NotNull
     @Override
     public cn.powernukkitx.fakeInv.CustomInventory generateUI() {
-        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, "ui.techdawn.base_electric_furnace");
+        var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, getUITitle());
         customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setSmelting(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
@@ -298,7 +302,9 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
                 setStoredEnergy(getStoredEnergy() - getEnergyCostPerTick());
                 cookTime += getSpeedMultiplier();
             } else if (cookTime > 0 && cookTime < 200) { // 继续冶炼
-                this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.BLOCK_FURNACE_LIT);
+                if (cookTime % 20 == 0) {
+                    this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.BLOCK_FURNACE_LIT);
+                }
                 setStoredEnergy(getStoredEnergy() - getEnergyCostPerTick());
                 cookTime += getSpeedMultiplier();
             } else if (cookTime >= 200) { // 冶炼完成

@@ -14,6 +14,7 @@ ui.techdawn.antiseptic_wood_hopper=防腐木漏斗
 ui.techdawn.powered_iron_hopper=动力漏斗
 ui.techdawn.powered_antiseptic_wood_hopper=动力防腐木漏斗
 ui.techdawn.powered_wood_hopper=动力木漏斗
+ui.techdawn.basic_electric_furnace=基础电炉
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
@@ -167,6 +168,7 @@ tile.techdawn:base_battery_box.name=测试用电池盒
 tile.techdawn:basic_redstone_battery_box.name=基础红石电池盒
 tile.techdawn:basic_fuel_generator.name=基础火力发电机
 tile.techdawn:basic_kinetic_generator.name=基础动能发电机
+tile.techdawn:basic_electric_furnace.name=基础电炉
 
 tile.techdawn:base_hinge.name=测试用铰链
 tile.techdawn:antiseptic_wood_hinge.name=防腐木铰链
