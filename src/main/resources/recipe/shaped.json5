@@ -1573,5 +1573,63 @@
       "CDC",
       "BCB"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:furnace"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_fuel_generator"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BAB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:electromagnet"
+      },
+      "D": {
+        "type": "item",
+        "id": "techdawn:steel_gear"
+      },
+      "E": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_coil"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_kinetic_generator"
+    },
+    "shape": [
+      "BAB",
+      "DCE",
+      "BAB"
+    ]
   }
 ]
