@@ -1544,5 +1544,34 @@
       "CDC",
       "BCB"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:annealed_copper_wire"
+      },
+      "D": {
+        "type": "item",
+        "id": "minecraft:redstone_block"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_redstone_battery_box"
+    },
+    "shape": [
+      "BAB",
+      "CDC",
+      "BCB"
+    ]
   }
 ]
