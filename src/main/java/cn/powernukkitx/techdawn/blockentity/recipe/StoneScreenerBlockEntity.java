@@ -1,13 +1,16 @@
 package cn.powernukkitx.techdawn.blockentity.recipe;
 
 import cn.nukkit.blockentity.BlockEntity;
+import cn.nukkit.blockstate.BlockState;
 import cn.nukkit.energy.EnergyType;
 import cn.nukkit.inventory.Inventory;
 import cn.nukkit.inventory.InventorySlice;
 import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.inventory.RecipeInventoryHolder;
 import cn.nukkit.item.Item;
+import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
+import cn.nukkit.level.particle.DestroyBlockParticle;
 import cn.nukkit.math.BlockFace;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -16,36 +19,37 @@ import cn.nukkit.network.protocol.ContainerSetDataPacket;
 import cn.powernukkitx.fakeInv.CustomInventory;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
-import cn.powernukkitx.techdawn.block.machine.recipe.StoneGrinderBlock;
+import cn.powernukkitx.techdawn.block.machine.recipe.StoneScreenerBlock;
 import cn.powernukkitx.techdawn.blockentity.MachineBlockEntity;
 import cn.powernukkitx.techdawn.energy.Rotation;
-import cn.powernukkitx.techdawn.inventory.recipe.StoneGrinderInventory;
+import cn.powernukkitx.techdawn.inventory.recipe.StoneScreenerInventory;
+import cn.powernukkitx.techdawn.listener.GoldPanListener;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
+import cn.powernukkitx.techdawn.util.ItemUtil;
+import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 import static cn.nukkit.inventory.BaseInventory.AIR_ITEM;
 
 @AutoRegister(BlockEntity.class)
 @AutoRegisterData("#getName")
-public class StoneGrinderBlockEntity extends MachineBlockEntity implements RecipeInventoryHolder {
-    protected StoneGrinderInventory inventory;
+public class StoneScreenerBlockEntity extends MachineBlockEntity implements RecipeInventoryHolder {
+    protected StoneScreenerInventory inventory;
 
-    public StoneGrinderBlockEntity(FullChunk chunk, CompoundTag nbt) {
+    public StoneScreenerBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
         this.scheduleUpdate();
     }
 
     @Override
     public boolean isBlockEntityValid() {
-        return getLevelBlock() instanceof StoneGrinderBlock;
+        return getLevelBlock() instanceof StoneScreenerBlock;
     }
 
     @NotNull
     @Override
     public String getName() {
-        return "TechDawn_StoneGrinderBlock";
+        return "TechDawn_StoneScreenerBlock";
     }
 
     @Override
@@ -70,8 +74,8 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
     }
 
     @Override
-    public StoneGrinderBlock getBlock() {
-        return (StoneGrinderBlock) super.getBlock();
+    public StoneScreenerBlock getBlock() {
+        return (StoneScreenerBlock) super.getBlock();
     }
 
     @Override
@@ -86,13 +90,13 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
 
     @Override
     public double getMaxStorage() {
-        return 360;
+        return 180;
     }
 
     @NotNull
     @Override
     public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.stone_grinder");
+        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.stone_screener");
         customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setInput(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
@@ -117,7 +121,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
                 var pk = new ContainerSetDataPacket();
                 pk.windowId = windowId;
                 pk.property = ContainerSetDataPacket.PROPERTY_FURNACE_TICK_COUNT;
-                pk.value = (int) ((getStoredEnergy() / 360) * 200);
+                pk.value = (int) ((getStoredEnergy() / 180) * 200);
                 each.dataPacket(pk);
             }
         }
@@ -141,7 +145,7 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
 
     @Override
     protected void initBlockEntity() {
-        this.inventory = new StoneGrinderInventory(this, InventoryType.FURNACE);
+        this.inventory = new StoneScreenerInventory(this, InventoryType.FURNACE);
         super.initBlockEntity();
     }
 
@@ -181,29 +185,49 @@ public class StoneGrinderBlockEntity extends MachineBlockEntity implements Recip
     public boolean onUpdate() {
         super.onUpdate();
         // 检查能否开始冶炼
-        Item input = this.inventory.getInput();
-        Item product = this.inventory.getResult();
-        var smelt = this.server.getCraftingManager().matchModProcessRecipe("grinding", List.of(input));
+        var input = this.inventory.getInput();
+        var inputNameSpaceId = input.getNamespaceId();
+        var product = this.inventory.getResult();
         // 配方是否合适
-        boolean canSmelt = false;
-        if (smelt != null) {
-            canSmelt = (input.getCount() > 0 && ((smelt.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
-            //检查输入
-            if (!(smelt.getIngredients().get(0).match(input))) {
-                canSmelt = false;
-            }
-        }
+        boolean canSmelt = switch (inputNameSpaceId) {
+            case "minecraft:gravel", "minecraft:sand", "techdawn:flint_gravel" -> true;
+            default -> false;
+        };
         if (canSmelt) {
             if (getStoredEnergy() == getMaxStorage()) {
-                var result = smelt.getResult().clone();
-                result.setCount(result.getCount() + product.getCount());
-                this.inventory.setResult(result);
+                Object2DoubleOpenHashMap<Item> table = switch (inputNameSpaceId) {
+                    case "minecraft:sand" -> GoldPanListener.STONE_GOLD_PAN_ITEMS_SAND;
+                    case "minecraft:gravel" -> GoldPanListener.STONE_GOLD_PAN_ITEMS_GRAVEL;
+                    case "techdawn:flint_gravel" -> GoldPanListener.STONE_GOLD_PAN_ITEMS_FLINT_GRAVEL;
+                    default -> throw new IllegalStateException("Unexpected value: " + input.getNamespaceId());
+                };
+
+                var result = ItemUtil.randomItem(table);
+                if (product == null || product.isNull()) {
+                    this.inventory.setResult(result);
+                } else {
+                    if (result.equals(product, true, true)) {
+                        result.setCount(product.getCount() + 1);
+                        this.inventory.setResult(result);
+                    } else if (!result.isNull()) {
+                        this.level.dropItem(this.add(0.5, -0.1, 0.5), result );
+                    }
+                }
 
                 input.setCount(input.getCount() - 1);
                 if (input.getCount() == 0) input = AIR_ITEM;
                 this.inventory.setInput(input);
 
                 setStoredEnergy(0);
+
+                switch (inputNameSpaceId) {
+                    case "minecraft:gravel", "techdawn:flint_gravel" ->
+                            this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.DIG_GRAVEL, 1, 1);
+                    case "minecraft:sand" ->
+                            this.level.addSound(this.add(0.5, 0.5, 0.5), Sound.DIG_SAND, 1, 1);
+                }
+                this.level.addParticle(new DestroyBlockParticle(this.add(0.5, 0.5, 0.5),
+                        BlockState.of(inputNameSpaceId).getBlock()));
             }
             requestUIUpdateImmediately();
             return true;

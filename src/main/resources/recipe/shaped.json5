@@ -648,6 +648,31 @@
     "input": {
       "A": {
         "type": "item",
+        "id": "techdawn:antiseptic_wood_gear"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:cobblestone"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:screen_mesh"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:stone_screener"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BBB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
         "id": "techdawn:steel_plate"
       },
       "B": {

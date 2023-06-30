@@ -16,6 +16,7 @@ ui.techdawn.powered_antiseptic_wood_hopper=Powered Antiseptic Wood Hopper
 ui.techdawn.powered_wood_hopper=Powered Wood Hopper
 ui.techdawn.basic_electric_furnace=Basic Electric Furnace
 ui.techdawn.stone_digger=Stone Digger
+ui.techdawn.stone_screener=Stone Screener
 
 ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 
@@ -135,6 +136,7 @@ tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank
 tile.techdawn:stone_grinder.name=Stone Grinder
 tile.techdawn:stone_digger.name=Stone Digger
+tile.techdawn:stone_screener.name=Stone Screener
 
 ui.techdawn.component.stored_energy=Stored Energy
 ui.techdawn.component.container=Container

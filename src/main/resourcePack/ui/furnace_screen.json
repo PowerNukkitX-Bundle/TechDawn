@@ -15,7 +15,7 @@
             "$visible": false
           },
           {
-            "requires": "(not (($container_title - 'ui.techdawn.stone_grinder') = $container_title))",
+            "requires": "(not (($container_title - 'ui.techdawn.stone_grinder') = $container_title)) or (not (($container_title - 'ui.techdawn.stone_screener') = $container_title))",
             "$visible": false
           },
           {
@@ -112,7 +112,7 @@
             "$offset": [-16, 18]
           },
           {
-            "requires": "(not (($container_title - 'ui.techdawn.stone_grinder') = $container_title))",
+            "requires": "(not (($container_title - 'ui.techdawn.stone_grinder') = $container_title)) or (not (($container_title - 'ui.techdawn.stone_screener') = $container_title))",
             "$offset": [0, 18]
           },
           {
