@@ -16,6 +16,10 @@
             "$visible": false
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
+            "$offset": [0, 6]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",
             "$offset": [0, 6]
           },
@@ -61,6 +65,12 @@
             "$offset": [16, 20]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
+            "$texture_empty": "textures/ui/battery_empty",
+            "$visible": true,
+            "$offset": [52, 20]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
             "$visible": true,
             "$offset": [48, 0]
@@ -94,6 +104,12 @@
             "$texture_full": "textures/ui/battery_full",
             "$visible": true,
             "$offset": [16, 20]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
+            "$texture_full": "textures/ui/battery_full",
+            "$visible": true,
+            "$offset": [52, 20]
           },
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
@@ -143,6 +159,11 @@
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
             "$visible": true,
             "$offset": [32, 0]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
+            "$visible": true,
+            "$offset": [0, -4]
           },
           {
             "requires": "(not (($container_title - 'ui.techdawn.stone_extractor') = $container_title))",

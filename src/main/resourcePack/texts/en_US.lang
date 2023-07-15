@@ -17,6 +17,8 @@ ui.techdawn.powered_wood_hopper=Powered Wood Hopper
 ui.techdawn.basic_electric_furnace=Basic Electric Furnace
 ui.techdawn.stone_digger=Stone Digger
 ui.techdawn.stone_screener=Stone Screener
+ui.techdawn.base_electric_extractor=Electric Extractor for Debug
+ui.techdawn.basic_electric_extractor=Basic Electric Extractor
 
 ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 
@@ -173,6 +175,8 @@ tile.techdawn:basic_redstone_battery_box.name=Basic Redstone Battery Box
 tile.techdawn:basic_fuel_generator.name=Basic Fuel Generator
 tile.techdawn:basic_kinetic_generator.name=Basic Kinetic Generator
 tile.techdawn:basic_electric_furnace.name=Basic Electric Furnace
+tile.techdawn:base_electric_extractor.name=Test-only Electric Extractor
+tile.techdawn:basic_electric_extractor.name=Basic Electric Extractor
 
 tile.techdawn:base_hinge.name=Test-only Hinge
 tile.techdawn:antiseptic_wood_hinge.name=Antiseptic Wood Hinge

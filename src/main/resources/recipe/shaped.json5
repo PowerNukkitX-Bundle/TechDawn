@@ -1681,5 +1681,30 @@
       "DCE",
       "BAB"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:hopper"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_electric_extractor"
+    },
+    "shape": [
+      "BAB",
+      "BCB",
+      "BBB"
+    ]
   }
 ]
