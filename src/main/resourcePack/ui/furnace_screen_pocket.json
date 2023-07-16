@@ -12,6 +12,10 @@
             "$offset": [0, 14]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
+            "$offset": [0, 14]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",
             "$visible": false
           },
@@ -65,6 +69,12 @@
             "$offset": [16, 20]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
+            "$texture_empty": "textures/ui/battery_empty",
+            "$visible": true,
+            "$offset": [16, 20]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
             "$texture_empty": "textures/ui/battery_empty",
             "$visible": true,
@@ -106,6 +116,12 @@
             "$offset": [16, 20]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
+            "$texture_full": "textures/ui/battery_full",
+            "$visible": true,
+            "$offset": [16, 20]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
             "$texture_full": "textures/ui/battery_full",
             "$visible": true,
@@ -137,6 +153,10 @@
         "value": [
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_furnace') = $container_title))",
+            "$visible": false
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
             "$visible": false
           },
           {

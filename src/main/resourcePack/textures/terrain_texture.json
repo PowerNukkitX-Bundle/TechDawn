@@ -17,6 +17,9 @@
     },
     "techdawn-items-misc-rubber_sapling": {
       "textures": "textures/items/misc/rubber_sapling"
+    },
+    "techdawn-blocks-machine-base_electric_grinder_on": {
+      "textures": "textures/blocks/machine/base_electric_grinder_on"
     }
   }
 }

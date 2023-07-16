@@ -19,6 +19,8 @@ ui.techdawn.stone_digger=石制挖掘机
 ui.techdawn.stone_screener=石制筛选机
 ui.techdawn.base_electric_extractor=测试用电动萃取机
 ui.techdawn.basic_electric_extractor=基础电动萃取机
+ui.techdawn.base_electric_grinder=测试用电动研磨机
+ui.techdawn.basic_electric_grinder=基础电动研磨机
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
@@ -177,6 +179,8 @@ tile.techdawn:basic_kinetic_generator.name=基础动能发电机
 tile.techdawn:basic_electric_furnace.name=基础电炉
 tile.techdawn:base_electric_extractor.name=测试用电动萃取机
 tile.techdawn:basic_electric_extractor.name=基础电动萃取机
+tile.techdawn:base_electric_grinder.name=测试用电动研磨机
+tile.techdawn:basic_electric_grinder.name=基础电动研磨机
 
 tile.techdawn:base_hinge.name=测试用铰链
 tile.techdawn:antiseptic_wood_hinge.name=防腐木铰链

@@ -207,10 +207,12 @@ public class BaseElectricFurnaceBlockEntity extends MachineBlockEntity implement
             this.namedTag.putList(new ListTag<CompoundTag>("Items"));
         } else {
             ListTag<CompoundTag> items = this.namedTag.getList("Items", CompoundTag.class);
-            if (items.size() >= 2) {
+            if (items.size() >= 1) {
                 var data = (CompoundTag) this.namedTag.getList("Items").get(0);
                 inventory.setSmelting(NBTIO.getItemHelper(data));
-                data = (CompoundTag) this.namedTag.getList("Items").get(1);
+            }
+            if (items.size() >= 2) {
+                var data = (CompoundTag) this.namedTag.getList("Items").get(1);
                 inventory.setResult(NBTIO.getItemHelper(data));
             }
         }

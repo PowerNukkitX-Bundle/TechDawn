@@ -10,5 +10,11 @@
     "atlas_tile": "techdawn-blocks-hinge-antiseptic_wood_hinge-dyn",
     "ticks_per_frame": 1,
     "blend_frames": false
+  },
+  {
+    "flipbook_texture": "textures/blocks/machine/basic_electric_grinder_on",
+    "atlas_tile": "techdawn-blocks-machine-basic_electric_grinder_on",
+    "ticks_per_frame": 1,
+    "blend_frames": false
   }
 ]

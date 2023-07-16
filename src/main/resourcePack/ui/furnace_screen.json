@@ -15,6 +15,10 @@
             "$visible": false
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
+            "$visible": false
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.stone_grinder') = $container_title)) or (not (($container_title - 'ui.techdawn.stone_screener') = $container_title))",
             "$visible": false
           },
@@ -75,6 +79,18 @@
           {
             "flame_empty_image2@furnace.flame_empty_image": {
               "texture": "textures/ui/battery_empty",
+              "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_grinder') = $container_title)"
+            }
+          },
+          {
+            "flame_full_image2@furnace.flame_full_image": {
+              "texture": "textures/ui/battery_full",
+              "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_grinder') = $container_title)"
+            }
+          },
+          {
+            "flame_empty_image2@furnace.flame_empty_image": {
+              "texture": "textures/ui/battery_empty",
               "offset": [10, 0],
               "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_extractor') = $container_title)"
             }
@@ -112,6 +128,10 @@
         "value": [
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_furnace') = $container_title))",
+            "$offset": [0, 14]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_grinder') = $container_title))",
             "$offset": [0, 14]
           },
           {

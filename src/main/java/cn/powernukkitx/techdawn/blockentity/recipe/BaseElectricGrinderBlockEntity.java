@@ -3,10 +3,7 @@ package cn.powernukkitx.techdawn.blockentity.recipe;
 import cn.nukkit.blockentity.BlockEntity;
 import cn.nukkit.energy.EnergyHolder;
 import cn.nukkit.energy.EnergyType;
-import cn.nukkit.inventory.Inventory;
-import cn.nukkit.inventory.InventorySlice;
-import cn.nukkit.inventory.InventoryType;
-import cn.nukkit.inventory.RecipeInventoryHolder;
+import cn.nukkit.inventory.*;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Sound;
 import cn.nukkit.level.format.FullChunk;
@@ -17,10 +14,10 @@ import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.network.protocol.ContainerSetDataPacket;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.annotation.AutoRegisterData;
-import cn.powernukkitx.techdawn.block.machine.recipe.BaseElectricExtractorBlock;
+import cn.powernukkitx.techdawn.block.machine.recipe.BaseElectricGrinderBlock;
 import cn.powernukkitx.techdawn.blockentity.MachineBlockEntity;
 import cn.powernukkitx.techdawn.energy.RF;
-import cn.powernukkitx.techdawn.inventory.recipe.BaseExtractorInventory;
+import cn.powernukkitx.techdawn.inventory.recipe.BaseGrinderInventory;
 import cn.powernukkitx.techdawn.util.InventoryUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,23 +27,23 @@ import static cn.nukkit.inventory.BaseInventory.AIR_ITEM;
 
 @AutoRegister(BlockEntity.class)
 @AutoRegisterData("#getName")
-public class BaseElectricExtractorBlockEntity extends MachineBlockEntity implements EnergyHolder, RecipeInventoryHolder {
-    protected BaseExtractorInventory inventory;
+public class BaseElectricGrinderBlockEntity extends MachineBlockEntity implements EnergyHolder, RecipeInventoryHolder {
+    protected BaseGrinderInventory inventory;
     protected float cookTime = 0;
 
-    public BaseElectricExtractorBlockEntity(FullChunk chunk, CompoundTag nbt) {
+    public BaseElectricGrinderBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
     }
 
     @Override
     public boolean isBlockEntityValid() {
-        return getLevelBlock() instanceof BaseElectricExtractorBlock;
+        return getLevelBlock() instanceof BaseElectricGrinderBlock;
     }
 
     @NotNull
     @Override
     public String getName() {
-        return "TechDawn_BaseExtractorBlock";
+        return "TechDawn_BaseElectricGrinderBlock";
     }
 
     @Override
@@ -55,8 +52,8 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
     }
 
     @Override
-    public BaseElectricExtractorBlock getBlock() {
-        return (BaseElectricExtractorBlock) super.getBlock();
+    public BaseElectricGrinderBlock getBlock() {
+        return (BaseElectricGrinderBlock) super.getBlock();
     }
 
     @Override
@@ -76,29 +73,35 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
 
     @Override
     public double getMaxStorage() {
-        return 1800;
+        return 4000;
     }
 
     protected @NotNull String getUITitle() {
-        return "ui.techdawn.base_electric_extractor";
+        return "ui.techdawn.base_electric_grinder";
     }
 
     @NotNull
     @Override
     public cn.powernukkitx.fakeInv.CustomInventory generateUI() {
         var customInv = new cn.powernukkitx.fakeInv.CustomInventory(InventoryType.FURNACE, getUITitle());
-        for (var i = 0; i <= 2; i++) {
-            int finalI = i;
-            customInv.setItem(i, inventory.getItem(i), (item, inventoryTransactionEvent) -> {
-                if (InventoryUtil.isTransactionUnsafe(inventory, customInv, inventoryTransactionEvent)) {
-                    inventoryTransactionEvent.setCancelled();
-                    uiManger.update(true);
-                } else {
-                    inventory.setItem(finalI, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
-                    uiManger.update(true);
-                }
-            });
-        }
+        customInv.setItem(0, inventory.getItem(0), (item, inventoryTransactionEvent) -> {
+            if (InventoryUtil.isTransactionUnsafe(inventory, customInv, inventoryTransactionEvent)) {
+                inventoryTransactionEvent.setCancelled();
+                uiManger.update(true);
+            } else {
+                inventory.setItem(0, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
+                uiManger.update(true);
+            }
+        });
+        customInv.setItem(2, inventory.getItem(1), (item, inventoryTransactionEvent) -> {
+            if (InventoryUtil.isTransactionUnsafe(inventory, customInv, inventoryTransactionEvent)) {
+                inventoryTransactionEvent.setCancelled();
+                uiManger.update(true);
+            } else {
+                inventory.setItem(1, InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
+                uiManger.update(true);
+            }
+        });
         customInv.setDefaultItemHandler((item, inventoryTransactionEvent) -> inventoryTransactionEvent.setCancelled());
         return customInv;
     }
@@ -107,9 +110,7 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
     public void updateUI(@NotNull cn.powernukkitx.fakeInv.CustomInventory inventory, boolean immediately) {
         inventory.setItem(0, this.inventory.getItem(0));
         inventory.sendSlot(0, inventory.getViewers());
-        inventory.setItem(1, this.inventory.getItem(1));
-        inventory.sendSlot(1, inventory.getViewers());
-        inventory.setItem(2, this.inventory.getItem(2));
+        inventory.setItem(2, this.inventory.getItem(1));
         inventory.sendSlot(2, inventory.getViewers());
         if (!immediately) {
             for (var each : inventory.getViewers()) {
@@ -173,7 +174,7 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
 
     @Override
     protected void initBlockEntity() {
-        this.inventory = new BaseExtractorInventory(this, InventoryType.FURNACE);
+        this.inventory = new BaseGrinderInventory(this, InventoryType.FURNACE);
         super.initBlockEntity();
     }
 
@@ -186,14 +187,10 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
             ListTag<CompoundTag> items = this.namedTag.getList("Items", CompoundTag.class);
             if (items.size() >= 1) {
                 var data = (CompoundTag) this.namedTag.getList("Items").get(0);
-                inventory.setIngredient1(NBTIO.getItemHelper(data));
+                inventory.setInput(NBTIO.getItemHelper(data));
             }
             if (items.size() >= 2) {
                 var data = (CompoundTag) this.namedTag.getList("Items").get(1);
-                inventory.setIngredient2(NBTIO.getItemHelper(data));
-            }
-            if (items.size() >= 3) {
-                var data = (CompoundTag) this.namedTag.getList("Items").get(2);
                 inventory.setResult(NBTIO.getItemHelper(data));
             }
         }
@@ -230,38 +227,27 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
     }
 
     public float getSpeedMultiplier() {
-        return 0.83333333333333f; // 12 seconds
+        return 1f; // 10 seconds
     }
 
     public int getEnergyCostPerTick() {
-        return 8;
+        return 20;
     }
 
     @Override
     public boolean onUpdate() {
         var result = super.onUpdate();
         // 检查能否开始冶炼
-        Item raw1 = this.inventory.getIngredient1();
-        Item raw2 = this.inventory.getIngredient2();
+        Item input = this.inventory.getInput();
         Item product = this.inventory.getResult();
-        var recipe = this.server.getCraftingManager().matchModProcessRecipe("extracting", List.of(raw1, raw2));
+        var smelt = this.server.getCraftingManager().matchModProcessRecipe("grinding", List.of(input));
         // 配方是否合适
         boolean canSmelt = false;
-        if (recipe != null) {
-            canSmelt = ((raw1.getCount() > 0 || raw2.getCount() > 0) && ((recipe.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
+        if (smelt != null) {
+            canSmelt = (input.getCount() > 0 && ((smelt.getResult().equals(product, true) && product.getCount() < product.getMaxStackSize()) || product.getId() == Item.AIR));
             //检查输入
-            var ingredients = recipe.getIngredients();
-            if (ingredients.size() == 2) {
-                if (!(recipe.getIngredients().get(0).match(raw1) || recipe.getIngredients().get(1).match(raw1))) {
-                    canSmelt = false;
-                }
-                if (!(recipe.getIngredients().get(0).match(raw2) || recipe.getIngredients().get(1).match(raw2))) {
-                    canSmelt = false;
-                }
-            } else if (ingredients.size() == 1) {
-                if (!(recipe.getIngredients().get(0).match(raw1) || recipe.getIngredients().get(0).match(raw2))) {
-                    canSmelt = false;
-                }
+            if (!(smelt.getIngredients().get(0).match(input))) {
+                canSmelt = false;
             }
         }
         // 还有没有电
@@ -281,32 +267,12 @@ public class BaseElectricExtractorBlockEntity extends MachineBlockEntity impleme
                 setStoredEnergy(getStoredEnergy() - getEnergyCostPerTick());
                 cookTime += getSpeedMultiplier();
             } else if (cookTime >= 200) { // 冶炼完成
-                var smeltResult = recipe.getResult().clone();
+                var smeltResult = smelt.getResult().clone();
                 smeltResult.setCount(smeltResult.getCount() + product.getCount());
                 this.inventory.setResult(smeltResult);
-                var recipeIngredients = recipe.getIngredients();
-                if (recipeIngredients.size() == 1) {
-                    if (recipeIngredients.get(0).match(raw1)) {
-                        raw1.setCount(raw1.getCount() - recipeIngredients.get(0).getCount());
-                    } else if (recipeIngredients.get(0).match(raw2)) {
-                        raw2.setCount(raw2.getCount() - recipeIngredients.get(0).getCount());
-                    }
-                } else if (recipeIngredients.size() == 2) {
-                    if (recipeIngredients.get(0).match(raw1)) {
-                        raw1.setCount(raw1.getCount() - recipeIngredients.get(0).getCount());
-                    } else if (recipeIngredients.get(0).match(raw2)) {
-                        raw2.setCount(raw2.getCount() - recipeIngredients.get(0).getCount());
-                    }
-                    if (recipeIngredients.get(1).match(raw1)) {
-                        raw1.setCount(raw1.getCount() - recipeIngredients.get(1).getCount());
-                    } else if (recipeIngredients.get(1).match(raw2)) {
-                        raw2.setCount(raw2.getCount() - recipeIngredients.get(1).getCount());
-                    }
-                }
-                if (raw1.getCount() == 0) raw1 = AIR_ITEM;
-                if (raw2.getCount() == 0) raw2 = AIR_ITEM;
-                this.inventory.setIngredient1(raw1);
-                this.inventory.setIngredient2(raw2);
+                input.setCount(input.getCount() - 1);
+                if (input.getCount() == 0) input = AIR_ITEM;
+                this.inventory.setInput(input);
                 cookTime = 0;
             }
         } else {
