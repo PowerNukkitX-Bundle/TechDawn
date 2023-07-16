@@ -19,17 +19,26 @@ public final class CustomDefUtil {
     }
 
     public static CustomBlockDefinition get4DirectionWorkingBasicMachineDef(CustomBlock block, String workingTexture, String waitingTexture) {
-        return get4DirectionWorkingMachineDef(block, workingTexture, waitingTexture, "techdawn-blocks-machine-basic_electric_machine_top", "techdawn-blocks-machine-basic_machine");
+        return get4DirectionWorkingMachineDef(block, workingTexture, waitingTexture,
+                "techdawn-blocks-machine-basic_electric_machine_top",
+                "techdawn-blocks-machine-basic_machine",
+                "techdawn-blocks-machine-basic_machine");
     }
 
     public static CustomBlockDefinition get4DirectionWorkingMachineDef(CustomBlock block, String workingTexture, String waitingTexture, String topTexture, String sideTexture) {
+        return get4DirectionWorkingMachineDef(block, workingTexture, waitingTexture, topTexture, sideTexture, sideTexture);
+    }
+
+    public static CustomBlockDefinition get4DirectionWorkingMachineDef(CustomBlock block, String workingTexture, String waitingTexture, String topTexture, String sideTexture, String bottomTexture) {
         var workingMaterial = Materials.builder()
                 .up(Materials.RenderMethod.OPAQUE, topTexture)
                 .south(Materials.RenderMethod.OPAQUE, workingTexture)
+                .down(Materials.RenderMethod.OPAQUE, bottomTexture)
                 .any(Materials.RenderMethod.OPAQUE, sideTexture);
         var waitingMaterial = Materials.builder()
                 .up(Materials.RenderMethod.OPAQUE, topTexture)
                 .south(Materials.RenderMethod.OPAQUE, waitingTexture)
+                .down(Materials.RenderMethod.OPAQUE, bottomTexture)
                 .any(Materials.RenderMethod.OPAQUE, sideTexture);
         return CustomBlockDefinition.builder(block, Materials.builder())
                 .permutations(new Permutation(Component.builder().materialInstances(waitingMaterial).build(),

@@ -21,6 +21,8 @@ ui.techdawn.base_electric_extractor=测试用电动萃取机
 ui.techdawn.basic_electric_extractor=基础电动萃取机
 ui.techdawn.base_electric_grinder=测试用电动研磨机
 ui.techdawn.basic_electric_grinder=基础电动研磨机
+ui.techdawn.base_electric_screener=测试用电动筛选机
+ui.techdawn.basic_electric_screener=基础电动筛选机
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 
@@ -182,6 +184,8 @@ tile.techdawn:base_electric_extractor.name=测试用电动萃取机
 tile.techdawn:basic_electric_extractor.name=基础电动萃取机
 tile.techdawn:base_electric_grinder.name=测试用电动研磨机
 tile.techdawn:basic_electric_grinder.name=基础电动研磨机
+tile.techdawn:base_electric_screener.name=测试用电动筛选机
+tile.techdawn:basic_electric_screener.name=基础电动筛选机
 
 tile.techdawn:base_hinge.name=测试用铰链
 tile.techdawn:antiseptic_wood_hinge.name=防腐木铰链

@@ -1760,5 +1760,34 @@
       "DCD",
       "BBB"
     ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:screen_mesh"
+      },
+      "D": {
+        "type": "item",
+        "id": "techdawn:motor"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_electric_screener"
+    },
+    "shape": [
+      "BAB",
+      "DCD",
+      "BBB"
+    ]
   }
 ]

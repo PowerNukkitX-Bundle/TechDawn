@@ -20,6 +20,9 @@
     },
     "techdawn-blocks-machine-base_electric_grinder_on": {
       "textures": "textures/blocks/machine/base_electric_grinder_on"
+    },
+    "techdawn-blocks-machine-base_electric_screener_on": {
+      "textures": "textures/blocks/machine/base_electric_screener_on"
     }
   }
 }
