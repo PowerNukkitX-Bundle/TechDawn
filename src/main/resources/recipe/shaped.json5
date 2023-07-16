@@ -1471,6 +1471,31 @@
       "AAA"
     ]
   },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:tin_plate"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:magnetized_steel_ingot"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:electromagnet"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:motor"
+    },
+    "shape": [
+      "AAA",
+      "CBC",
+      "AAA"
+    ]
+  },
   // coil
   {
     "input": {
@@ -1704,6 +1729,35 @@
     "shape": [
       "BAB",
       "BCB",
+      "BBB"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
+        "id": "techdawn:basic_circuit_board"
+      },
+      "B": {
+        "type": "item",
+        "id": "techdawn:steel_plate"
+      },
+      "C": {
+        "type": "item",
+        "id": "techdawn:steel_gear"
+      },
+      "D": {
+        "type": "item",
+        "id": "techdawn:motor"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:basic_electric_grinder"
+    },
+    "shape": [
+      "BAB",
+      "DCD",
       "BBB"
     ]
   }

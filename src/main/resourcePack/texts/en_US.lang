@@ -126,6 +126,7 @@ item.techdawn:copper_coil=Copper Coil
 item.techdawn:annealed_copper_coil=Annealed Copper Coil
 item.techdawn:electromagnet=Electromagnet
 item.techdawn:screen_mesh=Screen Mesh
+item.techdawn:motor=Motor
 
 tile.techdawn:flint_gravel.name=Flint Gravel
 
