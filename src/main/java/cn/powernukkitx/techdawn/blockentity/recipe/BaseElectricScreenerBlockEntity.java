@@ -64,7 +64,7 @@ public class BaseElectricScreenerBlockEntity extends MachineBlockEntity implemen
 
     @Override
     public boolean canAcceptInput(EnergyType energyType, BlockFace face) {
-        return energyType.canConvertTo(RF.getInstance()) && face != getBlock().getBlockFace();
+        return energyType.canConvertTo(RF.getInstance()) && face != BlockFace.DOWN && face != getBlock().getBlockFace();
     }
 
     @Override
