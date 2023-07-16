@@ -23,6 +23,8 @@ ui.techdawn.base_electric_grinder=Electric Grinder for Debug
 ui.techdawn.basic_electric_grinder=Basic Electric Grinder
 ui.techdawn.base_electric_screener=Electric Screener for Debug
 ui.techdawn.basic_electric_screener=Basic Electric Screener
+ui.techdawn.base_electric_digger=Electric Digger for Debug
+ui.techdawn.basic_electric_digger=Basic Electric Digger
 
 ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 
@@ -186,6 +188,8 @@ tile.techdawn:base_electric_grinder.name=Test-only Electric Grinder
 tile.techdawn:basic_electric_grinder.name=Basic Electric Grinder
 tile.techdawn:base_electric_screener.name=Test-only Electric Screener
 tile.techdawn:basic_electric_screener.name=Basic Electric Screener
+tile.techdawn:base_electric_digger.name=Test-only Electric Digger
+tile.techdawn:basic_electric_digger.name=Basic Electric Digger
 
 tile.techdawn:base_hinge.name=Test-only Hinge
 tile.techdawn:antiseptic_wood_hinge.name=Antiseptic Wood Hinge

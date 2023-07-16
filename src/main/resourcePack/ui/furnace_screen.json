@@ -107,6 +107,18 @@
           {
             "flame_empty_image2@furnace.flame_empty_image": {
               "texture": "textures/ui/battery_empty",
+              "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_digger') = $container_title)"
+            }
+          },
+          {
+            "flame_full_image2@furnace.flame_full_image": {
+              "texture": "textures/ui/battery_full",
+              "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_digger') = $container_title)"
+            }
+          },
+          {
+            "flame_empty_image2@furnace.flame_empty_image": {
+              "texture": "textures/ui/battery_empty",
               "offset": [10, 0],
               "ignored": "(($container_title - 'ui.techdawn.') = $container_title) or (($container_title - 'electric_extractor') = $container_title)"
             }
@@ -157,6 +169,10 @@
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'stone_digger') = $container_title))",
             "$offset": [28, 22]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_digger') = $container_title))",
+            "$offset": [28, 16]
           },
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'fuel_generator') = $container_title))",

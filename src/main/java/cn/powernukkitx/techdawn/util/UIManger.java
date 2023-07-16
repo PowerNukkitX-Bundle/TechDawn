@@ -46,4 +46,8 @@ public final class UIManger {
         }
     }
 
+    public boolean isUIDisplaying() {
+        return !displayInventories.isEmpty();
+    }
+
 }

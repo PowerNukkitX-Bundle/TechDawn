@@ -40,6 +40,10 @@
             "$offset": [32, 26]
           },
           {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_digger') = $container_title))",
+            "$offset": [36, 12]
+          },
+          {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'battery_box') = $container_title))",
             "$visible": false
           },
@@ -83,6 +87,12 @@
             "$texture_empty": "textures/ui/battery_empty",
             "$visible": true,
             "$offset": [16, 20]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_digger') = $container_title))",
+            "$texture_empty": "textures/ui/battery_empty",
+            "$visible": true,
+            "$offset": [52, 12]
           },
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
@@ -136,6 +146,12 @@
             "$texture_full": "textures/ui/battery_full",
             "$visible": true,
             "$offset": [16, 20]
+          },
+          {
+            "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_digger') = $container_title))",
+            "$texture_full": "textures/ui/battery_full",
+            "$visible": true,
+            "$offset": [52, 12]
           },
           {
             "requires": "(not (($container_title - 'ui.techdawn.') = $container_title)) and (not (($container_title - 'electric_extractor') = $container_title))",
