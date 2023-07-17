@@ -16,6 +16,7 @@ ui.techdawn.powered_antiseptic_wood_hopper=Powered Antiseptic Wood Hopper
 ui.techdawn.powered_wood_hopper=Powered Wood Hopper
 ui.techdawn.basic_electric_furnace=Basic Electric Furnace
 ui.techdawn.stone_digger=Stone Digger
+ui.techdawn.stone_digger.offline=§cOwner is offline
 ui.techdawn.stone_screener=Stone Screener
 ui.techdawn.base_electric_extractor=Electric Extractor for Debug
 ui.techdawn.basic_electric_extractor=Basic Electric Extractor
@@ -25,6 +26,8 @@ ui.techdawn.base_electric_screener=Electric Screener for Debug
 ui.techdawn.basic_electric_screener=Basic Electric Screener
 ui.techdawn.base_electric_digger=Electric Digger for Debug
 ui.techdawn.basic_electric_digger=Basic Electric Digger
+ui.techdawn.base_electric_digger.offline=§cOwner is offline
+ui.techdawn.basic_electric_digger.offline=§cOwner is offline
 
 ui.techdawn.chat.update_and_shutdown=§cThe server is about to shutdown in 3 seconds to update the plugins.
 

@@ -104,7 +104,11 @@ public class BaseElectricDiggerBlock extends BlockSolidMeta implements Faceable,
     @Override
     public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
         this.setPropertyValue(CommonBlockProperties.DIRECTION, player != null ? player.getDirection().getOpposite() : BlockFace.NORTH);
-        return BlockEntityHolder.setBlockAndCreateEntity(this) != null;
+        var be = BlockEntityHolder.setBlockAndCreateEntity(this);
+        if (be != null && player != null) {
+            be.setPlayerName(player.getName());
+        }
+        return be != null;
     }
 
     @Override

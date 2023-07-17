@@ -34,6 +34,9 @@ public class BasicElectricDiggerBlockEntity extends BaseElectricDiggerBlockEntit
     @NotNull
     @Override
     protected String getUITitle() {
+        if (isPlayerOffline()) {
+            return "ui.techdawn.basic_electric_digger.offline";
+        }
         return "ui.techdawn.basic_electric_digger";
     }
 }

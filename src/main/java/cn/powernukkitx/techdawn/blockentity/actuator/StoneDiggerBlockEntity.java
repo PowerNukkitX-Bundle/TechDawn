@@ -35,6 +35,7 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
     protected int miningTick = 0;
     protected int lastMiningBlockId = 0;
     protected boolean isMining = false;
+    protected String playerName = "";
 
     public StoneDiggerBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -70,7 +71,11 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
     @NotNull
     @Override
     public CustomInventory generateUI() {
-        var customInv = new CustomInventory(InventoryType.FURNACE, "ui.techdawn.stone_digger");
+        var title = "ui.techdawn.stone_digger";
+        if (isPlayerOffline()) {
+            title = "ui.techdawn.base_electric_digger.offline";
+        }
+        var customInv = new CustomInventory(InventoryType.FURNACE, title);
         customInv.setItem(0, inventory.getPickaxe(), (item, inventoryTransactionEvent) -> {
             // TODO: 2022/12/20 阻止潜在的多人刷物品
             inventory.setPickaxe(InventoryUtil.getSlotTransactionResult(customInv, inventoryTransactionEvent));
@@ -127,6 +132,9 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
                 this.inventory.setItem(i, NBTIO.getItemHelper(items.get(i)));
             }
         }
+        if (this.namedTag.contains("playerName")) {
+            this.playerName = this.namedTag.getString("playerName");
+        }
     }
 
     @Override
@@ -135,6 +143,7 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
         var items = new ListTag<CompoundTag>("Items");
         items.add(NBTIO.putItemHelper(getInventory().getPickaxe(), 0));
         this.namedTag.putList(items);
+        this.namedTag.putString("playerName", playerName);
     }
 
     @Override
@@ -163,16 +172,32 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
         return this.inventory;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public boolean isPlayerOffline() {
+        return getPlayerName() != null && !getPlayerName().isEmpty() && server.getPlayer(getPlayerName()) == null;
+    }
+
     @Override
     public boolean onUpdate() {
         super.onUpdate();
         if (this.closed) {
             return false;
         }
+        // 检查玩家是否在线
+        if (isPlayerOffline()) {
+            return uiManger.isUIDisplaying();
+        }
         // 检查是否是镐子
         var pickaxe = inventory.getPickaxe();
         if (pickaxe == null || pickaxe.isNull() || !pickaxe.isPickaxe()) {
-            return false;
+            return uiManger.isUIDisplaying();
         }
         var blockUnder = level.getBlock(this.add(0, -1, 0));
         if (lastMiningBlockId != blockUnder.getId()) {
@@ -182,7 +207,7 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
             this.sendBlockEventPacket(LevelEventPacket.EVENT_BLOCK_STOP_BREAK, 0, blockUnder);
         }
         if (blockUnder.getId() == Block.AIR) {
-            return false;
+            return uiManger.isUIDisplaying();
         }
         double miningTimeRequired;
         if (blockUnder instanceof CustomBlock customBlock) {
@@ -207,7 +232,7 @@ public class StoneDiggerBlockEntity extends MachineBlockEntity implements Recipe
                 miningTick = 0;
                 lastMiningBlockId = 0;
                 isMining = false;
-                var result = this.level.useBreakOn(blockUnder, BlockFace.UP, pickaxe, null, true);
+                var result = this.level.useBreakOn(blockUnder, BlockFace.UP, pickaxe, server.getPlayer(getPlayerName()), true);
                 if (result.isNull()) {
                     level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_BREAK);
                 }

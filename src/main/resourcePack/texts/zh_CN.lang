@@ -25,6 +25,8 @@ ui.techdawn.base_electric_screener=测试用电动筛选机
 ui.techdawn.basic_electric_screener=基础电动筛选机
 ui.techdawn.base_electric_digger=测试用电动挖掘机
 ui.techdawn.basic_electric_digger=基础电动挖掘机
+ui.techdawn.base_electric_digger.offline=§c需要机主在线才能挖掘
+ui.techdawn.basic_electric_digger.offline=§c需要机主在线才能挖掘
 
 ui.techdawn.chat.update_and_shutdown=§c服务器即将在3秒内关闭以更新插件
 

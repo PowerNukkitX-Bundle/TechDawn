@@ -35,6 +35,7 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
     protected int miningTick = 0;
     protected int lastMiningBlockId = 0;
     protected boolean isMining = false;
+    protected String playerName = "";
 
     public BaseElectricDiggerBlockEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -82,6 +83,9 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
     }
 
     protected @NotNull String getUITitle() {
+        if (isPlayerOffline()) {
+            return "ui.techdawn.base_electric_digger.offline";
+        }
         return "ui.techdawn.base_electric_digger";
     }
 
@@ -118,6 +122,18 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
                 }
             }
         }
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public boolean isPlayerOffline() {
+        return getPlayerName() != null && !getPlayerName().isEmpty() && server.getPlayer(getPlayerName()) == null;
     }
 
     @Override
@@ -170,6 +186,9 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
                 inventory.setPickaxe(NBTIO.getItemHelper(data));
             }
         }
+        if (this.namedTag.contains("playerName")) {
+            this.playerName = this.namedTag.getString("playerName");
+        }
     }
 
     @Override
@@ -180,6 +199,8 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
         for (int index = 0; index < this.inventory.getSize(); index++) {
             this.setItemToNBT(index, this.inventory.getItem(index));
         }
+
+        this.namedTag.putString("playerName", playerName);
     }
 
     @Override
@@ -202,6 +223,10 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
         super.onUpdate();
         if (this.closed) {
             return false;
+        }
+        // 检查玩家是否在线
+        if (isPlayerOffline()) {
+            return uiManger.isUIDisplaying();
         }
         // 检查是否是镐子
         var pickaxe = inventory.getPickaxe();
@@ -243,7 +268,7 @@ public class BaseElectricDiggerBlockEntity extends MachineBlockEntity implements
                 lastMiningBlockId = 0;
                 isMining = false;
                 this.getBlock().setWorkingProperty(false);
-                var result = this.level.useBreakOn(blockUnder, BlockFace.UP, pickaxe, null, true);
+                var result = this.level.useBreakOn(blockUnder, BlockFace.UP, pickaxe, server.getPlayer(getPlayerName()), true);
                 if (result.isNull()) {
                     level.addSound(this.add(0.5, 0.5, 0.5), Sound.RANDOM_BREAK);
                 }

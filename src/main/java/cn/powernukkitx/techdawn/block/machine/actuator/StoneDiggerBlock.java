@@ -1,6 +1,7 @@
 package cn.powernukkitx.techdawn.block.machine.actuator;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockEntityHolder;
 import cn.nukkit.block.BlockSolid;
 import cn.nukkit.block.customblock.CustomBlock;
@@ -8,6 +9,7 @@ import cn.nukkit.block.customblock.CustomBlockDefinition;
 import cn.nukkit.block.customblock.data.Materials;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
+import cn.nukkit.math.BlockFace;
 import cn.nukkit.utils.BlockColor;
 import cn.powernukkitx.techdawn.annotation.AutoRegister;
 import cn.powernukkitx.techdawn.blockentity.actuator.StoneDiggerBlockEntity;
@@ -84,5 +86,14 @@ public class StoneDiggerBlock extends BlockSolid implements CustomBlock, BlockEn
             level.scheduleBlockEntityUpdate(be);
         }
         return super.onUpdate(type);
+    }
+
+    @Override
+    public boolean place(@NotNull Item item, @NotNull Block block, @NotNull Block target, @NotNull BlockFace face, double fx, double fy, double fz, @Nullable Player player) {
+        var be = BlockEntityHolder.setBlockAndCreateEntity(this);
+        if (be != null && player != null) {
+            be.setPlayerName(player.getName());
+        }
+        return be != null;
     }
 }
