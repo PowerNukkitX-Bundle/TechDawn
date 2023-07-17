@@ -8,7 +8,7 @@
       "type": "item",
       "id": "techdawn:steel_ingot"
     },
-    "processingTick": 4800,
+    "processingTick": 2400,
     "xp": 2
   },
   {
@@ -20,7 +20,7 @@
       "type": "item",
       "id": "techdawn:steel_ingot"
     },
-    "processingTick": 600,
+    "processingTick": 300,
     "xp": 0
   },
   {
@@ -32,7 +32,7 @@
       "type": "item",
       "id": "techdawn:stainless_steel_ingot"
     },
-    "processingTick": 9600,
+    "processingTick": 4800,
     "xp": 0
   },
   {
@@ -44,7 +44,7 @@
       "type": "item",
       "id": "techdawn:silicon"
     },
-    "processingTick": 4800,
+    "processingTick": 2400,
     "xp": 2
   },
   {
@@ -56,7 +56,7 @@
       "type": "item",
       "id": "techdawn:silicon"
     },
-    "processingTick": 3600,
+    "processingTick": 1800,
     "xp": 2
   },
   {
@@ -68,7 +68,7 @@
       "type": "item",
       "id": "techdawn:silicon"
     },
-    "processingTick": 2400,
+    "processingTick": 1200,
     "xp": 2
   }
 ]
