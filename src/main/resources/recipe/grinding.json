@@ -248,5 +248,15 @@
       "type": "item",
       "id": "techdawn:quartz_dust"
     }
+  },
+  {
+    "input": {
+      "type": "item",
+      "id": "minecraft:sand"
+    },
+    "output": {
+      "type": "item",
+      "id": "minecraft:clay"
+    }
   }
 ]
