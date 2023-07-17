@@ -144,6 +144,7 @@ tile.techdawn:copper_outlet_flue.name=Copper Outlet Flue
 tile.techdawn:copper_blast_furnace.name=Copper Blast Furnace
 tile.techdawn:bronze_blast_furnace.name=Bronze Blast Furnace
 tile.techdawn:antiseptic_wood_plank.name=Antiseptic Wood Plank
+tile.techdawn:charcoal_pile_igniter.name=Charcoal Pile Igniter
 tile.techdawn:stone_extractor.name=Stone Extractor
 tile.techdawn:tar_impregnated_wood_plank.name=Tar Impregnated Wood Plank
 tile.techdawn:stone_grinder.name=Stone Grinder

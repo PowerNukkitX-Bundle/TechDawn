@@ -146,6 +146,7 @@ tile.techdawn:copper_outlet_flue.name=铜排烟口
 tile.techdawn:copper_blast_furnace.name=铜高炉
 tile.techdawn:bronze_blast_furnace.name=青铜高炉
 tile.techdawn:antiseptic_wood_plank.name=防腐木板
+tile.techdawn:charcoal_pile_igniter.name=木炭窑点火器
 tile.techdawn:stone_extractor.name=石制萃取机
 tile.techdawn:tar_impregnated_wood_plank.name=焦油浸渍的木板
 tile.techdawn:stone_grinder.name=石制研磨机
