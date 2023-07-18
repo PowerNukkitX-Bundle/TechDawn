@@ -573,6 +573,31 @@
     "input": {
       "A": {
         "type": "item",
+        "id": "minecraft:brick_block"
+      },
+      "B": {
+        "type": "item",
+        "id": "minecraft:flint"
+      },
+      "C": {
+        "type": "item",
+        "id": "minecraft:iron_ingot"
+      }
+    },
+    "output": {
+      "type": "item",
+      "id": "techdawn:charcoal_pile_igniter"
+    },
+    "shape": [
+      "B",
+      "C",
+      "A"
+    ]
+  },
+  {
+    "input": {
+      "A": {
+        "type": "item",
         "id": "techdawn:flint_gravel"
       },
       "B": {
